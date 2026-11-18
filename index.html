@@ -32,6 +32,22 @@
     .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
     @keyframes orb{to{transform:translate(-5%,7%) scale(1.12)}}@keyframes ring{to{transform:rotate(335deg) scaleY(.35)}}@keyframes bang{50%{transform:rotate(-8deg) translateY(-10px)}}@keyframes float{50%{transform:translateY(-17px) rotate(2deg)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.94) translateY(15px)}to{opacity:1;transform:none}}
 
+
+    .home-poster-wrap{padding:65px 7vw 25px;background:#171019}
+    .home-poster{min-height:560px;position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(25px,5vw,65px);border:1px solid rgba(255,255,255,.22);background:#171329}
+    .home-poster:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=2000&q=90") center 48%/cover;filter:saturate(.85);transform:scale(1.03);animation:posterDrift 18s ease-in-out infinite alternate}
+    .home-poster:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,8,25,.9),rgba(19,10,32,.42) 65%,rgba(14,8,25,.2)),linear-gradient(0deg,rgba(12,8,25,.65),transparent 55%)}
+    .poster-top,.poster-bottom{display:flex;justify-content:space-between;gap:20px;align-items:center;font:10px var(--mono);letter-spacing:1.8px;text-transform:uppercase}
+    .poster-kicker{color:#f7a5d0}.poster-edition{color:#fff;opacity:.8}
+    .poster-name{font-size:clamp(100px,23vw,290px);font-weight:700;letter-spacing:-.13em;line-height:.72;margin:40px 0 25px;background:linear-gradient(110deg,#fff 5%,#e3c8ff 48%,#ff72b3 85%);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 18px 70px rgba(169,99,255,.25);animation:posterIn 1.2s cubic-bezier(.2,.7,.2,1) both}
+    .poster-line{font-size:clamp(20px,3.4vw,43px);font-weight:600;letter-spacing:-.06em;text-transform:uppercase}
+    .poster-line span{color:#ff8cba}
+    .poster-bottom{align-items:flex-end}.poster-soon{font-size:clamp(23px,4vw,48px);font-weight:600;letter-spacing:-.07em}.poster-soon small{display:block;font:10px var(--mono);letter-spacing:1.5px;margin-top:10px;color:#e2d4f7}
+    .poster-link{border:1px solid rgba(255,255,255,.75);padding:14px 19px;border-radius:99px;font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;transition:.3s;white-space:nowrap}.poster-link:hover{background:#fff;color:#171019}
+    .poster-orbit{position:absolute;width:220px;height:220px;border:1px solid rgba(255,255,255,.55);border-radius:50%;right:12%;top:22%;box-shadow:0 0 0 24px rgba(255,255,255,.05),0 0 70px rgba(190,126,255,.3);animation:posterOrbit 18s linear infinite;pointer-events:none}
+    @keyframes posterDrift{to{transform:scale(1.12) translateX(-1.5%)}}@keyframes posterIn{from{opacity:0;transform:translateY(35px);filter:blur(12px)}to{opacity:1;transform:none;filter:blur(0)}}@keyframes posterOrbit{to{transform:rotate(360deg)}}
+    @media(max-width:700px){.home-poster-wrap{padding:35px 6vw 10px}.home-poster{min-height:520px;padding:24px}.poster-top{align-items:flex-start}.poster-name{font-size:30vw;margin:65px 0 25px}.poster-orbit{width:130px;height:130px;right:5%;top:30%}.poster-bottom{align-items:flex-start;flex-direction:column}.poster-link{margin-top:8px}}
+
     .pavo{background:#090b17;color:#f8f3ef;overflow:hidden}
     .pavo:before{content:"";position:absolute;width:65vw;height:65vw;right:-20vw;top:-18vw;border-radius:50%;background:radial-gradient(circle,rgba(126,92,255,.3),rgba(255,79,154,.12) 42%,transparent 70%);pointer-events:none}
     .pavo-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:35px;position:relative}
@@ -76,6 +92,16 @@
     </header>
 
     <div class="ticker"><div class="ticker-track"><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b></div></div>
+
+
+    <section class="home-poster-wrap" aria-label="PAVO afterparty poster">
+      <a class="home-poster" href="#pavo">
+        <div class="poster-top"><span class="poster-kicker">OOPS! presents / After hours</span><span class="poster-edition">A new chapter · 001</span></div>
+        <div class="poster-orbit"></div>
+        <div><div class="poster-line">THE NIGHT DOESN'T <span>END HERE.</span></div><div class="poster-name">PAVO</div></div>
+        <div class="poster-bottom"><div class="poster-soon">ALL DETAILS SOON<small>DATE · VENUE · LINE-UP — TO BE REVEALED</small></div><span class="poster-link">Discover PAVO ↗</span></div>
+      </a>
+    </section>
 
     <section class="events" id="events">
       <div class="section-head reveal"><div><div class="eyebrow">01 / Mark your calendar</div><h2>THE<br>PLANS.</h2></div><p>Not another night out. A reason to leave the group chat and actually show up. The afterparty? That’s PAVO.</p></div>
