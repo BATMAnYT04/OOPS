@@ -52,6 +52,30 @@
     .moment:nth-child(6){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85")}
     .moment:before{border-color:rgba(255,255,255,.28);box-shadow:0 0 0 22px rgba(255,255,255,.035),0 0 0 48px rgba(255,255,255,.025)}
 
+
+    /* Cinematic motion layer */
+    .scroll-progress{position:fixed;z-index:60;left:0;top:0;height:2px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--pink),var(--orange),var(--purple));box-shadow:0 0 14px rgba(255,79,154,.8);pointer-events:none}
+    body:before{content:"";position:fixed;inset:0;z-index:18;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,rgba(4,2,8,.32) 100%);opacity:.8}
+    .grain{opacity:.11;mix-blend-mode:soft-light}
+    .hero{isolation:isolate}
+    .hero-video-wrap{filter:blur(.2px);transition:opacity .7s}
+    .hero h1{ text-shadow:0 12px 70px rgba(255,79,154,.16); }
+    .hero h1,.poster-name,.pavo-title{will-change:transform,filter}
+    .event-card,.pavo-photo,.moment{transform:translateZ(0)}
+    .event-card:after{transition:opacity .6s}
+    .event-card:hover:after{opacity:.65}
+    .event-card:hover h3{ text-shadow:0 8px 34px rgba(255,79,154,.3); }
+    .pavo-photo img{transform:scale(1.025);filter:saturate(.78) contrast(1.06)}
+    .pavo-photo:hover img{transform:scale(1.12);filter:saturate(1.12) contrast(1.04)}
+    .moment{transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .7s;filter:saturate(.88)}
+    .moment:hover{transform:translateY(-7px) scale(1.015);filter:saturate(1.12)}
+    .reveal{filter:blur(5px)}
+    .reveal.visible{filter:blur(0)}
+    .button,.nav-cta,.poster-link{position:relative;overflow:hidden}
+    .button:after,.nav-cta:after,.poster-link:after{content:"";position:absolute;inset:-50% auto -50% -70%;width:38%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transition:left .7s}
+    .button:hover:after,.nav-cta:hover:after,.poster-link:hover:after{left:140%}
+    @media(prefers-reduced-motion:reduce){.reveal{filter:none}.moment,.pavo-photo img{transition:none}}
+
     .home-poster-wrap{padding:65px 7vw 25px;background:#171019}
     .home-poster{min-height:560px;position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(25px,5vw,65px);border:1px solid rgba(255,255,255,.22);background:#171329}
     .home-poster:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=2000&q=90") center 48%/cover;filter:saturate(.85);transform:scale(1.03);animation:posterDrift 18s ease-in-out infinite alternate}
@@ -93,6 +117,7 @@
 </head>
 <body>
   <div class="grain"></div><div class="cursor-glow" id="glow"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <nav class="nav">
     <a class="brand" href="#top" aria-label="OOPS home">OOPS<span>!</span></a>
     <div class="nav-links"><a href="#events">The plans</a><a href="#pavo">PAVO afterparty</a><a href="#about">The energy</a><a href="#moments">The memories</a></div>
@@ -219,6 +244,24 @@
     $('#year').textContent=new Date().getFullYear();
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const progress=$('#scrollProgress');
+    let ticking=false;
+    const updateScrollEffects=()=>{
+      const max=document.documentElement.scrollHeight-window.innerHeight;
+      progress.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';
+      ticking=false;
+    };
+    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateScrollEffects);ticking=true}},{passive:true});
+    updateScrollEffects();
+    if(matchMedia('(pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
+      document.querySelectorAll('.event-card,.pavo-photo,.moment').forEach(card=>{
+        card.addEventListener('pointermove',e=>{
+          const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+          card.style.setProperty('--pointer-x',(x*100)+'%');card.style.setProperty('--pointer-y',(y*100)+'%');
+        });
+        card.addEventListener('pointerleave',()=>{card.style.removeProperty('--pointer-x');card.style.removeProperty('--pointer-y')});
+      });
+    }
     const glow=$('#glow');
     if(matchMedia('(pointer:fine)').matches){document.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}else{glow.style.display='none'}
   </script>
