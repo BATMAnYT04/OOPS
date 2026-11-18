@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171019">
+  <meta name="description" content="OOPS! — unexpected nights, unforgettable stories. Discover upcoming experiences and get on the list.">
+  <title>OOPS! — Plans? What Plans?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#171019;--paper:#f5eee8;--pink:#ff4f9a;--orange:#ff783d;--purple:#9b70ff;--muted:#b9aeb8;--line:rgba(245,238,232,.17);--display:"Space Grotesk",sans-serif;--mono:"DM Mono",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--display);overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}
+    .grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+    .cursor-glow{position:fixed;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,154,.14),transparent 68%);pointer-events:none;z-index:0;transform:translate(-50%,-50%)}
+    .nav{height:78px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(23,16,25,.82);backdrop-filter:blur(18px);z-index:15}
+    .brand{font-size:27px;font-weight:700;letter-spacing:-2px}.brand span{color:var(--pink)}.nav-links{display:flex;gap:34px;font:11px var(--mono);text-transform:uppercase;letter-spacing:1.2px;color:#d7cbd5}.nav-links a{transition:color .25s}.nav-links a:hover{color:var(--pink)}.nav-cta,.pill{border:1px solid var(--paper);border-radius:99px;padding:12px 19px;font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;background:transparent;color:var(--paper);transition:.3s}.nav-cta:hover{background:var(--paper);color:var(--ink)}
+    .hero{min-height:calc(100svh - 78px);padding:9vh 7vw 7vh;position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.hero:before{content:"";position:absolute;width:55vw;height:55vw;max-width:760px;max-height:760px;right:-8vw;top:3%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,79,154,.9),rgba(155,112,255,.52) 36%,rgba(255,120,61,.18) 58%,transparent 70%);filter:blur(8px);animation:orb 12s ease-in-out infinite alternate}
+    .hero:after{content:"";position:absolute;width:30vw;height:30vw;right:10vw;top:22%;border:1px solid rgba(255,255,255,.25);border-radius:50%;transform:rotate(-25deg) scaleY(.35);box-shadow:0 0 70px rgba(255,79,154,.18);animation:ring 18s linear infinite}
+    .hero-kicker,.eyebrow{font:10px var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--pink);position:relative;z-index:2}.hero h1{font-size:clamp(100px,22vw,310px);line-height:.72;letter-spacing:-.105em;margin:38px 0 34px;position:relative;z-index:2;font-weight:700}.hero h1 .bang{color:var(--orange);display:inline-block;transform:rotate(9deg);text-shadow:8px 8px 0 var(--purple);animation:bang 3.5s ease-in-out infinite}.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;position:relative;z-index:3}.hero-copy{font-size:clamp(18px,2vw,25px);max-width:390px;line-height:1.25;letter-spacing:-.7px}.hero-copy em{font-style:normal;color:var(--pink)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:16px 21px;border:0;border-radius:99px;background:var(--pink);color:var(--ink);font:11px var(--mono);text-transform:uppercase;letter-spacing:.8px;transition:transform .3s,background .3s}.button:hover{transform:translateY(-4px) rotate(-1deg);background:var(--orange)}.button.secondary{background:transparent;color:var(--paper);border:1px solid var(--line)}.button.secondary:hover{background:var(--paper);color:var(--ink)}
+    .sticker{position:absolute;z-index:4;right:12%;bottom:14%;width:105px;height:105px;border-radius:50%;background:var(--orange);color:var(--ink);display:grid;place-items:center;text-align:center;font-size:13px;font-weight:700;line-height:1.05;transform:rotate(12deg);animation:float 5s ease-in-out infinite}.sticker small{font:8px var(--mono);display:block;letter-spacing:1px}
+    .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;background:var(--pink);color:var(--ink);transform:rotate(-1.5deg) scale(1.02);position:relative;z-index:3}.ticker-track{display:flex;white-space:nowrap;animation:marquee 24s linear infinite;font-size:21px;font-weight:700;letter-spacing:-.7px}.ticker-track span{padding:0 24px}.ticker-track b{color:#fff}
+    section{padding:125px 7vw;position:relative}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:50px}.section-head h2{font-size:clamp(48px,8vw,105px);letter-spacing:-.085em;line-height:.85;margin:13px 0 0}.section-head p{max-width:250px;color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+    .events{background:var(--paper);color:var(--ink)}.events .eyebrow{color:#b72f70}.event-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}.event-card{min-height:440px;position:relative;overflow:hidden;border-radius:5px;background:#362039;color:white;padding:27px;display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}.event-card:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(145deg,#ff4f9a,#9b70ff 54%,#ff783d);transition:transform .8s}.event-card:nth-child(2):before{background:linear-gradient(145deg,#ff783d,#f33c83 48%,#4b2a74)}.event-card:hover:before{transform:scale(1.08) rotate(2deg)}.event-card:after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 70% 40%,transparent 0 16%,rgba(15,8,19,.2) 55%,rgba(15,8,19,.7));}
+    .event-top{display:flex;justify-content:space-between;font:10px var(--mono);letter-spacing:1px;text-transform:uppercase}.event-art{position:absolute;inset:0;display:grid;place-items:center;z-index:-1}.event-art strong{font-size:clamp(90px,15vw,190px);letter-spacing:-.12em;line-height:.7;color:rgba(255,255,255,.23);transform:rotate(-12deg);text-shadow:10px 15px 0 rgba(24,12,30,.16)}.event-card h3{font-size:clamp(38px,6vw,76px);letter-spacing:-.08em;line-height:.85;margin:0 0 12px;max-width:500px}.event-meta{font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.75)}.event-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:15px}.event-arrow{width:47px;height:47px;border:1px solid rgba(255,255,255,.7);border-radius:50%;display:grid;place-items:center;font-size:22px;transition:.3s}.event-card:hover .event-arrow{background:white;color:var(--ink);transform:rotate(45deg)}
+    .manifesto{background:#211827;overflow:hidden}.manifesto .big-line{font-size:clamp(42px,8vw,112px);font-weight:600;letter-spacing:-.085em;line-height:.98;max-width:1050px;margin:0}.big-line .outline{-webkit-text-stroke:1px var(--paper);color:transparent}.manifesto .side-note{margin:55px 0 0 auto;max-width:270px;color:var(--muted);font-size:14px;line-height:1.6}.asterisk{position:absolute;right:8%;top:15%;font-size:clamp(100px,22vw,280px);color:var(--purple);opacity:.65;animation:spin 35s linear infinite}
+    .moments{background:#f0e7e3;color:var(--ink)}.moments .eyebrow{color:#b72f70}.moment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.moment{min-height:280px;position:relative;overflow:hidden;padding:20px;display:flex;align-items:flex-end;color:white;background:#9b70ff}.moment:nth-child(2){background:#ff783d;min-height:350px;margin-top:45px}.moment:nth-child(3){background:#d83d86}.moment:nth-child(4){background:#4d3268;min-height:330px}.moment:nth-child(5){background:#ff4f9a}.moment:nth-child(6){background:#bd4a37;min-height:310px;margin-top:20px}.moment:before{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.65);border-radius:45% 55% 60% 40%;top:10%;left:20%;transform:rotate(35deg);box-shadow:0 0 0 22px rgba(255,255,255,.08),0 0 0 48px rgba(255,255,255,.06);transition:transform .8s}.moment:nth-child(2):before,.moment:nth-child(5):before{border-radius:50%;transform:scale(.75) rotate(0);background:rgba(255,255,255,.12)}.moment:hover:before{transform:rotate(120deg) scale(1.15)}.moment span{font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;position:relative}
+    .join{background:linear-gradient(125deg,#ff4f9a 0%,#9b70ff 52%,#ff783d 100%);color:var(--ink);text-align:center;overflow:hidden}.join h2{font-size:clamp(65px,13vw,170px);letter-spacing:-.1em;line-height:.78;margin:20px 0 30px}.join p{max-width:420px;margin:0 auto 30px;line-height:1.5}.join .button{background:var(--ink);color:var(--paper)}.join .button:hover{background:white;color:var(--ink)}
+    footer{padding:34px 7vw 45px;background:#120d14;display:flex;align-items:flex-end;justify-content:space-between;gap:25px}.footer-brand{font-size:55px;font-weight:700;letter-spacing:-5px}.footer-brand span{color:var(--pink)}footer p,footer a{font:10px var(--mono);letter-spacing:.6px;color:var(--muted);text-transform:uppercase}footer .socials{display:flex;gap:20px}
+    .modal{position:fixed;inset:0;background:rgba(10,6,12,.78);backdrop-filter:blur(12px);z-index:30;display:none;place-items:center;padding:20px}.modal.open{display:grid}.modal-box{background:var(--paper);color:var(--ink);width:min(520px,100%);padding:35px;border-radius:8px;position:relative;animation:pop .35s ease}.modal-box h3{font-size:45px;letter-spacing:-3px;margin:8px 0}.modal-box p{color:#655965;font-size:13px;line-height:1.5}.close{position:absolute;right:18px;top:15px;border:0;background:none;font-size:25px}.field{display:grid;gap:7px;margin:16px 0}.field label{font:10px var(--mono);text-transform:uppercase;letter-spacing:1px}.field input,.field textarea{border:1px solid #d5c8d1;background:transparent;padding:13px;color:var(--ink);outline:none;border-radius:3px}.field input:focus,.field textarea:focus{border-color:#b72f70}.form-note{font:10px var(--mono);color:#766a76;margin-top:13px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--paper);color:var(--ink);padding:14px 20px;border-radius:50px;font:11px var(--mono);z-index:40;opacity:0;transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+    @keyframes orb{to{transform:translate(-5%,7%) scale(1.12)}}@keyframes ring{to{transform:rotate(335deg) scaleY(.35)}}@keyframes bang{50%{transform:rotate(-8deg) translateY(-10px)}}@keyframes float{50%{transform:translateY(-17px) rotate(2deg)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.94) translateY(15px)}to{opacity:1;transform:none}}
+    @media(max-width:700px){.nav{height:66px;padding:0 5vw}.nav-links{display:none}.brand{font-size:24px}.hero{min-height:760px;padding:100px 6vw 70px}.hero:before{width:110vw;height:110vw;right:-35vw;top:10%}.hero:after{width:75vw;height:75vw;right:-5vw;top:22%}.hero h1{font-size:clamp(100px,27vw,180px);margin:65px 0 45px}.hero-bottom{align-items:flex-start;flex-direction:column}.hero-copy{max-width:290px}.sticker{width:80px;height:80px;right:8%;bottom:12%;font-size:11px}.sticker small{font-size:7px}section{padding:85px 6vw}.section-head{display:block;margin-bottom:35px}.section-head p{margin-top:20px}.event-grid{grid-template-columns:1fr}.event-card{min-height:390px}.event-card:nth-child(2){min-height:350px}.moment-grid{grid-template-columns:1fr 1fr;gap:9px}.moment,.moment:nth-child(2),.moment:nth-child(4),.moment:nth-child(6){min-height:220px;margin-top:0}.moment:before{width:160px;height:160px}.asterisk{right:0;top:7%}.manifesto .side-note{margin-top:35px}.join h2{font-size:clamp(70px,19vw,120px)}footer{align-items:flex-start;flex-direction:column}.footer-brand{font-size:45px}.footer-bottom{display:flex;justify-content:space-between;width:100%;gap:10px;flex-wrap:wrap}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="grain"></div><div class="cursor-glow" id="glow"></div>
+  <nav class="nav">
+    <a class="brand" href="#top" aria-label="OOPS home">OOPS<span>!</span></a>
+    <div class="nav-links"><a href="#events">The plans</a><a href="#about">The energy</a><a href="#moments">The memories</a></div>
+    <button class="nav-cta" data-open>Get on the list ↗</button>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="hero-kicker">Independent nights · Unexpected stories · Est. 2026</div>
+      <h1>OOPS<span class="bang">!</span></h1>
+      <div class="hero-bottom">
+        <p class="hero-copy">Well, that escalated.<br><em>Good nights. Great stories.</em><br>Absolutely no ordinary plans.</p>
+        <div class="hero-actions"><a class="button" href="#events">Find your next night ↗</a><a class="button secondary" href="#about">What's OOPS?</a></div>
+      </div>
+      <div class="sticker">MAKE<br>IT A<br>STORY<small>✳ OOPS! CLUB</small></div>
+    </header>
+
+    <div class="ticker"><div class="ticker-track"><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b></div></div>
+
+    <section class="events" id="events">
+      <div class="section-head reveal"><div><div class="eyebrow">01 / Mark your calendar</div><h2>THE<br>PLANS.</h2></div><p>Not another night out. A reason to leave the group chat and actually show up.</p></div>
+      <div class="event-grid">
+        <article class="event-card reveal">
+          <div class="event-top"><span>OOPS! PRESENTS</span><span>001 / TBA</span></div><div class="event-art"><strong>OOPS!</strong></div>
+          <div class="event-bottom"><div><div class="event-meta">The first one · Details coming soon</div><h3>THE<br>UNPLANNED.</h3><div class="event-meta">Location & date to be announced</div></div><button class="event-arrow" aria-label="Get event updates" data-open>↗</button></div>
+        </article>
+        <article class="event-card reveal">
+          <div class="event-top"><span>KEEP YOUR EYES OPEN</span><span>002 / SOON</span></div><div class="event-art"><strong>?!</strong></div>
+          <div class="event-bottom"><div><div class="event-meta">A little mystery · More soon</div><h3>NO<br>CONTEXT.</h3><div class="event-meta">You heard it here first</div></div><button class="event-arrow" aria-label="Get event updates" data-open>↗</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto" id="about">
+      <div class="asterisk">✳</div><div class="eyebrow reveal">02 / The OOPS! state of mind</div>
+      <p class="big-line reveal">WE MAKE PLANS.</p><p class="big-line outline reveal">THEN MAKE</p><p class="big-line reveal">MEMORIES.</p>
+      <p class="side-note reveal">A little unexpected. A lot unforgettable. OOPS! brings people together for thoughtfully produced parties, pop-ups and social experiences. Come as you are. Leave with a story.</p>
+    </section>
+
+    <section class="moments" id="moments">
+      <div class="section-head reveal"><div><div class="eyebrow">03 / The camera roll</div><h2>PROOF<br>OF FUN.</h2></div><p>Good people, good energy, moments worth keeping. The gallery gets better after every event.</p></div>
+      <div class="moment-grid">
+        <div class="moment reveal"><span>01 — The entrance</span></div><div class="moment reveal"><span>02 — The unexpected</span></div><div class="moment reveal"><span>03 — The people</span></div>
+        <div class="moment reveal"><span>04 — The little details</span></div><div class="moment reveal"><span>05 — The group photo</span></div><div class="moment reveal"><span>06 — The next story</span></div>
+      </div>
+      <p class="form-note" style="margin-top:18px">Gallery placeholders — replace with real event photography after your first event.</p>
+    </section>
+
+    <section class="join" id="join">
+      <div class="eyebrow" style="color:#291525">04 / Don't hear about it later</div>
+      <h2>GET IN<br>ON IT.</h2>
+      <p>Be first to hear about upcoming OOPS! experiences, early announcements and the occasional unexpected surprise.</p>
+      <button class="button" data-open>Get on the list ↗</button>
+    </section>
+  </main>
+
+  <footer>
+    <div><div class="footer-brand">OOPS<span>!</span></div><p>Unexpected nights. Unforgettable stories.</p></div>
+    <div class="footer-bottom"><div class="socials"><a href="#" data-social="Instagram">Instagram ↗</a><a href="#" data-social="WhatsApp">WhatsApp ↗</a></div><p>© <span id="year"></span> OOPS! · Made for the unexpected</p></div>
+  </footer>
+
+  <div class="modal" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="close" id="closeModal" aria-label="Close">×</button>
+      <div class="eyebrow">OOPS! / The guest list</div><h3 id="modalTitle">You're on the radar.</h3><p>Leave your details and we'll keep you posted when the next experience drops.</p>
+      <form id="signupForm">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" required maxlength="60" placeholder="What do we call you?"></div>
+        <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
+        <div class="field"><label for="city">Your city (optional)</label><input id="city" name="city" maxlength="60" placeholder="Where are you based?"></div>
+        <button class="button" type="submit">Count me in ↗</button>
+        <div class="form-note">Demo form: connect a form service or backend before publishing to collect submissions.</div>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const $ = (s, root=document) => root.querySelector(s);
+    const modal = $('#signupModal'), toast = $('#toast');
+    const showToast = msg => { toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),2800); };
+    document.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',()=>{modal.classList.add('open');setTimeout(()=>$('#name').focus(),80)}));
+    const closeModal=()=>modal.classList.remove('open');
+    $('#closeModal').addEventListener('click',closeModal);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    $('#signupForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const data=Object.fromEntries(new FormData(e.currentTarget).entries());
+      if(!data.name.trim()||!data.email.trim())return;
+      // Front-end demo only. Connect Formspree, Netlify Forms, or your own API to receive entries.
+      e.currentTarget.reset();closeModal();showToast("You're on the radar. Connect a form backend to save sign-ups.");
+    });
+    document.querySelectorAll('[data-social]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showToast('Add your official '+a.dataset.social+' link in index.html.')}));
+    $('#year').textContent=new Date().getFullYear();
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const glow=$('#glow');
+    if(matchMedia('(pointer:fine)').matches){document.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}else{glow.style.display='none'}
+  </script>
+</body>
+</html>
