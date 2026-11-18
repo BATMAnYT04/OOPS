@@ -39,6 +39,19 @@
     @keyframes orb{to{transform:translate(-5%,7%) scale(1.12)}}@keyframes ring{to{transform:rotate(335deg) scaleY(.35)}}@keyframes bang{50%{transform:rotate(-8deg) translateY(-10px)}}@keyframes float{50%{transform:translateY(-17px) rotate(2deg)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.94) translateY(15px)}to{opacity:1;transform:none}}
 
 
+
+    /* Realistic event photography layered into the event cards and gallery */
+    .event-card:before{background-image:linear-gradient(0deg,rgba(12,7,18,.78),rgba(12,7,18,.12) 75%),url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1500&q=88");background-size:cover;background-position:center;filter:saturate(.9)}
+    .event-card:nth-child(2):before{background-image:linear-gradient(0deg,rgba(12,7,18,.8),rgba(12,7,18,.14) 75%),url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=88");background-position:center}
+    .moment{background-size:cover;background-position:center}
+    .moment:nth-child(1){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85")}
+    .moment:nth-child(2){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=85")}
+    .moment:nth-child(3){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85")}
+    .moment:nth-child(4){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85")}
+    .moment:nth-child(5){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85")}
+    .moment:nth-child(6){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85")}
+    .moment:before{border-color:rgba(255,255,255,.28);box-shadow:0 0 0 22px rgba(255,255,255,.035),0 0 0 48px rgba(255,255,255,.025)}
+
     .home-poster-wrap{padding:65px 7vw 25px;background:#171019}
     .home-poster{min-height:560px;position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(25px,5vw,65px);border:1px solid rgba(255,255,255,.22);background:#171329}
     .home-poster:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=2000&q=90") center 48%/cover;filter:saturate(.85);transform:scale(1.03);animation:posterDrift 18s ease-in-out infinite alternate}
@@ -155,7 +168,7 @@
         <div class="moment reveal"><span>01 — The entrance</span></div><div class="moment reveal"><span>02 — The unexpected</span></div><div class="moment reveal"><span>03 — The people</span></div>
         <div class="moment reveal"><span>04 — The little details</span></div><div class="moment reveal"><span>05 — The group photo</span></div><div class="moment reveal"><span>06 — The next story</span></div>
       </div>
-      <p class="form-note" style="margin-top:18px">Gallery placeholders — replace with real event photography after your first event.</p>
+      <p class="form-note" style="margin-top:18px">Visual references — replace with OOPS! event photography as your own gallery grows.</p>
     </section>
 
     <section class="join" id="join">
