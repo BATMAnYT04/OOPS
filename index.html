@@ -211,9 +211,70 @@
     @media(max-width:700px){.tech-console{padding:30px 6vw}.tech-grid{gap:8px}.tech-cell{min-height:100px;padding:14px}.tech-topline,.tech-bottomline{font-size:8px}.hero-hud{top:3%;font-size:8px}.hero-hud span{padding:7px 9px}.hero h1{font-size:clamp(100px,24vw,190px)}}
     @media(prefers-reduced-motion:reduce){.hero-kicker:before,.tech-live i,.tech-wave b{animation:none}}
 
+  
+    /* FULL OOPS! EXPERIENCE — liquid chrome, event control room and interactive pass */
+    .melt-logo{display:flex;align-items:baseline;gap:0;perspective:900px;transform-style:preserve-3d}
+    .melt-word{position:relative;display:inline-block;color:transparent;background:linear-gradient(165deg,#fff 4%,#aeb1c0 17%,#fff 28%,#777b8a 43%,#fdfdff 56%,#a5a6b3 72%,#fff 88%);background-clip:text;-webkit-background-clip:text;filter:drop-shadow(0 14px 0 rgba(125,119,148,.22)) drop-shadow(0 28px 35px rgba(255,79,154,.16));text-shadow:0 1px 0 rgba(255,255,255,.7);animation:chromeFloat 5s ease-in-out infinite}
+    .melt-word:before{content:"OOPS";position:absolute;inset:0;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28);transform:translateZ(-14px) translateY(5px);filter:blur(1px);pointer-events:none}
+    .melt-word:after{content:"";position:absolute;left:13%;bottom:-.13em;width:12%;height:.25em;border-radius:0 0 50% 50%;background:linear-gradient(180deg,#f7f8ff,#85889a 70%,#f8f8ff);filter:drop-shadow(0 7px 8px rgba(255,255,255,.2));animation:liquidDrip 4.2s ease-in-out infinite}
+    .melt-logo .bang{background:linear-gradient(180deg,#fff 0%,#ffb1d0 30%,#ff783d 75%);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 12px 30px rgba(255,120,61,.25);transform:rotate(8deg) translateZ(22px)}
+    @keyframes chromeFloat{0%,100%{transform:rotateX(0) rotateY(-4deg) translateY(0)}50%{transform:rotateX(4deg) rotateY(4deg) translateY(-8px)}}
+    @keyframes liquidDrip{0%,100%{height:.18em;transform:translateY(0)}50%{height:.42em;transform:translateY(.08em)}}
+    .boot-screen{position:fixed;inset:0;z-index:110;background:#08080c;color:#f4f0ec;display:grid;place-items:center;transition:opacity .65s ease,visibility .65s ease}
+    .boot-screen.done{opacity:0;visibility:hidden;pointer-events:none}
+    .boot-inner{width:min(390px,78vw);text-align:center}
+    .boot-mark{font-size:clamp(64px,15vw,110px);font-weight:700;letter-spacing:-.13em;line-height:1;background:linear-gradient(160deg,#fff,#8d8f9d 48%,#fff);color:transparent;background-clip:text;-webkit-background-clip:text;animation:bootPulse 1.1s ease-in-out infinite alternate}
+    .boot-caption{margin-top:22px;font:9px var(--mono);letter-spacing:3px;color:#aaa2b2}
+    .boot-track{height:2px;background:rgba(255,255,255,.12);margin:24px auto 0;overflow:hidden}
+    .boot-track span{display:block;height:100%;width:35%;background:linear-gradient(90deg,var(--pink),var(--orange),var(--acid));animation:bootLoad 1.35s cubic-bezier(.6,0,.4,1) forwards}
+    @keyframes bootPulse{to{filter:brightness(1.5);transform:scale(1.025)}}@keyframes bootLoad{to{width:100%}}
+    .control-room{padding:100px 7vw;background:#0a0a10;color:#f4f0ec;position:relative;overflow:hidden}
+    .control-room:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(155,112,255,.14),transparent 40%),radial-gradient(ellipse at 90% 80%,rgba(255,79,154,.12),transparent 38%);pointer-events:none}
+    .control-head{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px}
+    .control-head h2{font-size:clamp(45px,7vw,88px);letter-spacing:-.09em;line-height:.85;margin:12px 0 0}
+    .control-head p{max-width:270px;color:#aaa2b2;font-size:13px;line-height:1.55}
+    .control-layout{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+    .control-panel{border:1px solid rgba(255,255,255,.12);border-radius:13px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018));backdrop-filter:blur(18px);padding:23px;min-width:0}
+    .panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font:9px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:#aaa2b2}
+    .panel-state{color:var(--acid)}
+    .countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:28px 0 20px}
+    .count-unit{padding:18px 8px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(0,0,0,.2);text-align:center}
+    .count-number{font-size:clamp(28px,5vw,55px);font-weight:600;letter-spacing:-.07em;line-height:1}
+    .count-label{font:8px var(--mono);letter-spacing:1.4px;color:#8e8797;margin-top:9px}
+    .count-status{font:10px var(--mono);letter-spacing:1px;color:var(--pink);text-transform:uppercase}
+    .pass-preview{min-height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+    .pass-art{position:relative;overflow:hidden;border-radius:10px;padding:22px;min-height:205px;background:linear-gradient(125deg,#f5f0ed,#aeb1c0 42%,#fff 65%,#d2a4c1);color:#111018;isolation:isolate}
+    .pass-art:before{content:"";position:absolute;inset:-40%;z-index:-1;background:repeating-linear-gradient(115deg,transparent 0 18px,rgba(255,255,255,.32) 19px 20px);transform:rotate(12deg)}
+    .pass-brand{font-size:27px;font-weight:700;letter-spacing:-2px}
+    .pass-brand span{color:#ff4f9a}
+    .pass-number{font:9px var(--mono);letter-spacing:1.4px;margin-top:24px}
+    .pass-title{font-size:clamp(27px,4vw,40px);font-weight:700;letter-spacing:-2px;line-height:.9;margin-top:10px}
+    .pass-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:22px;font:8px var(--mono);letter-spacing:1px;text-transform:uppercase}
+    .pass-stamp{width:48px;height:48px;border:1px solid rgba(0,0,0,.6);border-radius:50%;display:grid;place-items:center;font-size:8px;text-align:center;transform:rotate(-12deg)}
+    .sound-panel{grid-column:1/-1}
+    .sound-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:15px}
+    .sound-copy{max-width:420px;color:#aaa2b2;font-size:12px;line-height:1.5}
+    .sound-actions{display:flex;gap:9px;flex-wrap:wrap}
+    .sound-canvas{width:100%;height:105px;display:block;margin-top:12px;border-radius:8px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.07)}
+    .control-btn{border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:11px 15px;background:rgba(255,255,255,.06);color:#f4f0ec;font:9px var(--mono);letter-spacing:1px;text-transform:uppercase}
+    .control-btn.primary{background:var(--acid);color:#111018;border-color:var(--acid)}
+    .control-btn:disabled{opacity:.4;cursor:not-allowed}
+    .ticket-modal{position:fixed;inset:0;z-index:95;display:none;place-items:center;padding:20px;background:rgba(4,4,8,.82);backdrop-filter:blur(16px)}
+    .ticket-modal.open{display:grid}
+    .ticket-dialog{width:min(460px,100%);padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:#111018;box-shadow:0 30px 100px rgba(0,0,0,.5)}
+    .ticket-dialog-head{display:flex;justify-content:space-between;align-items:center;color:#aaa2b2;font:9px var(--mono);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
+    .ticket-close{border:0;background:none;color:white;font-size:25px}
+    .ticket-disclaimer{font:9px var(--mono);line-height:1.5;color:#aaa2b2;margin:13px 3px 2px}
+    @media(max-width:800px){.control-layout{grid-template-columns:1fr}.sound-panel{grid-column:auto}.control-head{align-items:flex-start;flex-direction:column}}
+    @media(max-width:520px){.control-room{padding:75px 6vw}.countdown-grid{gap:5px}.count-unit{padding:14px 4px}.count-number{font-size:30px}.control-panel{padding:16px}.pass-art{min-height:190px}}
+    @media(prefers-reduced-motion:reduce){.boot-mark,.boot-track span,.melt-word,.melt-word:after{animation:none}}
+
   </style>
 </head>
 <body>
+  <div class="boot-screen" id="bootScreen" aria-label="Loading OOPS">
+    <div class="boot-inner"><div class="boot-mark">OOPS!</div><div class="boot-caption">INITIALISING THE UNEXPECTED</div><div class="boot-track"><span></span></div></div>
+  </div>
   <div class="cinematic-intro" id="cinematicIntro" aria-hidden="true">
     <div class="intro-light"></div>
     <div class="intro-wordmark">OOPS<span>!</span></div>
@@ -223,7 +284,7 @@
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <nav class="nav">
     <a class="brand" href="#top" aria-label="OOPS home">OOPS<span>!</span></a>
-    <div class="nav-links"><a href="#events">The plans</a><a href="#pavo">PAVO afterparty</a><a href="#about">The energy</a><a href="#moments">The memories</a></div>
+    <div class="nav-links"><a href="#events">The plans</a><a href="#control-room">Control room</a><a href="#pavo">PAVO afterparty</a><a href="#about">The energy</a><a href="#moments">The memories</a></div>
     <button class="nav-cta" data-open>Get on the list ↗</button>
   </nav>
 
@@ -232,7 +293,7 @@
       <div class="hero-hud" aria-label="OOPS system status"><span>OOPS! / <b>ONLINE</b></span><span>INDEPENDENT CULTURE · 2026</span></div>
       <div class="hero-video-wrap" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video></div>
       <div class="hero-kicker">Independent nights · Unexpected stories · Est. 2026</div>
-      <h1>OOPS<span class="bang">!</span></h1>
+      <h1 class="melt-logo" aria-label="OOPS!"><span class="melt-word">OOPS</span><span class="bang">!</span></h1>
       <div class="hero-bottom">
         <p class="hero-copy">Well, that escalated.<br><em>Good nights. Great stories.</em><br>Absolutely no ordinary plans.</p>
         <div class="hero-actions"><a class="button" href="#events">Find your next night ↗</a><a class="button secondary" href="#about">What's OOPS?</a></div>
@@ -251,6 +312,38 @@
         <div class="tech-cell"><span class="tech-label">Signal waveform</span><div class="tech-wave" aria-hidden="true"><b style="--h:8px;--d:0s"></b><b style="--h:25px;--d:-0.11s"></b><b style="--h:23px;--d:-0.22s"></b><b style="--h:21px;--d:-0.33s"></b><b style="--h:19px;--d:-0.44s"></b><b style="--h:17px;--d:-0.55s"></b><b style="--h:15px;--d:-0.66s"></b><b style="--h:13px;--d:-0.77s"></b><b style="--h:11px;--d:0s"></b><b style="--h:9px;--d:-0.11s"></b><b style="--h:26px;--d:-0.22s"></b><b style="--h:24px;--d:-0.33s"></b><b style="--h:22px;--d:-0.44s"></b><b style="--h:20px;--d:-0.55s"></b><b style="--h:18px;--d:-0.66s"></b><b style="--h:16px;--d:-0.77s"></b><b style="--h:14px;--d:0s"></b><b style="--h:12px;--d:-0.11s"></b><b style="--h:10px;--d:-0.22s"></b><b style="--h:8px;--d:-0.33s"></b><b style="--h:25px;--d:-0.44s"></b><b style="--h:23px;--d:-0.55s"></b><b style="--h:21px;--d:-0.66s"></b><b style="--h:19px;--d:-0.77s"></b></div><span class="tech-label">ENERGY DETECTED</span></div>
       </div>
       <div class="tech-bottomline"><span>EST. 2026 / NO ORDINARY PLANS</span><span>STAY TUNED — SOMETHING IS COMING</span></div>
+    </section>
+
+
+    <section class="control-room" id="control-room">
+      <div class="control-head reveal"><div><div class="eyebrow">OOPS! / Mission interface</div><h2>THE CONTROL<br>ROOM.</h2></div><p>Your dashboard for what is next. Event information will appear here as soon as dates and details are confirmed.</p></div>
+      <div class="control-layout">
+        <div class="control-panel reveal">
+          <div class="panel-top"><span>001 / Next event countdown</span><span class="panel-state" id="eventState">DATE PENDING</span></div>
+          <div class="countdown-grid" id="eventCountdown">
+            <div class="count-unit"><div class="count-number">--</div><div class="count-label">DAYS</div></div>
+            <div class="count-unit"><div class="count-number">--</div><div class="count-label">HOURS</div></div>
+            <div class="count-unit"><div class="count-number">--</div><div class="count-label">MINS</div></div>
+            <div class="count-unit"><div class="count-number">--</div><div class="count-label">SECS</div></div>
+          </div>
+          <div class="count-status" id="countStatus">THE DATE IS STILL CLASSIFIED. CHECK BACK SOON.</div>
+        </div>
+        <div class="control-panel reveal">
+          <div class="panel-top"><span>002 / Digital access</span><span class="panel-state">PREVIEW MODE</span></div>
+          <div class="pass-preview">
+            <div class="pass-art">
+              <div class="pass-brand">OOPS<span>!</span></div><div class="pass-number">ACCESS PASS / SAMPLE 001</div><div class="pass-title">THE<br>UNPLANNED.</div>
+              <div class="pass-footer"><span>DATE / TBA<br>VENUE / TBA</span><span class="pass-stamp">NOT<br>VALID</span></div>
+            </div>
+            <button class="control-btn primary" id="previewTicket" type="button">Preview digital pass ↗</button>
+          </div>
+        </div>
+        <div class="control-panel sound-panel reveal">
+          <div class="panel-top"><span>003 / Sound-reactive interface</span><span class="panel-state" id="soundState">STANDBY</span></div>
+          <div class="sound-row"><p class="sound-copy">Activate your microphone to let the visualizer respond to the sound around you. Audio is analysed locally in your browser and is never recorded or uploaded.</p><div class="sound-actions"><button class="control-btn primary" id="startSound" type="button">Activate visualizer</button><button class="control-btn" id="stopSound" type="button" disabled>Stop</button></div></div>
+          <canvas class="sound-canvas" id="soundCanvas" aria-label="Sound-reactive waveform visualization"></canvas>
+        </div>
+      </div>
     </section>
 
     <section class="home-poster-wrap" aria-label="PAVO afterparty poster">
@@ -367,9 +460,81 @@
       <div class="film-modal-foot"><span>OOPS! — THE NIGHT ARCHIVE</span><span>PRESS ESC TO CLOSE</span></div>
     </div>
   </div>
+
+  <div class="ticket-modal" id="ticketModal" role="dialog" aria-modal="true" aria-labelledby="ticketModalTitle">
+    <div class="ticket-dialog"><div class="ticket-dialog-head"><span id="ticketModalTitle">OOPS! / Digital pass preview</span><button class="ticket-close" id="ticketClose" aria-label="Close pass preview">×</button></div>
+      <div class="pass-art"><div class="pass-brand">OOPS<span>!</span></div><div class="pass-number">ACCESS PASS / DEMO-001</div><div class="pass-title">THE<br>UNPLANNED.</div><div class="pass-footer"><span>DATE / TO BE ANNOUNCED<br>VENUE / TO BE ANNOUNCED</span><span class="pass-stamp">SAMPLE<br>ONLY</span></div></div>
+      <p class="ticket-disclaimer">SAMPLE DESIGN ONLY — THIS IS NOT AN EVENT TICKET OR ENTRY CONFIRMATION. Real tickets require a live booking and payment system.</p>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
+
+
+    // Short branded boot sequence; existing cinematic intro follows it.
+    const bootScreen = document.getElementById('bootScreen');
+    window.setTimeout(() => bootScreen?.classList.add('done'), 1450);
+    window.setTimeout(() => bootScreen?.remove(), 2200);
+
+    // Set a confirmed event date here in local browser time: '2026-12-31T19:00:00'.
+    // Keep null until the date is officially announced; the interface will show TBA.
+    const OOPS_EVENT_DATE = null;
+    const eventState = document.getElementById('eventState');
+    const countStatus = document.getElementById('countStatus');
+    const countNumbers = [...document.querySelectorAll('#eventCountdown .count-number')];
+    const updateCountdown = () => {
+      if (!OOPS_EVENT_DATE) { if(eventState) eventState.textContent='DATE PENDING'; if(countStatus) countStatus.textContent='THE DATE IS STILL CLASSIFIED. CHECK BACK SOON.'; return; }
+      const target = new Date(OOPS_EVENT_DATE).getTime(), diff = target - Date.now();
+      if (!Number.isFinite(target)) return;
+      if (diff <= 0) { if(eventState)eventState.textContent='LIVE NOW'; if(countStatus)countStatus.textContent='THE DAY HAS ARRIVED.'; countNumbers.forEach((el,i)=>el.textContent=['00','00','00','00'][i]); return; }
+      const values=[Math.floor(diff/86400000),Math.floor(diff/3600000)%24,Math.floor(diff/60000)%60,Math.floor(diff/1000)%60];
+      countNumbers.forEach((el,i)=>el.textContent=String(values[i]).padStart(2,'0'));
+      if(eventState)eventState.textContent='COUNTING DOWN'; if(countStatus)countStatus.textContent='TIME UNTIL THE NEXT OOPS! EXPERIENCE.';
+    };
+    updateCountdown(); window.setInterval(updateCountdown,1000);
+
+    // Sample ticket viewer — clearly labelled as a preview, not valid entry.
+    const ticketModal=document.getElementById('ticketModal');
+    document.getElementById('previewTicket')?.addEventListener('click',()=>ticketModal?.classList.add('open'));
+    document.getElementById('ticketClose')?.addEventListener('click',()=>ticketModal?.classList.remove('open'));
+    ticketModal?.addEventListener('click',e=>{if(e.target===ticketModal)ticketModal.classList.remove('open')});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')ticketModal?.classList.remove('open')});
+
+    // Microphone-powered visualizer. Audio stays in the browser; no recording or upload.
+    const soundCanvas=document.getElementById('soundCanvas'), soundCtx=soundCanvas?.getContext('2d');
+    const soundState=document.getElementById('soundState'), startSound=document.getElementById('startSound'), stopSound=document.getElementById('stopSound');
+    let audioContext=null, analyser=null, micStream=null, visualFrame=0;
+    const drawSound=()=>{
+      if(!soundCanvas||!soundCtx||!analyser)return;
+      const dpr=Math.min(window.devicePixelRatio||1,2),w=soundCanvas.clientWidth,h=soundCanvas.clientHeight;
+      if(soundCanvas.width!==Math.floor(w*dpr)||soundCanvas.height!==Math.floor(h*dpr)){soundCanvas.width=Math.floor(w*dpr);soundCanvas.height=Math.floor(h*dpr)}
+      soundCtx.setTransform(dpr,0,0,dpr,0,0);soundCtx.clearRect(0,0,w,h);
+      const data=new Uint8Array(analyser.frequencyBinCount);analyser.getByteFrequencyData(data);
+      const bars=64,step=Math.max(1,Math.floor(data.length/bars)),gap=3,bw=(w-gap*(bars-1))/bars;
+      for(let i=0;i<bars;i++){const amp=data[i*step]/255,barH=Math.max(2,amp*(h*.82));const x=i*(bw+gap),y=(h-barH)/2;const grad=soundCtx.createLinearGradient(0,y,0,y+barH);grad.addColorStop(0,'#d5ff63');grad.addColorStop(.55,'#ff4f9a');grad.addColorStop(1,'#9b70ff');soundCtx.fillStyle=grad;soundCtx.fillRect(x,y,bw,barH)}
+      visualFrame=requestAnimationFrame(drawSound);
+    };
+    const stopVisualizer=()=>{
+      if(visualFrame)cancelAnimationFrame(visualFrame);visualFrame=0;
+      micStream?.getTracks().forEach(track=>track.stop());micStream=null;
+      if(audioContext){audioContext.close().catch(()=>{});audioContext=null}
+      analyser=null;if(soundState)soundState.textContent='STANDBY';
+      if(startSound)startSound.disabled=false;if(stopSound)stopSound.disabled=true;
+      if(soundCtx&&soundCanvas)soundCtx.clearRect(0,0,soundCanvas.width,soundCanvas.height);
+    };
+    startSound?.addEventListener('click',async()=>{
+      try{
+        if(!navigator.mediaDevices?.getUserMedia)throw new Error('Microphone access is not supported in this browser.');
+        micStream=await navigator.mediaDevices.getUserMedia({audio:true});
+        audioContext=new (window.AudioContext||window.webkitAudioContext)();
+        const source=audioContext.createMediaStreamSource(micStream);analyser=audioContext.createAnalyser();analyser.fftSize=256;source.connect(analyser);
+        if(soundState)soundState.textContent='LISTENING LOCALLY';startSound.disabled=true;stopSound.disabled=false;drawSound();
+      }catch(error){stopVisualizer();if(soundState)soundState.textContent='MIC ACCESS UNAVAILABLE';showToast('Allow microphone access to activate the sound visualizer.');}
+    });
+    stopSound?.addEventListener('click',stopVisualizer);
+    window.addEventListener('pagehide',stopVisualizer);
 
     // Live local clock for the OOPS! signal console.
     const oopsClock = document.getElementById('oopsClock');
