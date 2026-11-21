@@ -212,14 +212,7 @@
     @media(prefers-reduced-motion:reduce){.hero-kicker:before,.tech-live i,.tech-wave b{animation:none}}
 
   
-    /* FULL OOPS! EXPERIENCE — liquid chrome, event control room and interactive pass */
-    .melt-logo{display:flex;align-items:baseline;gap:0;perspective:900px;transform-style:preserve-3d}
-    .melt-word{position:relative;display:inline-block;color:transparent;background:linear-gradient(165deg,#fff 4%,#aeb1c0 17%,#fff 28%,#777b8a 43%,#fdfdff 56%,#a5a6b3 72%,#fff 88%);background-clip:text;-webkit-background-clip:text;filter:drop-shadow(0 14px 0 rgba(125,119,148,.22)) drop-shadow(0 28px 35px rgba(255,79,154,.16));text-shadow:0 1px 0 rgba(255,255,255,.7);animation:chromeFloat 5s ease-in-out infinite}
-    .melt-word:before{content:"OOPS";position:absolute;inset:0;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28);transform:translateZ(-14px) translateY(5px);filter:blur(1px);pointer-events:none}
-    .melt-word:after{content:"";position:absolute;left:13%;bottom:-.13em;width:12%;height:.25em;border-radius:0 0 50% 50%;background:linear-gradient(180deg,#f7f8ff,#85889a 70%,#f8f8ff);filter:drop-shadow(0 7px 8px rgba(255,255,255,.2));animation:liquidDrip 4.2s ease-in-out infinite}
-    .melt-logo .bang{background:linear-gradient(180deg,#fff 0%,#ffb1d0 30%,#ff783d 75%);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 12px 30px rgba(255,120,61,.25);transform:rotate(8deg) translateZ(22px)}
-    @keyframes chromeFloat{0%,100%{transform:rotateX(0) rotateY(-4deg) translateY(0)}50%{transform:rotateX(4deg) rotateY(4deg) translateY(-8px)}}
-    @keyframes liquidDrip{0%,100%{height:.18em;transform:translateY(0)}50%{height:.42em;transform:translateY(.08em)}}
+    /* OOPS! hero wordmark — clean, bold typography */
     .boot-screen{position:fixed;inset:0;z-index:110;background:#08080c;color:#f4f0ec;display:grid;place-items:center;transition:opacity .65s ease,visibility .65s ease}
     .boot-screen.done{opacity:0;visibility:hidden;pointer-events:none}
     .boot-inner{width:min(390px,78vw);text-align:center}
@@ -267,7 +260,7 @@
     .ticket-disclaimer{font:9px var(--mono);line-height:1.5;color:#aaa2b2;margin:13px 3px 2px}
     @media(max-width:800px){.control-layout{grid-template-columns:1fr}.sound-panel{grid-column:auto}.control-head{align-items:flex-start;flex-direction:column}}
     @media(max-width:520px){.control-room{padding:75px 6vw}.countdown-grid{gap:5px}.count-unit{padding:14px 4px}.count-number{font-size:30px}.control-panel{padding:16px}.pass-art{min-height:190px}}
-    @media(prefers-reduced-motion:reduce){.boot-mark,.boot-track span,.melt-word,.melt-word:after{animation:none}}
+    @media(prefers-reduced-motion:reduce){.boot-mark,.boot-track span{animation:none}}
 
   </style>
 </head>
@@ -293,7 +286,7 @@
       <div class="hero-hud" aria-label="OOPS system status"><span>OOPS! / <b>ONLINE</b></span><span>INDEPENDENT CULTURE · 2026</span></div>
       <div class="hero-video-wrap" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video></div>
       <div class="hero-kicker">Independent nights · Unexpected stories · Est. 2026</div>
-      <h1 class="melt-logo" aria-label="OOPS!"><span class="melt-word">OOPS</span><span class="bang">!</span></h1>
+      <h1>OOPS<span class="bang">!</span></h1>
       <div class="hero-bottom">
         <p class="hero-copy">Well, that escalated.<br><em>Good nights. Great stories.</em><br>Absolutely no ordinary plans.</p>
         <div class="hero-actions"><a class="button" href="#events">Find your next night ↗</a><a class="button secondary" href="#about">What's OOPS?</a></div>
