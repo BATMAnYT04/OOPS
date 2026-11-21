@@ -115,11 +115,11 @@
 
 
     /* PROOF OF FUN — continuous video archive + cinematic viewer */
-    .proof-video-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:260px 260px;gap:12px}
-    .proof-video-card{position:relative;display:block;width:100%;height:100%;min-height:220px;padding:0;overflow:hidden;border:0;border-radius:3px;background:#171019;color:#fff;text-align:left;cursor:pointer;isolation:isolate}
-    .proof-video-card:first-child{grid-row:span 2}
-    .proof-video-card video,.proof-video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.06);transform:scale(1.025);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
-    .proof-video-card:hover video,.proof-video-card:hover img{transform:scale(1.1);filter:saturate(1.15) contrast(1.05)}
+    .proof-video-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;align-items:stretch}
+    .proof-video-card{position:relative;display:block;width:100%;aspect-ratio:9/16;min-height:0;padding:0;overflow:hidden;border:1px solid rgba(23,16,25,.12);border-radius:5px;background:#171019;color:#fff;text-align:left;cursor:pointer;isolation:isolate;box-shadow:0 16px 40px rgba(23,16,25,.13)}
+    .proof-video-card:first-child{grid-row:auto}
+    .proof-video-card video,.proof-video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.9) contrast(1.04);transform:scale(1.005);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
+    .proof-video-card:hover video,.proof-video-card:hover img{transform:scale(1.055);filter:saturate(1.08) contrast(1.05)}
     .proof-video-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,5,13,.78),transparent 65%),linear-gradient(120deg,rgba(9,5,13,.18),transparent 55%);transition:opacity .5s}
     .proof-video-card:hover .proof-video-shade{opacity:.78}
     .proof-video-index{position:absolute;top:18px;left:18px;font:9px var(--mono);letter-spacing:1.4px}
@@ -134,14 +134,14 @@
     .film-modal.open{opacity:1;visibility:visible}
     .film-modal-inner{width:min(1200px,100%);position:relative;transform:scale(.94) translateY(18px);transition:transform .65s cubic-bezier(.2,.8,.2,1)}
     .film-modal.open .film-modal-inner{transform:scale(1) translateY(0)}
-    .film-modal video,.film-modal img{display:block;width:100%;max-height:78vh;aspect-ratio:16/9;object-fit:contain;background:#000;box-shadow:0 25px 100px rgba(0,0,0,.55)}
+    .film-modal video,.film-modal img{display:block;width:auto;max-width:100%;height:auto;max-height:80vh;aspect-ratio:auto;object-fit:contain;background:#000;box-shadow:0 25px 100px rgba(0,0,0,.55);margin:0 auto}
     .film-modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;color:#fff;font:10px var(--mono);letter-spacing:1.8px;text-transform:uppercase}
     .film-modal-title{color:#ff8cba}
     .film-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:transparent;color:#fff;font-size:24px;line-height:1;transition:background .3s,color .3s}
     .film-close:hover{background:#fff;color:#171019}
     .film-modal-foot{display:flex;justify-content:space-between;gap:15px;margin-top:13px;color:rgba(255,255,255,.55);font:9px var(--mono);letter-spacing:1.2px;text-transform:uppercase}
     body.film-open{overflow:hidden}
-    @media(max-width:700px){.proof-video-grid{grid-template-columns:1fr 1fr;grid-template-rows:230px 170px 170px;gap:9px}.proof-video-card:first-child{grid-row:span 2}.proof-video-card{min-height:150px}.proof-video-index{top:12px;left:12px;font-size:8px}.proof-video-play{width:34px;height:34px;right:10px;top:10px}.proof-video-label{left:12px;bottom:12px;font-size:8px}.proof-note{font-size:8px;letter-spacing:.8px;flex-direction:column;gap:7px}.film-modal{padding:12px}.film-modal video{max-height:68vh;aspect-ratio:9/16}.film-modal-foot{font-size:8px}}
+    @media(max-width:1050px){.proof-video-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.proof-video-card{max-height:560px}}\n    @media(max-width:700px){.proof-video-grid{display:flex;overflow-x:auto;gap:12px;padding:2px 2px 14px;scroll-snap-type:x mandatory;scrollbar-width:thin}.proof-video-card{flex:0 0 68vw;max-width:310px;aspect-ratio:9/16;scroll-snap-align:start}.proof-video-index{top:13px;left:13px;font-size:8px}.proof-video-play{width:34px;height:34px;right:10px;top:10px}.proof-video-label{left:10px;right:10px;bottom:10px;font-size:8px;padding:11px}.proof-note{font-size:8px;letter-spacing:.8px;flex-direction:column;gap:7px}.film-modal{padding:12px}.film-modal video,.film-modal img{max-height:72vh;max-width:100%}.film-modal-foot{font-size:8px}}
     @media(prefers-reduced-motion:reduce){.proof-video-card video{transition:none}.film-modal,.film-modal-inner{transition:none}}
 
     @media(max-width:700px){.nav{height:66px;padding:0 5vw}.nav-links{display:none}.brand{font-size:24px}.hero{min-height:760px;padding:100px 6vw 70px}.hero:before{width:110vw;height:110vw;right:-35vw;top:10%}.hero:after{width:75vw;height:75vw;right:-5vw;top:22%}.hero h1{font-size:clamp(100px,27vw,180px);margin:65px 0 45px}.hero-bottom{align-items:flex-start;flex-direction:column}.hero-copy{max-width:290px}.sticker{width:80px;height:80px;right:8%;bottom:12%;font-size:11px}.sticker small{font-size:7px}section{padding:85px 6vw}.section-head{display:block;margin-bottom:35px}.section-head p{margin-top:20px}.event-grid{grid-template-columns:1fr}.event-card{min-height:390px}.event-card:nth-child(2){min-height:350px}.moment-grid{grid-template-columns:1fr 1fr;gap:9px}.moment,.moment:nth-child(2),.moment:nth-child(4),.moment:nth-child(6){min-height:220px;margin-top:0}.moment:before{width:160px;height:160px}.asterisk{right:0;top:7%}.manifesto .side-note{margin-top:35px}.join h2{font-size:clamp(70px,19vw,120px)}footer{align-items:flex-start;flex-direction:column}.footer-brand{font-size:45px}.footer-bottom{display:flex;justify-content:space-between;width:100%;gap:10px;flex-wrap:wrap}}
@@ -248,23 +248,23 @@
       <div class="proof-video-grid">
         <button class="proof-video-card proof-video-feature reveal" type="button" data-film-title="THE ENERGY" data-film-src="o3.gif" data-film-type="gif">
           <img loading="lazy" src="o3.gif" alt="THE ENERGY — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">01 / THE ENERGY</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
+          <span class="proof-video-shade"></span><span class="proof-video-index">01 / THE ENERGY</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
         </button>
         <button class="proof-video-card reveal" type="button" data-film-title="THE PEOPLE" data-film-src="o3%20(1).gif" data-film-type="gif">
           <img loading="lazy" src="o3%20(1).gif" alt="THE PEOPLE — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">02 / THE PEOPLE</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
+          <span class="proof-video-shade"></span><span class="proof-video-index">02 / THE PEOPLE</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
         </button>
         <button class="proof-video-card reveal" type="button" data-film-title="THE CHAOS" data-film-src="o3%20(2).gif" data-film-type="gif">
           <img loading="lazy" src="o3%20(2).gif" alt="THE CHAOS — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">03 / THE CHAOS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
+          <span class="proof-video-shade"></span><span class="proof-video-index">03 / THE CHAOS</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
         </button>
         <button class="proof-video-card reveal" type="button" data-film-title="BEHIND THE DECKS" data-film-src="q2.gif" data-film-type="gif">
           <img loading="lazy" src="q2.gif" alt="BEHIND THE DECKS — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">04 / BEHIND THE DECKS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
+          <span class="proof-video-shade"></span><span class="proof-video-index">04 / BEHIND THE DECKS</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
         </button>
         <button class="proof-video-card reveal" type="button" data-film-title="THE AFTERMATH" data-film-src="o3.mp4" data-film-type="mp4">
           <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=85"><source src="o3.mp4" type="video/mp4"></video>
-          <span class="proof-video-shade"></span><span class="proof-video-index">05 / THE AFTERMATH</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+          <span class="proof-video-shade"></span><span class="proof-video-index">05 / THE AFTERMATH</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN VIDEO</span>
         </button>
       </div>
       <p class="proof-note">THE OOPS! NIGHT ARCHIVE <span>— MORE STORIES LOADING</span></p>
