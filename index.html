@@ -113,6 +113,36 @@
     @keyframes pulse{50%{opacity:.35;transform:translateY(-5px)}}
     @media(max-width:700px){.pavo-head{display:block}.pavo-title{font-size:29vw}.pavo-gallery{grid-template-columns:1fr 1fr;grid-template-rows:210px 150px 170px}.pavo-photo:first-child{grid-row:span 2}.pavo-photo:nth-child(4){grid-column:1 / 3}.pavo-bottom{align-items:flex-start;flex-direction:column}.pavo-stamp{width:78px;height:78px;font-size:8px}}
 
+
+    /* PROOF OF FUN — continuous video archive + cinematic viewer */
+    .proof-video-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:260px 260px;gap:12px}
+    .proof-video-card{position:relative;display:block;width:100%;height:100%;min-height:220px;padding:0;overflow:hidden;border:0;border-radius:3px;background:#171019;color:#fff;text-align:left;cursor:pointer;isolation:isolate}
+    .proof-video-card:first-child{grid-row:span 2}
+    .proof-video-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.06);transform:scale(1.025);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
+    .proof-video-card:hover video{transform:scale(1.1);filter:saturate(1.15) contrast(1.05)}
+    .proof-video-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,5,13,.78),transparent 65%),linear-gradient(120deg,rgba(9,5,13,.18),transparent 55%);transition:opacity .5s}
+    .proof-video-card:hover .proof-video-shade{opacity:.78}
+    .proof-video-index{position:absolute;top:18px;left:18px;font:9px var(--mono);letter-spacing:1.4px}
+    .proof-video-play{position:absolute;right:17px;top:15px;width:40px;height:40px;border:1px solid rgba(255,255,255,.7);border-radius:50%;display:grid;place-items:center;font-size:18px;transition:transform .4s,background .4s,color .4s}
+    .proof-video-card:hover .proof-video-play{transform:rotate(45deg);background:#fff;color:#171019}
+    .proof-video-label{position:absolute;left:18px;bottom:17px;font:10px var(--mono);letter-spacing:1.5px;opacity:.75;transition:letter-spacing .4s,opacity .4s}
+    .proof-video-card:hover .proof-video-label{letter-spacing:2.8px;opacity:1}
+    .proof-note{display:flex;justify-content:space-between;gap:20px;margin:20px 0 0;font:10px var(--mono);letter-spacing:1.5px;color:#554650}
+    .proof-note span{color:#9a8492}
+    .film-modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:clamp(12px,3vw,42px);background:rgba(5,3,8,.94);backdrop-filter:blur(22px);opacity:0;visibility:hidden;transition:opacity .55s,visibility .55s}
+    .film-modal.open{opacity:1;visibility:visible}
+    .film-modal-inner{width:min(1200px,100%);position:relative;transform:scale(.94) translateY(18px);transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+    .film-modal.open .film-modal-inner{transform:scale(1) translateY(0)}
+    .film-modal video{display:block;width:100%;max-height:78vh;aspect-ratio:16/9;object-fit:contain;background:#000;box-shadow:0 25px 100px rgba(0,0,0,.55)}
+    .film-modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;color:#fff;font:10px var(--mono);letter-spacing:1.8px;text-transform:uppercase}
+    .film-modal-title{color:#ff8cba}
+    .film-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:transparent;color:#fff;font-size:24px;line-height:1;transition:background .3s,color .3s}
+    .film-close:hover{background:#fff;color:#171019}
+    .film-modal-foot{display:flex;justify-content:space-between;gap:15px;margin-top:13px;color:rgba(255,255,255,.55);font:9px var(--mono);letter-spacing:1.2px;text-transform:uppercase}
+    body.film-open{overflow:hidden}
+    @media(max-width:700px){.proof-video-grid{grid-template-columns:1fr 1fr;grid-template-rows:230px 170px 170px;gap:9px}.proof-video-card:first-child{grid-row:span 2}.proof-video-card{min-height:150px}.proof-video-index{top:12px;left:12px;font-size:8px}.proof-video-play{width:34px;height:34px;right:10px;top:10px}.proof-video-label{left:12px;bottom:12px;font-size:8px}.proof-note{font-size:8px;letter-spacing:.8px;flex-direction:column;gap:7px}.film-modal{padding:12px}.film-modal video{max-height:68vh;aspect-ratio:9/16}.film-modal-foot{font-size:8px}}
+    @media(prefers-reduced-motion:reduce){.proof-video-card video{transition:none}.film-modal,.film-modal-inner{transition:none}}
+
     @media(max-width:700px){.nav{height:66px;padding:0 5vw}.nav-links{display:none}.brand{font-size:24px}.hero{min-height:760px;padding:100px 6vw 70px}.hero:before{width:110vw;height:110vw;right:-35vw;top:10%}.hero:after{width:75vw;height:75vw;right:-5vw;top:22%}.hero h1{font-size:clamp(100px,27vw,180px);margin:65px 0 45px}.hero-bottom{align-items:flex-start;flex-direction:column}.hero-copy{max-width:290px}.sticker{width:80px;height:80px;right:8%;bottom:12%;font-size:11px}.sticker small{font-size:7px}section{padding:85px 6vw}.section-head{display:block;margin-bottom:35px}.section-head p{margin-top:20px}.event-grid{grid-template-columns:1fr}.event-card{min-height:390px}.event-card:nth-child(2){min-height:350px}.moment-grid{grid-template-columns:1fr 1fr;gap:9px}.moment,.moment:nth-child(2),.moment:nth-child(4),.moment:nth-child(6){min-height:220px;margin-top:0}.moment:before{width:160px;height:160px}.asterisk{right:0;top:7%}.manifesto .side-note{margin-top:35px}.join h2{font-size:clamp(70px,19vw,120px)}footer{align-items:flex-start;flex-direction:column}.footer-brand{font-size:45px}.footer-bottom{display:flex;justify-content:space-between;width:100%;gap:10px;flex-wrap:wrap}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 
@@ -214,11 +244,29 @@
 
     <section class="moments" id="moments">
       <div class="section-head reveal"><div><div class="eyebrow">03 / The camera roll</div><h2>PROOF<br>OF FUN.</h2></div><p>Good people, good energy, moments worth keeping. The gallery gets better after every event.</p></div>
-      <div class="moment-grid">
-        <div class="moment reveal"><span>01 — The entrance</span></div><div class="moment reveal"><span>02 — The unexpected</span></div><div class="moment reveal"><span>03 — The people</span></div>
-        <div class="moment reveal"><span>04 — The little details</span></div><div class="moment reveal"><span>05 — The group photo</span></div><div class="moment reveal"><span>06 — The next story</span></div>
+      <div class="proof-video-grid">
+        <button class="proof-video-card proof-video-feature reveal" type="button" data-film-title="THE ENERGY" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
+          <span class="proof-video-shade"></span><span class="proof-video-index">01 / THE ENERGY</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        </button>
+        <button class="proof-video-card reveal" type="button" data-film-title="THE PEOPLE" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
+          <span class="proof-video-shade"></span><span class="proof-video-index">02 / THE PEOPLE</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        </button>
+        <button class="proof-video-card reveal" type="button" data-film-title="THE CHAOS" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
+          <span class="proof-video-shade"></span><span class="proof-video-index">03 / THE CHAOS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        </button>
+        <button class="proof-video-card reveal" type="button" data-film-title="BEHIND THE DECKS" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
+          <span class="proof-video-shade"></span><span class="proof-video-index">04 / BEHIND THE DECKS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        </button>
+        <button class="proof-video-card reveal" type="button" data-film-title="THE AFTERMATH" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
+          <span class="proof-video-shade"></span><span class="proof-video-index">05 / THE AFTERMATH</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        </button>
       </div>
-      <p class="form-note" style="margin-top:18px">Visual references — replace with OOPS! event photography as your own gallery grows.</p>
+      <p class="proof-note">THE OOPS! NIGHT ARCHIVE <span>— MORE STORIES LOADING</span></p>
     </section>
 
     <section class="join" id="join">
@@ -245,6 +293,14 @@
         <button class="button" type="submit">Count me in ↗</button>
         <div class="form-note">Demo form: connect a form service or backend before publishing to collect submissions.</div>
       </form>
+    </div>
+  </div>
+
+  <div class="film-modal" id="filmModal" aria-hidden="true">
+    <div class="film-modal-inner" role="dialog" aria-modal="true" aria-label="OOPS! film player">
+      <div class="film-modal-top"><span class="film-modal-title" id="filmTitle">OOPS! / THE ARCHIVE</span><button class="film-close" id="filmClose" type="button" aria-label="Close video">×</button></div>
+      <video id="filmPlayer" controls playsinline preload="none"></video>
+      <div class="film-modal-foot"><span>OOPS! — THE NIGHT ARCHIVE</span><span>PRESS ESC TO CLOSE</span></div>
     </div>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -292,6 +348,41 @@
         card.addEventListener('pointerleave',()=>{card.style.removeProperty('--pointer-x');card.style.removeProperty('--pointer-y')});
       });
     }
+
+    // PROOF OF FUN: previews loop silently; click opens the selected film.
+    const filmModal = $('#filmModal'), filmPlayer = $('#filmPlayer'), filmTitle = $('#filmTitle');
+    const proofCards = [...document.querySelectorAll('.proof-video-card')];
+    const closeFilm = () => {
+      filmModal.classList.remove('open');
+      filmModal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('film-open');
+      filmPlayer.pause();
+      filmPlayer.removeAttribute('src');
+      filmPlayer.load();
+      proofCards.forEach(card => { const v=$('video',card); if(v && !document.hidden) v.play().catch(()=>{}); });
+    };
+    proofCards.forEach(card => card.addEventListener('click', async () => {
+      proofCards.forEach(item => $('video',item)?.pause());
+      filmTitle.textContent = 'OOPS! / ' + card.dataset.filmTitle;
+      filmPlayer.src = card.dataset.filmSrc;
+      filmModal.classList.add('open');
+      filmModal.setAttribute('aria-hidden','false');
+      document.body.classList.add('film-open');
+      try { await filmPlayer.play(); } catch(err) { /* User can press play if autoplay is blocked. */ }
+      $('#filmClose').focus();
+    }));
+    $('#filmClose').addEventListener('click',closeFilm);
+    filmModal.addEventListener('click',e=>{if(e.target===filmModal)closeFilm()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape' && filmModal.classList.contains('open'))closeFilm()});
+    const proofSection = $('#moments');
+    if ('IntersectionObserver' in window && proofSection) {
+      const proofObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        proofCards.forEach(card => { const v=$('video',card); if(!v)return; if(entry.isIntersecting && !filmModal.classList.contains('open')) v.play().catch(()=>{}); else v.pause(); });
+      }),{threshold:.04});
+      proofObserver.observe(proofSection);
+    }
+    document.addEventListener('visibilitychange',()=>proofCards.forEach(card=>{const v=$('video',card);if(!v)return;if(document.hidden)v.pause();else if(proofSection.getBoundingClientRect().bottom>0 && proofSection.getBoundingClientRect().top<innerHeight && !filmModal.classList.contains('open'))v.play().catch(()=>{});}));
+
     const glow=$('#glow');
     if(matchMedia('(pointer:fine)').matches){document.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}else{glow.style.display='none'}
   </script>
