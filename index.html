@@ -160,6 +160,57 @@
     @keyframes introFlash{0%{opacity:0;transform:translate(-50%,-50%) scale(.02)}28%{opacity:.95;transform:translate(-50%,-50%) scale(2.8)}65%{opacity:.18;transform:translate(-50%,-50%) scale(8)}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
     @media(max-width:700px){.intro-wordmark{font-size:27vw}.intro-caption{top:calc(50% + 68px);letter-spacing:2.5px}}
     @media(prefers-reduced-motion:reduce){.cinematic-intro{display:none}.hero-video-wrap{transition:none}}
+  
+    /* OOPS! / DIGITAL CULTURE SYSTEM — modern tech layer */
+    :root{--ink:#09090d;--paper:#f4f0ec;--pink:#ff4f9a;--orange:#ff783d;--purple:#9b70ff;--line:rgba(255,255,255,.12);--acid:#d5ff63;--glass:rgba(255,255,255,.055)}
+    body{background:radial-gradient(ellipse at 50% -20%,#292035 0%,#0b0a10 48%,#08080c 100%)}
+    .nav{background:rgba(9,9,13,.72);border-bottom-color:rgba(255,255,255,.09);box-shadow:0 10px 40px rgba(0,0,0,.14)}
+    .brand{font-size:29px;letter-spacing:-2.5px}
+    .nav-cta{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.045);backdrop-filter:blur(12px)}
+    .hero{min-height:calc(100svh - 78px);padding-top:11vh}
+    .hero:before{opacity:.72;filter:blur(28px)}
+    .hero h1{font-size:clamp(110px,24vw,340px);letter-spacing:-.12em}
+    .hero-kicker{display:inline-flex;align-items:center;gap:10px}
+    .hero-kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 14px var(--acid);animation:signalPulse 1.8s infinite}
+    .hero-copy{max-width:430px}
+    .button{box-shadow:0 8px 30px rgba(255,79,154,.16)}
+    .ticker{background:linear-gradient(90deg,#ff4f9a,#ff783d);box-shadow:0 12px 50px rgba(255,79,154,.12)}
+    section{scroll-margin-top:80px}
+    .events{background:#efebe8}
+    .event-card{border:1px solid rgba(255,255,255,.18);border-radius:14px;box-shadow:0 18px 55px rgba(20,10,30,.16)}
+    .event-card:after{background:linear-gradient(0deg,rgba(7,6,12,.76),transparent 70%),radial-gradient(circle at var(--pointer-x,70%) var(--pointer-y,40%),rgba(255,255,255,.2),transparent 38%)}
+    .manifesto{background:linear-gradient(135deg,#17121e,#0d0c12 70%)}
+    .moment{border-radius:12px}
+    .join{background:radial-gradient(circle at 50% 0%,#ff9bc8 0%,#a77aff 48%,#ff783d 100%)}
+    .home-poster{border-radius:16px;box-shadow:0 30px 100px rgba(0,0,0,.35)}
+    .poster-link{backdrop-filter:blur(12px);background:rgba(255,255,255,.06)}
+    .tech-console{position:relative;margin:0;padding:42px 7vw 48px;background:#0a0a10;color:#f4f0ec;overflow:hidden;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+    .tech-console:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);pointer-events:none}
+    .tech-topline{display:flex;justify-content:space-between;gap:15px;align-items:center;position:relative;font:9px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:#aaa2b2}
+    .tech-live{display:inline-flex;align-items:center;gap:8px;color:var(--acid)}
+    .tech-live i{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid);display:inline-block;animation:signalPulse 1.4s infinite}
+    .tech-grid{position:relative;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:12px;margin-top:28px}
+    .tech-cell{min-height:116px;padding:18px 19px;border:1px solid rgba(255,255,255,.11);border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));backdrop-filter:blur(16px);display:flex;flex-direction:column;justify-content:space-between;transition:transform .35s,border-color .35s,background .35s}
+    .tech-cell:hover{transform:translateY(-5px);border-color:rgba(213,255,99,.4);background:rgba(255,255,255,.09)}
+    .tech-label{font:9px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:#a49bab}
+    .tech-value{font-size:clamp(20px,3vw,34px);font-weight:600;letter-spacing:-1.8px}
+    .tech-value small{font:10px var(--mono);letter-spacing:0;color:var(--acid)}
+    .tech-wave{height:25px;display:flex;align-items:center;gap:3px;margin-top:8px}
+    .tech-wave b{display:block;width:3px;border-radius:5px;background:linear-gradient(180deg,var(--pink),var(--purple));height:var(--h);animation:waveBars .9s ease-in-out infinite alternate;animation-delay:var(--d)}
+    .tech-bottomline{position:relative;display:flex;justify-content:space-between;gap:15px;margin-top:17px;font:9px var(--mono);letter-spacing:1px;color:#77717f;text-transform:uppercase}
+    .tech-bottomline span:last-child{color:var(--pink)}
+    .hero-hud{position:absolute;z-index:4;right:6vw;top:7%;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font:9px var(--mono);letter-spacing:1.3px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+    .hero-hud span{padding:9px 12px;border:1px solid rgba(255,255,255,.17);border-radius:99px;background:rgba(12,10,18,.35);backdrop-filter:blur(12px)}
+    .hero-hud b{color:var(--acid);font-weight:400}
+    .film-modal{z-index:80}
+    .proof-video-card{border-radius:12px;overflow:hidden}
+    .proof-video-card:focus-visible,.button:focus-visible,.nav-cta:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+    @keyframes signalPulse{50%{opacity:.35;transform:scale(.75)}}
+    @keyframes waveBars{to{transform:scaleY(.35);opacity:.55}}
+    @media(max-width:850px){.tech-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-hud{top:4%;right:6vw}}
+    @media(max-width:700px){.tech-console{padding:30px 6vw}.tech-grid{gap:8px}.tech-cell{min-height:100px;padding:14px}.tech-topline,.tech-bottomline{font-size:8px}.hero-hud{top:3%;font-size:8px}.hero-hud span{padding:7px 9px}.hero h1{font-size:clamp(100px,24vw,190px)}}
+    @media(prefers-reduced-motion:reduce){.hero-kicker:before,.tech-live i,.tech-wave b{animation:none}}
+
   </style>
 </head>
 <body>
@@ -178,6 +229,7 @@
 
   <main id="top">
     <header class="hero">
+      <div class="hero-hud" aria-label="OOPS system status"><span>OOPS! / <b>ONLINE</b></span><span>INDEPENDENT CULTURE · 2026</span></div>
       <div class="hero-video-wrap" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video></div>
       <div class="hero-kicker">Independent nights · Unexpected stories · Est. 2026</div>
       <h1>OOPS<span class="bang">!</span></h1>
@@ -190,6 +242,16 @@
 
     <div class="ticker"><div class="ticker-track"><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b></div></div>
 
+    <section class="tech-console" aria-label="OOPS digital signal">
+      <div class="tech-topline"><span>OOPS! / DIGITAL CULTURE NETWORK</span><span class="tech-live"><i></i> SIGNAL ACTIVE</span></div>
+      <div class="tech-grid">
+        <div class="tech-cell"><span class="tech-label">Local system time</span><div class="tech-value" id="oopsClock">--:--:--</div><span class="tech-label">YOUR TIMEZONE · LIVE</span></div>
+        <div class="tech-cell"><span class="tech-label">Next transmission</span><div class="tech-value">SOON <small>↗</small></div><span class="tech-label">EVENT DETAILS / LOADING</span></div>
+        <div class="tech-cell"><span class="tech-label">Current frequency</span><div class="tech-value">001. <small>OOPS!</small></div><span class="tech-label">UNEXPECTED EXPERIENCES</span></div>
+        <div class="tech-cell"><span class="tech-label">Signal waveform</span><div class="tech-wave" aria-hidden="true"><b style="--h:8px;--d:0s"></b><b style="--h:25px;--d:-0.11s"></b><b style="--h:23px;--d:-0.22s"></b><b style="--h:21px;--d:-0.33s"></b><b style="--h:19px;--d:-0.44s"></b><b style="--h:17px;--d:-0.55s"></b><b style="--h:15px;--d:-0.66s"></b><b style="--h:13px;--d:-0.77s"></b><b style="--h:11px;--d:0s"></b><b style="--h:9px;--d:-0.11s"></b><b style="--h:26px;--d:-0.22s"></b><b style="--h:24px;--d:-0.33s"></b><b style="--h:22px;--d:-0.44s"></b><b style="--h:20px;--d:-0.55s"></b><b style="--h:18px;--d:-0.66s"></b><b style="--h:16px;--d:-0.77s"></b><b style="--h:14px;--d:0s"></b><b style="--h:12px;--d:-0.11s"></b><b style="--h:10px;--d:-0.22s"></b><b style="--h:8px;--d:-0.33s"></b><b style="--h:25px;--d:-0.44s"></b><b style="--h:23px;--d:-0.55s"></b><b style="--h:21px;--d:-0.66s"></b><b style="--h:19px;--d:-0.77s"></b></div><span class="tech-label">ENERGY DETECTED</span></div>
+      </div>
+      <div class="tech-bottomline"><span>EST. 2026 / NO ORDINARY PLANS</span><span>STAY TUNED — SOMETHING IS COMING</span></div>
+    </section>
 
     <section class="home-poster-wrap" aria-label="PAVO afterparty poster">
       <a class="home-poster" href="#pavo">
@@ -308,6 +370,12 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
+
+    // Live local clock for the OOPS! signal console.
+    const oopsClock = document.getElementById('oopsClock');
+    const updateOopsClock = () => { if (oopsClock) oopsClock.textContent = new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date()); };
+    updateOopsClock(); window.setInterval(updateOopsClock,1000);
+
     const intro = document.getElementById('cinematicIntro');
     if (intro && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.setTimeout(() => intro.classList.add('is-leaving'), 1750);
