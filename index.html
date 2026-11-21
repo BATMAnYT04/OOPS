@@ -118,8 +118,8 @@
     .proof-video-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:260px 260px;gap:12px}
     .proof-video-card{position:relative;display:block;width:100%;height:100%;min-height:220px;padding:0;overflow:hidden;border:0;border-radius:3px;background:#171019;color:#fff;text-align:left;cursor:pointer;isolation:isolate}
     .proof-video-card:first-child{grid-row:span 2}
-    .proof-video-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.06);transform:scale(1.025);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
-    .proof-video-card:hover video{transform:scale(1.1);filter:saturate(1.15) contrast(1.05)}
+    .proof-video-card video,.proof-video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.06);transform:scale(1.025);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
+    .proof-video-card:hover video,.proof-video-card:hover img{transform:scale(1.1);filter:saturate(1.15) contrast(1.05)}
     .proof-video-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,5,13,.78),transparent 65%),linear-gradient(120deg,rgba(9,5,13,.18),transparent 55%);transition:opacity .5s}
     .proof-video-card:hover .proof-video-shade{opacity:.78}
     .proof-video-index{position:absolute;top:18px;left:18px;font:9px var(--mono);letter-spacing:1.4px}
@@ -133,7 +133,7 @@
     .film-modal.open{opacity:1;visibility:visible}
     .film-modal-inner{width:min(1200px,100%);position:relative;transform:scale(.94) translateY(18px);transition:transform .65s cubic-bezier(.2,.8,.2,1)}
     .film-modal.open .film-modal-inner{transform:scale(1) translateY(0)}
-    .film-modal video{display:block;width:100%;max-height:78vh;aspect-ratio:16/9;object-fit:contain;background:#000;box-shadow:0 25px 100px rgba(0,0,0,.55)}
+    .film-modal video,.film-modal img{display:block;width:100%;max-height:78vh;aspect-ratio:16/9;object-fit:contain;background:#000;box-shadow:0 25px 100px rgba(0,0,0,.55)}
     .film-modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;color:#fff;font:10px var(--mono);letter-spacing:1.8px;text-transform:uppercase}
     .film-modal-title{color:#ff8cba}
     .film-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:transparent;color:#fff;font-size:24px;line-height:1;transition:background .3s,color .3s}
@@ -245,24 +245,24 @@
     <section class="moments" id="moments">
       <div class="section-head reveal"><div><div class="eyebrow">03 / The camera roll</div><h2>PROOF<br>OF FUN.</h2></div><p>Good people, good energy, moments worth keeping. The gallery gets better after every event.</p></div>
       <div class="proof-video-grid">
-        <button class="proof-video-card proof-video-feature reveal" type="button" data-film-title="THE ENERGY" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
-          <span class="proof-video-shade"></span><span class="proof-video-index">01 / THE ENERGY</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        <button class="proof-video-card proof-video-feature reveal" type="button" data-film-title="THE ENERGY" data-film-src="o3.gif" data-film-type="gif">
+          <img loading="lazy" src="o3.gif" alt="THE ENERGY — OOPS! event archive">
+          <span class="proof-video-shade"></span><span class="proof-video-index">01 / THE ENERGY</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
         </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="THE PEOPLE" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
-          <span class="proof-video-shade"></span><span class="proof-video-index">02 / THE PEOPLE</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        <button class="proof-video-card reveal" type="button" data-film-title="THE PEOPLE" data-film-src="o3%20(1).gif" data-film-type="gif">
+          <img loading="lazy" src="o3%20(1).gif" alt="THE PEOPLE — OOPS! event archive">
+          <span class="proof-video-shade"></span><span class="proof-video-index">02 / THE PEOPLE</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
         </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="THE CHAOS" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
-          <span class="proof-video-shade"></span><span class="proof-video-index">03 / THE CHAOS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        <button class="proof-video-card reveal" type="button" data-film-title="THE CHAOS" data-film-src="o3%20(2).gif" data-film-type="gif">
+          <img loading="lazy" src="o3%20(2).gif" alt="THE CHAOS — OOPS! event archive">
+          <span class="proof-video-shade"></span><span class="proof-video-index">03 / THE CHAOS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
         </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="BEHIND THE DECKS" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
-          <span class="proof-video-shade"></span><span class="proof-video-index">04 / BEHIND THE DECKS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
+        <button class="proof-video-card reveal" type="button" data-film-title="BEHIND THE DECKS" data-film-src="q2.gif" data-film-type="gif">
+          <img loading="lazy" src="q2.gif" alt="BEHIND THE DECKS — OOPS! event archive">
+          <span class="proof-video-shade"></span><span class="proof-video-index">04 / BEHIND THE DECKS</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH GIF</span>
         </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="THE AFTERMATH" data-film-src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video>
+        <button class="proof-video-card reveal" type="button" data-film-title="THE AFTERMATH" data-film-src="o3.mp4" data-film-type="mp4">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=85"><source src="o3.mp4" type="video/mp4"></video>
           <span class="proof-video-shade"></span><span class="proof-video-index">05 / THE AFTERMATH</span><span class="proof-video-play">↗</span><span class="proof-video-label">WATCH FILM</span>
         </button>
       </div>
@@ -299,7 +299,8 @@
   <div class="film-modal" id="filmModal" aria-hidden="true">
     <div class="film-modal-inner" role="dialog" aria-modal="true" aria-label="OOPS! film player">
       <div class="film-modal-top"><span class="film-modal-title" id="filmTitle">OOPS! / THE ARCHIVE</span><button class="film-close" id="filmClose" type="button" aria-label="Close video">×</button></div>
-      <video id="filmPlayer" controls playsinline preload="none"></video>
+      <video id="filmPlayer" controls playsinline preload="none" hidden></video>
+      <img id="filmGif" alt="OOPS! archive GIF" hidden>
       <div class="film-modal-foot"><span>OOPS! — THE NIGHT ARCHIVE</span><span>PRESS ESC TO CLOSE</span></div>
     </div>
   </div>
@@ -349,26 +350,31 @@
       });
     }
 
-    // PROOF OF FUN: previews loop silently; click opens the selected film.
-    const filmModal = $('#filmModal'), filmPlayer = $('#filmPlayer'), filmTitle = $('#filmTitle');
+    // PROOF OF FUN: GIFs animate in the wall; clicking opens a cinematic viewer.
+    const filmModal = $('#filmModal'), filmPlayer = $('#filmPlayer'), filmGif = $('#filmGif'), filmTitle = $('#filmTitle');
     const proofCards = [...document.querySelectorAll('.proof-video-card')];
     const closeFilm = () => {
       filmModal.classList.remove('open');
       filmModal.setAttribute('aria-hidden','true');
       document.body.classList.remove('film-open');
-      filmPlayer.pause();
-      filmPlayer.removeAttribute('src');
-      filmPlayer.load();
+      filmPlayer.pause(); filmPlayer.removeAttribute('src'); filmPlayer.load(); filmPlayer.hidden=true;
+      filmGif.removeAttribute('src'); filmGif.hidden=true;
       proofCards.forEach(card => { const v=$('video',card); if(v && !document.hidden) v.play().catch(()=>{}); });
     };
     proofCards.forEach(card => card.addEventListener('click', async () => {
       proofCards.forEach(item => $('video',item)?.pause());
       filmTitle.textContent = 'OOPS! / ' + card.dataset.filmTitle;
-      filmPlayer.src = card.dataset.filmSrc;
+      if(card.dataset.filmType === 'gif') {
+        filmPlayer.pause(); filmPlayer.removeAttribute('src'); filmPlayer.load(); filmPlayer.hidden=true;
+        filmGif.src = card.dataset.filmSrc; filmGif.hidden=false;
+      } else {
+        filmGif.removeAttribute('src'); filmGif.hidden=true;
+        filmPlayer.hidden=false; filmPlayer.src=card.dataset.filmSrc;
+        try { await filmPlayer.play(); } catch(err) { /* User can press play if autoplay is blocked. */ }
+      }
       filmModal.classList.add('open');
       filmModal.setAttribute('aria-hidden','false');
       document.body.classList.add('film-open');
-      try { await filmPlayer.play(); } catch(err) { /* User can press play if autoplay is blocked. */ }
       $('#filmClose').focus();
     }));
     $('#filmClose').addEventListener('click',closeFilm);
