@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080711"><meta name="description" content="OOPS! events — PAVO After Party and upcoming experiences.">
+<title>OOPS! — EVENTS / PAVO AFTER PARTY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080711;--white:#f7f1ff;--pink:#ff5ebc;--orange:#ff9b54;--lime:#d8ff70;--cyan:#65eaff;--mono:"DM Mono",monospace;--sans:"Space Grotesk",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:radial-gradient(ellipse at 15% 10%,rgba(255,94,188,.13),transparent 32%),radial-gradient(ellipse at 88% 25%,rgba(101,234,255,.1),transparent 32%),var(--bg);color:var(--white);font-family:var(--sans);overflow-x:hidden}a{color:inherit;text-decoration:none}
+header{position:fixed;z-index:10;top:0;left:0;width:100%;padding:22px 4vw;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(14px);background:rgba(8,7,17,.35);border-bottom:1px solid rgba(255,255,255,.1)}
+.brand{font-size:25px;font-weight:700;letter-spacing:-2px}.brand span{color:var(--pink)}.back{font:10px var(--mono);letter-spacing:1.5px;border:1px solid rgba(255,255,255,.35);padding:11px 15px;border-radius:30px}
+main{padding:120px 7vw 8vh}.eyebrow{font:10px var(--mono);letter-spacing:2px;color:var(--lime)}.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:25px;margin:3vh 0 6vh}.intro h1{font-size:clamp(75px,14vw,190px);letter-spacing:-.12em;line-height:.72;margin:20px 0 0}.intro h1 span{display:block;color:transparent;-webkit-text-stroke:1px var(--pink)}.intro p{max-width:280px;color:#c7bad6;font-size:13px;line-height:1.7}
+.poster{position:relative;min-height:min(75vw,850px);height:min(75vw,850px);max-height:850px;overflow:hidden;isolation:isolate;background:#21142c;color:#fff;border:1px solid rgba(255,255,255,.2);box-shadow:0 35px 110px rgba(0,0,0,.45)}
+.poster-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(115deg,rgba(12,7,22,.38),rgba(12,7,22,.72)),url('o3.gif') center/cover;filter:saturate(1.25) contrast(1.06);transform:scale(1.03);animation:posterDrift 22s ease-in-out infinite alternate}
+.poster:before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.45);pointer-events:none}.poster:after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 50% 45%,transparent 5%,rgba(7,5,15,.5) 85%)}
+@keyframes posterDrift{to{transform:scale(1.12) translateY(-1%)}}.poster-top,.poster-bottom{position:absolute;left:34px;right:34px;display:flex;justify-content:space-between;gap:12px;font:9px var(--mono);letter-spacing:1.6px;color:#fff;text-shadow:0 2px 15px #000}.poster-top{top:32px}.poster-bottom{bottom:32px}.poster-side{position:absolute;left:34px;top:50%;writing-mode:vertical-rl;transform:translateY(-50%);font:8px var(--mono);letter-spacing:2px;color:#fff}
+.poster-content{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);text-align:center}.poster-content small{font:10px var(--mono);letter-spacing:3px}.poster-content h2{font-size:clamp(110px,27vw,370px);line-height:.65;letter-spacing:-.15em;margin:38px 0 30px;font-weight:700;text-shadow:0 10px 55px rgba(0,0,0,.3)}.poster-content h2 span{font-size:.15em;vertical-align:top;letter-spacing:0}.rule{height:3px;width:90px;margin:30px auto;background:linear-gradient(90deg,var(--pink),var(--orange),var(--lime),var(--cyan));box-shadow:0 0 24px var(--pink)}.poster-content strong{font-size:clamp(20px,3.3vw,42px);letter-spacing:.1em}.poster-content p{font:10px/1.9 var(--mono);letter-spacing:1.7px;margin:24px 0 0}.stamp{position:absolute;right:9%;top:16%;width:110px;height:110px;border:1px solid var(--lime);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--lime);font:9px/1.5 var(--mono);transform:rotate(12deg);box-shadow:0 0 30px rgba(216,255,112,.2)}
+.poster-footnote{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 0 12vh;color:#c7bad6;font:9px/1.8 var(--mono);letter-spacing:1px}.poster-footnote b{color:var(--pink);font-weight:500}
+.other{padding:4vh 0 10vh}.other-head{display:flex;align-items:flex-end;justify-content:space-between;gap:25px;margin-bottom:45px}.other h2{font-size:clamp(55px,9vw,120px);letter-spacing:-.1em;line-height:.8;margin:18px 0}.other-head p{max-width:270px;color:#c3b6d2;font-size:13px;line-height:1.7}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}.card{border-top:1px solid rgba(255,255,255,.28);padding-top:16px}.card-media{height:clamp(230px,35vw,430px);overflow:hidden;position:relative;background:#24132f}.card-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}.card:hover img{transform:scale(1.06)}.card-meta{display:flex;justify-content:space-between;gap:10px;margin:18px 0 10px;font:9px var(--mono);letter-spacing:1.4px;color:var(--lime)}.card h3{font-size:clamp(32px,5vw,65px);line-height:.86;letter-spacing:-.08em;margin:12px 0}.card p{max-width:380px;color:#bfb2ce;font-size:12px;line-height:1.7}.soon{display:inline-block;margin-top:10px;border:1px solid rgba(255,255,255,.35);padding:10px 13px;font:9px var(--mono);letter-spacing:1.3px;color:var(--cyan)}
+.ticker{overflow:hidden;background:var(--pink);color:#170c1d;padding:15px 0;margin:5vh -7vw 0;transform:rotate(-1.5deg);white-space:nowrap;font-size:20px;font-weight:700}.ticker span{display:inline-block;animation:marquee 25s linear infinite}.ticker i{font-style:normal;margin:0 25px;color:white}@keyframes marquee{to{transform:translateX(-50%)}}
+footer{display:flex;justify-content:space-between;gap:20px;padding:30px 4vw;border-top:1px solid rgba(255,255,255,.18);font:9px var(--mono);letter-spacing:1px;color:#a99bb8}.footer-logo{font:700 23px var(--sans);letter-spacing:-2px;color:var(--lime)}
+@media(max-width:700px){header{padding:17px 6vw}main{padding:105px 6vw 6vh}.intro{display:block}.intro h1{font-size:clamp(76px,19vw,120px)}.intro p{margin-top:30px}.poster{height:125vw;min-height:540px;max-height:690px}.poster-top,.poster-bottom{left:23px;right:23px;font-size:7px}.poster-side{left:22px}.poster-content h2{font-size:34vw}.poster-content p{font-size:8px}.stamp{width:78px;height:78px;font-size:7px;right:8%;top:13%}.poster-footnote{display:block;padding-bottom:9vh}.poster-footnote span{display:block;margin:8px 0}.other-head{display:block}.other-head p{margin-top:25px}.cards{grid-template-columns:1fr;gap:35px}footer{flex-direction:column;padding:25px 6vw}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="index.html">OOPS<span>!</span></a><a class="back" href="index.html">← BACK TO EXPERIENCE</a></header>
+<main>
+<div class="eyebrow">OOPS! / EVENT TRANSMISSIONS — 2026</div>
+<section class="intro"><div><div class="eyebrow">FIND YOUR NEXT STORY</div><h1>THE<br><span>LINE-UP.</span></h1></div><p>Different frequencies. Unexpected places. Pick the next experience you want to be part of.</p></section>
+<section class="poster" aria-label="PAVO After Party poster">
+<div class="poster-bg"></div><div class="poster-top"><span>OOPS! PRESENTS</span><span>TRANSMISSION Nº 001 / PAVO</span></div><div class="poster-side">PRIVATE FREQUENCY / ACCESS BY INVITATION / PRIVATE FREQUENCY /</div>
+<div class="poster-content"><small>THE NIGHT DOESN'T END HERE</small><h2>PAVO<span>®</span></h2><div class="rule"></div><strong>THE AFTERPARTY.</strong><p>FOR THE ONES WHO KNOW.<br>FOR THE MOMENTS THAT DON'T NEED A CROWD.</p></div>
+<div class="stamp">YOU<br>HAD TO<br>BE THERE</div><div class="poster-bottom"><span>EXCLUSIVE ACCESS</span><span>DETAILS UNDER WRAPS</span><span>OOPS! / 2026</span></div>
+</section>
+<div class="poster-footnote"><span>A SIDE QUEST FOR THE CURIOUS.</span><span><b>DATE / VENUE / LINE-UP:</b> TO BE ANNOUNCED</span><span>NO PASSES ON SALE YET</span></div>
+<section class="other"><div class="eyebrow">02 / MORE EXPERIENCES</div><div class="other-head"><h2>OTHER<br>EVENTS.</h2><p>More OOPS! stories are in the making. Announcements will land here as each experience is confirmed.</p></div>
+<div class="cards">
+<article class="card"><div class="card-media"><img src="o3%20(1).gif" alt="OOPS event atmosphere" loading="lazy"></div><div class="card-meta"><span>OOPS! / LIVE EXPERIENCE</span><span>002</span></div><h3>THE<br>GATHERING.</h3><p>A new night, a new room, a new story. Event date and venue will be announced soon.</p><span class="soon">DETAILS COMING SOON</span></article>
+<article class="card"><div class="card-media"><img src="q2.gif" alt="OOPS nightlife visual" loading="lazy"></div><div class="card-meta"><span>OOPS! / NEXT TRANSMISSION</span><span>003</span></div><h3>STAY<br>CURIOUS.</h3><p>Keep this page on your radar. More experiences will be added when confirmed.</p><span class="soon">ANNOUNCEMENT PENDING</span></article>
+</div></section>
+<div class="ticker"><span>GOOD PEOPLE <i>✳</i> UNEXPECTED PLACES <i>✳</i> STORIES THAT STICK <i>✳</i> GOOD PEOPLE <i>✳</i> UNEXPECTED PLACES <i>✳</i> </span></div>
+</main>
+<footer><div class="footer-logo">OOPS!</div><div>UNEXPECTED NIGHTS / UNFORGETTABLE STORIES</div><div>© 2026 OOPS! — END TRANSMISSION</div></footer>
+</body></html>
