@@ -144,7 +144,7 @@ try{
    ScrollTrigger.create({trigger:el,start:'top 65%',end:'bottom 35%',onEnter:()=>window.__unknownScene?.(i+1),onEnterBack:()=>window.__unknownScene?.(i+1)});
   });
   gsap.to('.vignette',{opacity:1.25,scrollTrigger:{trigger:'.descent',start:'top bottom',end:'bottom top',scrub:true}});
-  gsap.to('.pavo-world:before',{rotation:4,scale:1.08,scrollTrigger:{trigger:'.pavo-world',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.pavo-world',{yPercent:-3,scrollTrigger:{trigger:'.pavo-world',start:'top bottom',end:'bottom top',scrub:true}});
  }
  ScrollTrigger.refresh();
 }catch(e){console.warn('Cinematic choreography fallback',e)}
