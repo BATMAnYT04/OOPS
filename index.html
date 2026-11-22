@@ -270,20 +270,20 @@ footer{border-color:rgba(243,234,220,.2);color:#a89aaa}
 .footer-brand{color:var(--white)}
 .vignette{background:radial-gradient(ellipse at center,transparent 38%,rgba(10,5,14,.65) 100%)}
 
-</style>
+
+#logo-stage{position:fixed;inset:0;z-index:1;pointer-events:none;display:grid;place-items:center;overflow:hidden}#logo-stage img{width:min(46vw,610px);opacity:.12;filter:grayscale(1) brightness(2);mix-blend-mode:screen}#logo-stage:before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,white,transparent);opacity:.45}.dj-side{position:absolute;top:-15%;height:130%;width:30vw;filter:blur(2px);opacity:.35;mix-blend-mode:screen}.dj-side.left{left:-8%;background:conic-gradient(from 245deg at 20% 10%,transparent,rgba(255,94,188,.25),transparent,rgba(255,155,84,.2),transparent);animation:sweepL 8s ease-in-out infinite alternate}.dj-side.right{right:-8%;background:conic-gradient(from 105deg at 80% 10%,transparent,rgba(101,234,255,.25),transparent,rgba(216,255,112,.2),transparent);animation:sweepR 7s ease-in-out infinite alternate}@keyframes sweepL{to{transform:rotate(13deg)}}@keyframes sweepR{to{transform:rotate(-13deg)}}.top-events{border:1px solid rgba(255,255,255,.3);padding:9px 13px;border-radius:30px;font:9px var(--mono);letter-spacing:1px}.about-events-cta{display:inline-flex;margin-top:30px;padding:16px 20px;border:1px solid var(--lime);color:var(--lime);font:10px var(--mono);letter-spacing:1px}@media(max-width:700px){#logo-stage img{width:80vw;opacity:.1}.dj-side{width:50vw}}</style>
 </head>
 <body class="lock">
-<div id="world" aria-hidden="true"></div><div id="color-wash" aria-hidden="true"></div><div class="noise"></div><div class="vignette"></div>
+<div id="world" aria-hidden="true"></div><div id="color-wash" aria-hidden="true"></div><div id="logo-stage" aria-hidden="true"><div class="dj-side left"></div><img src="logo.png" alt=""><div class="dj-side right"></div></div><div class="noise"></div><div class="vignette"></div>
 <div id="boot"><div class="boot-inner"><div class="boot-row"><span>OOPS! / SYSTEM INIT</span><span id="loadPct">00%</span></div><div class="boot-line"><i></i></div></div></div>
 <div class="scroll-line"><i id="progress"></i></div><div id="cursor"></div>
-<header class="topline"><a class="mark" href="#start" aria-label="OOPS home">OOPS<span>!</span></a><div class="top-right"><span class="coordinates">UNKNOWN SPACE / 00° 00′ 00″</span><button class="sound" id="soundToggle" type="button">SOUND <span id="soundState">OFF</span></button></div></header>
+<header class="topline"><a class="mark" href="#start" aria-label="OOPS home">OOPS<span>!</span></a><div class="top-right"><span class="coordinates">UNKNOWN SPACE / 00° 00′ 00″</span><a class="top-events" href="events.html">EVENTS ↗</a><button class="sound" id="soundToggle" type="button">SOUND <span id="soundState">OFF</span></button></div></header>
 <main>
 <section class="starter" id="start" data-scene="01">
-  <div class="starter-orbit" aria-hidden="true"><span></span><span></span><span></span><i>O</i></div>
   <div class="starter-copy">
     <div class="micro">OOPS! PRESENTS / AN EXPERIMENT IN THE UNEXPECTED</div>
     <h1>MAKE<br><em>IT</em> A<br><b>STORY.</b></h1>
-    <div class="starter-bottom"><p>NOT JUST ANOTHER NIGHT OUT.<br>A WORLD YOU STEP INTO.</p><a class="starter-cta magnetic" href="#upcoming">EXPLORE WHAT'S NEXT <b>↘</b></a></div>
+    <div class="starter-bottom"><p>NOT JUST ANOTHER NIGHT OUT.<br>A WORLD YOU STEP INTO.</p><a class="starter-cta magnetic" href="events.html">EXPLORE EVENTS <b>↘</b></a></div>
   </div>
   <div class="starter-side">SCROLL TO ENTER THE UNKNOWN — 001</div>
   <div class="starter-sticker">NO PLANS.<br>GOOD STORIES.<br><strong>OOPS!</strong></div>
