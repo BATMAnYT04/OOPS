@@ -122,6 +122,15 @@ footer{border-color:rgba(255,94,188,.25);color:#a99bbd}.footer-brand{color:var(-
 @media(max-width:700px){.hero-disco{right:7vw;top:0}.disco-cable{height:calc(12vh + 35px)}.disco-mount{top:calc(12vh + 29px)}.disco-ball{top:calc(12vh + 35px)}.disco-rays{top:calc(12vh + 85px);height:135%}.disco-beam{top:calc(12vh + 108px)}}
 @media(prefers-reduced-motion:reduce){.disco-rays{animation:none}}
 
+
+/* Centered floating disco ball — no ceiling suspension */
+.hero-disco{left:50%;right:auto;top:7vh;transform:translateX(-50%);width:clamp(160px,22vw,300px);overflow:visible}
+.disco-cable,.disco-mount{display:none}
+.disco-ball{inset:16%;left:auto;top:auto;width:auto;height:auto}
+.disco-rays{left:-55%;top:10%;width:210%;height:170%;transform-origin:50% 50%}
+.disco-beam{top:50%;left:50%;width:190%}
+@media(max-width:700px){.hero-disco{left:50%;right:auto;top:6vh;width:clamp(125px,36vw,175px)}.disco-rays{top:8%;height:145%}.disco-beam{top:50%}}
+
 </style>
 </head>
 <body class="lock">
@@ -131,7 +140,7 @@ footer{border-color:rgba(255,94,188,.25);color:#a99bbd}.footer-brand{color:var(-
 <header class="topline"><a class="mark" href="#start" aria-label="OOPS home">OOPS<span>!</span></a><div class="top-right"><span class="coordinates">UNKNOWN SPACE / 00° 00′ 00″</span><button class="sound" id="soundToggle" type="button">SOUND <span id="soundState">OFF</span></button></div></header>
 <main>
 <section class="scene hero" id="start" data-scene="01">
-<div class="scene-copy"><div class="micro">AN EXPERIMENT IN THE UNEXPECTED / 001</div><h1>SOMETHING EXISTS <span>BEYOND THE SCREEN.</span></h1><div class="hero-note"><span>YOU ARE NOT HERE TO BROWSE.</span><a class="enter magnetic" href="#discovery">ENTER THE UNKNOWN <b>↘</b></a></div></div><div class="hero-disco" aria-hidden="true"><div class="disco-cable"></div><div class="disco-mount"></div><div class="disco-rays"></div><div class="disco-beam beam-a"></div><div class="disco-beam beam-b"></div><div class="disco-beam beam-c"></div><div class="disco-beam beam-d"></div><div class="disco-ball"><i></i></div><span class="disco-spark spark-a">✦</span><span class="disco-spark spark-b">✧</span><span class="disco-spark spark-c">✦</span><span class="disco-spark spark-d">✧</span></div><div class="side-index">SCROLL TO DESCEND — 01 / 05</div>
+<div class="scene-copy"><div class="micro">AN EXPERIMENT IN THE UNEXPECTED / 001</div><h1>SOMETHING EXISTS <span>BEYOND THE SCREEN.</span></h1><div class="hero-note"><span>YOU ARE NOT HERE TO BROWSE.</span><a class="enter magnetic" href="#discovery">ENTER THE UNKNOWN <b>↘</b></a></div></div><div class="hero-disco" aria-hidden="true"><div class="disco-rays"></div><div class="disco-beam beam-a"></div><div class="disco-beam beam-b"></div><div class="disco-beam beam-c"></div><div class="disco-beam beam-d"></div><div class="disco-ball"><i></i></div><span class="disco-spark spark-a">✦</span><span class="disco-spark spark-b">✧</span><span class="disco-spark spark-c">✦</span><span class="disco-spark spark-d">✧</span></div><div class="side-index">SCROLL TO DESCEND — 01 / 05</div>
 </section>
 <section class="scene statement" id="discovery" data-scene="02"><div class="scene-copy"><div class="micro">02 / DISCOVERY</div><h2>IT KNOWS<br>WHEN YOU<br><span>LOOK CLOSER.</span></h2><p>Move through the void. Follow the light. The world responds to your presence — not with answers, but with new questions.</p></div><div class="side-index">A LIVING OBJECT / 02</div></section>
 <section class="scene descent" data-scene="03"><div class="scene-copy"><div class="micro">03 / DESCENT</div><h2>LET GO<br>OF THE<br>ORDINARY.</h2><p>Space folds. Distances dissolve. What looked like an object becomes a passage into somewhere else.</p></div><div class="side-index">DEPTH IS AN ILLUSION / 03</div></section>
