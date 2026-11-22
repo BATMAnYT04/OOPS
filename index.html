@@ -1,623 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171019">
-  <meta name="description" content="OOPS! — unexpected nights, unforgettable stories. Discover upcoming experiences and get on the list.">
-  <title>OOPS! — Plans? What Plans?</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--ink:#171019;--paper:#f5eee8;--pink:#ff4f9a;--orange:#ff783d;--purple:#9b70ff;--muted:#b9aeb8;--line:rgba(245,238,232,.17);--display:"Space Grotesk",sans-serif;--mono:"DM Mono",monospace}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--display);overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}
-    .grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-    .cursor-glow{position:fixed;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,154,.14),transparent 68%);pointer-events:none;z-index:0;transform:translate(-50%,-50%)}
-    .nav{height:78px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(23,16,25,.82);backdrop-filter:blur(18px);z-index:15}
-    .brand{font-size:27px;font-weight:700;letter-spacing:-2px}.brand span{color:var(--pink)}.nav-links{display:flex;gap:34px;font:11px var(--mono);text-transform:uppercase;letter-spacing:1.2px;color:#d7cbd5}.nav-links a{transition:color .25s}.nav-links a:hover{color:var(--pink)}.nav-cta,.pill{border:1px solid var(--paper);border-radius:99px;padding:12px 19px;font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;background:transparent;color:var(--paper);transition:.3s}.nav-cta:hover{background:var(--paper);color:var(--ink)}
-    .hero{min-height:calc(100svh - 78px);padding:9vh 7vw 7vh;position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.hero:before{content:"";position:absolute;width:55vw;height:55vw;max-width:760px;max-height:760px;right:-8vw;top:3%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,79,154,.9),rgba(155,112,255,.52) 36%,rgba(255,120,61,.18) 58%,transparent 70%);filter:blur(8px);animation:orb 12s ease-in-out infinite alternate}
-    .hero:after{content:"";position:absolute;width:30vw;height:30vw;right:10vw;top:22%;border:1px solid rgba(255,255,255,.25);border-radius:50%;transform:rotate(-25deg) scaleY(.35);box-shadow:0 0 70px rgba(255,79,154,.18);animation:ring 18s linear infinite}
-
-    .hero-video-wrap{position:absolute;z-index:1;top:9%;right:3%;width:min(48vw,690px);height:76%;pointer-events:none;overflow:hidden;opacity:.48;mix-blend-mode:screen;mask-image:radial-gradient(ellipse 68% 66% at 55% 48%,#000 28%,rgba(0,0,0,.78) 55%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 68% 66% at 55% 48%,#000 28%,rgba(0,0,0,.78) 55%,transparent 100%)}
-    .hero-video-wrap video{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.08)}
-    .hero-video-wrap:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(23,16,25,.5),rgba(255,79,154,.12) 55%,rgba(155,112,255,.18))}
-    @media(max-width:700px){.hero-video-wrap{width:76vw;height:54%;top:14%;right:-22%;opacity:.28;mask-image:radial-gradient(ellipse 68% 62% at 50% 48%,#000 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 68% 62% at 50% 48%,#000 20%,transparent 100%)}}
-    @media(prefers-reduced-motion:reduce){.hero-video-wrap video{display:none}}
-    .hero-kicker,.eyebrow{font:10px var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--pink);position:relative;z-index:2}.hero h1{font-size:clamp(100px,22vw,310px);line-height:.72;letter-spacing:-.105em;margin:38px 0 34px;position:relative;z-index:2;font-weight:700}.hero h1 .bang{color:var(--orange);display:inline-block;transform:rotate(9deg);text-shadow:8px 8px 0 var(--purple);animation:bang 3.5s ease-in-out infinite}.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;position:relative;z-index:3}.hero-copy{font-size:clamp(18px,2vw,25px);max-width:390px;line-height:1.25;letter-spacing:-.7px}.hero-copy em{font-style:normal;color:var(--pink)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:16px 21px;border:0;border-radius:99px;background:var(--pink);color:var(--ink);font:11px var(--mono);text-transform:uppercase;letter-spacing:.8px;transition:transform .3s,background .3s}.button:hover{transform:translateY(-4px) rotate(-1deg);background:var(--orange)}.button.secondary{background:transparent;color:var(--paper);border:1px solid var(--line)}.button.secondary:hover{background:var(--paper);color:var(--ink)}
-    .sticker{position:absolute;z-index:4;right:12%;bottom:14%;width:105px;height:105px;border-radius:50%;background:var(--orange);color:var(--ink);display:grid;place-items:center;text-align:center;font-size:13px;font-weight:700;line-height:1.05;transform:rotate(12deg);animation:float 5s ease-in-out infinite}.sticker small{font:8px var(--mono);display:block;letter-spacing:1px}
-    .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;background:var(--pink);color:var(--ink);transform:rotate(-1.5deg) scale(1.02);position:relative;z-index:3}.ticker-track{display:flex;white-space:nowrap;animation:marquee 24s linear infinite;font-size:21px;font-weight:700;letter-spacing:-.7px}.ticker-track span{padding:0 24px}.ticker-track b{color:#fff}
-    section{padding:125px 7vw;position:relative}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:50px}.section-head h2{font-size:clamp(48px,8vw,105px);letter-spacing:-.085em;line-height:.85;margin:13px 0 0}.section-head p{max-width:250px;color:var(--muted);font-size:14px;line-height:1.5;margin:0}
-    .events{background:var(--paper);color:var(--ink)}.events .eyebrow{color:#b72f70}.event-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.event-card{min-height:440px;position:relative;overflow:hidden;border-radius:5px;background:#362039;color:white;padding:27px;display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}.event-card:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(145deg,#ff4f9a,#9b70ff 54%,#ff783d);transition:transform .8s}.event-card:nth-child(2):before{background:linear-gradient(145deg,#ff783d,#f33c83 48%,#4b2a74)}
-    .event-card.pavo-plan:before{background-image:linear-gradient(0deg,rgba(12,7,18,.82),rgba(12,7,18,.12) 75%),url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=88");background-size:cover;background-position:center}
-    .event-card.soon-plan:before{background-image:linear-gradient(0deg,rgba(12,7,18,.86),rgba(12,7,18,.24) 75%),url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=88");background-size:cover;background-position:center}.event-card:hover:before{transform:scale(1.08) rotate(2deg)}.event-card:after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 70% 40%,transparent 0 16%,rgba(15,8,19,.2) 55%,rgba(15,8,19,.7));}
-    .event-top{display:flex;justify-content:space-between;font:10px var(--mono);letter-spacing:1px;text-transform:uppercase}.event-art{position:absolute;inset:0;display:grid;place-items:center;z-index:-1}.event-art strong{font-size:clamp(90px,15vw,190px);letter-spacing:-.12em;line-height:.7;color:rgba(255,255,255,.23);transform:rotate(-12deg);text-shadow:10px 15px 0 rgba(24,12,30,.16)}.event-card h3{font-size:clamp(38px,6vw,76px);letter-spacing:-.08em;line-height:.85;margin:0 0 12px;max-width:500px}.event-meta{font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.75)}.event-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:15px}.event-arrow{width:47px;height:47px;border:1px solid rgba(255,255,255,.7);border-radius:50%;display:grid;place-items:center;font-size:22px;transition:.3s}.event-card:hover .event-arrow{background:white;color:var(--ink);transform:rotate(45deg)}
-    .manifesto{background:#211827;overflow:hidden}.manifesto .big-line{font-size:clamp(42px,8vw,112px);font-weight:600;letter-spacing:-.085em;line-height:.98;max-width:1050px;margin:0}.big-line .outline{-webkit-text-stroke:1px var(--paper);color:transparent}.manifesto .side-note{margin:55px 0 0 auto;max-width:270px;color:var(--muted);font-size:14px;line-height:1.6}.asterisk{position:absolute;right:8%;top:15%;font-size:clamp(100px,22vw,280px);color:var(--purple);opacity:.65;animation:spin 35s linear infinite}
-    .moments{background:#f0e7e3;color:var(--ink)}.moments .eyebrow{color:#b72f70}.moment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.moment{min-height:280px;position:relative;overflow:hidden;padding:20px;display:flex;align-items:flex-end;color:white;background:#9b70ff}.moment:nth-child(2){background:#ff783d;min-height:350px;margin-top:45px}.moment:nth-child(3){background:#d83d86}.moment:nth-child(4){background:#4d3268;min-height:330px}.moment:nth-child(5){background:#ff4f9a}.moment:nth-child(6){background:#bd4a37;min-height:310px;margin-top:20px}.moment:before{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.65);border-radius:45% 55% 60% 40%;top:10%;left:20%;transform:rotate(35deg);box-shadow:0 0 0 22px rgba(255,255,255,.08),0 0 0 48px rgba(255,255,255,.06);transition:transform .8s}.moment:nth-child(2):before,.moment:nth-child(5):before{border-radius:50%;transform:scale(.75) rotate(0);background:rgba(255,255,255,.12)}.moment:hover:before{transform:rotate(120deg) scale(1.15)}.moment span{font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;position:relative}
-    .join{background:linear-gradient(125deg,#ff4f9a 0%,#9b70ff 52%,#ff783d 100%);color:var(--ink);text-align:center;overflow:hidden}.join h2{font-size:clamp(65px,13vw,170px);letter-spacing:-.1em;line-height:.78;margin:20px 0 30px}.join p{max-width:420px;margin:0 auto 30px;line-height:1.5}.join .button{background:var(--ink);color:var(--paper)}.join .button:hover{background:white;color:var(--ink)}
-    footer{padding:34px 7vw 45px;background:#120d14;display:flex;align-items:flex-end;justify-content:space-between;gap:25px}.footer-brand{font-size:55px;font-weight:700;letter-spacing:-5px}.footer-brand span{color:var(--pink)}footer p,footer a{font:10px var(--mono);letter-spacing:.6px;color:var(--muted);text-transform:uppercase}footer .socials{display:flex;gap:20px}
-    .modal{position:fixed;inset:0;background:rgba(10,6,12,.78);backdrop-filter:blur(12px);z-index:30;display:none;place-items:center;padding:20px}.modal.open{display:grid}.modal-box{background:var(--paper);color:var(--ink);width:min(520px,100%);padding:35px;border-radius:8px;position:relative;animation:pop .35s ease}.modal-box h3{font-size:45px;letter-spacing:-3px;margin:8px 0}.modal-box p{color:#655965;font-size:13px;line-height:1.5}.close{position:absolute;right:18px;top:15px;border:0;background:none;font-size:25px}.field{display:grid;gap:7px;margin:16px 0}.field label{font:10px var(--mono);text-transform:uppercase;letter-spacing:1px}.field input,.field textarea{border:1px solid #d5c8d1;background:transparent;padding:13px;color:var(--ink);outline:none;border-radius:3px}.field input:focus,.field textarea:focus{border-color:#b72f70}.form-note{font:10px var(--mono);color:#766a76;margin-top:13px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--paper);color:var(--ink);padding:14px 20px;border-radius:50px;font:11px var(--mono);z-index:40;opacity:0;transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
-    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
-    @keyframes orb{to{transform:translate(-5%,7%) scale(1.12)}}@keyframes ring{to{transform:rotate(335deg) scaleY(.35)}}@keyframes bang{50%{transform:rotate(-8deg) translateY(-10px)}}@keyframes float{50%{transform:translateY(-17px) rotate(2deg)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.94) translateY(15px)}to{opacity:1;transform:none}}
-
-
-
-    /* Realistic event photography layered into the event cards and gallery */
-    .event-card:before{background-image:linear-gradient(0deg,rgba(12,7,18,.78),rgba(12,7,18,.12) 75%),url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1500&q=88");background-size:cover;background-position:center;filter:saturate(.9)}
-    .event-card:nth-child(2):before{background-image:linear-gradient(0deg,rgba(12,7,18,.8),rgba(12,7,18,.14) 75%),url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=88");background-position:center}
-    .moment{background-size:cover;background-position:center}
-    .moment:nth-child(1){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85")}
-    .moment:nth-child(2){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=85")}
-    .moment:nth-child(3){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85")}
-    .moment:nth-child(4){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85")}
-    .moment:nth-child(5){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85")}
-    .moment:nth-child(6){background-image:linear-gradient(0deg,rgba(12,7,18,.58),rgba(12,7,18,.08)),url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85")}
-    .moment:before{border-color:rgba(255,255,255,.28);box-shadow:0 0 0 22px rgba(255,255,255,.035),0 0 0 48px rgba(255,255,255,.025)}
-
-
-    /* Cinematic motion layer */
-    .scroll-progress{position:fixed;z-index:60;left:0;top:0;height:2px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--pink),var(--orange),var(--purple));box-shadow:0 0 14px rgba(255,79,154,.8);pointer-events:none}
-    body:before{content:"";position:fixed;inset:0;z-index:18;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,rgba(4,2,8,.32) 100%);opacity:.8}
-    .grain{opacity:.11;mix-blend-mode:soft-light}
-    .hero{isolation:isolate}
-    .hero-video-wrap{filter:blur(.2px);transition:opacity .7s}
-    .hero h1{ text-shadow:0 12px 70px rgba(255,79,154,.16); }
-    .hero h1,.poster-name,.pavo-title{will-change:transform,filter}
-    .event-card,.pavo-photo,.moment{transform:translateZ(0)}
-    .event-card:after{transition:opacity .6s}
-    .event-card:hover:after{opacity:.65}
-    .event-card:hover h3{ text-shadow:0 8px 34px rgba(255,79,154,.3); }
-    .pavo-photo img{transform:scale(1.025);filter:saturate(.78) contrast(1.06)}
-    .pavo-photo:hover img{transform:scale(1.12);filter:saturate(1.12) contrast(1.04)}
-    .moment{transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .7s;filter:saturate(.88)}
-    .moment:hover{transform:translateY(-7px) scale(1.015);filter:saturate(1.12)}
-    .reveal{filter:blur(5px)}
-    .reveal.visible{filter:blur(0)}
-    .button,.nav-cta,.poster-link{position:relative;overflow:hidden}
-    .button:after,.nav-cta:after,.poster-link:after{content:"";position:absolute;inset:-50% auto -50% -70%;width:38%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transition:left .7s}
-    .button:hover:after,.nav-cta:hover:after,.poster-link:hover:after{left:140%}
-    @media(prefers-reduced-motion:reduce){.reveal{filter:none}.moment,.pavo-photo img{transition:none}}
-
-    .home-poster-wrap{padding:65px 7vw 25px;background:#171019}
-    .home-poster{min-height:560px;position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(25px,5vw,65px);border:1px solid rgba(255,255,255,.22);background:#171329}
-    .home-poster:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=2000&q=90") center 48%/cover;filter:saturate(.85);transform:scale(1.03);animation:posterDrift 18s ease-in-out infinite alternate}
-    .home-poster:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,8,25,.9),rgba(19,10,32,.42) 65%,rgba(14,8,25,.2)),linear-gradient(0deg,rgba(12,8,25,.65),transparent 55%)}
-    .poster-top,.poster-bottom{display:flex;justify-content:space-between;gap:20px;align-items:center;font:10px var(--mono);letter-spacing:1.8px;text-transform:uppercase}
-    .poster-kicker{color:#f7a5d0}.poster-edition{color:#fff;opacity:.8}
-    .poster-name{font-size:clamp(100px,23vw,290px);font-weight:700;letter-spacing:-.13em;line-height:.72;margin:40px 0 25px;background:linear-gradient(110deg,#fff 5%,#e3c8ff 48%,#ff72b3 85%);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 18px 70px rgba(169,99,255,.25);animation:posterIn 1.2s cubic-bezier(.2,.7,.2,1) both}
-    .poster-line{font-size:clamp(20px,3.4vw,43px);font-weight:600;letter-spacing:-.06em;text-transform:uppercase}
-    .poster-line span{color:#ff8cba}
-    .poster-bottom{align-items:flex-end}.poster-soon{font-size:clamp(23px,4vw,48px);font-weight:600;letter-spacing:-.07em}.poster-soon small{display:block;font:10px var(--mono);letter-spacing:1.5px;margin-top:10px;color:#e2d4f7}
-    .poster-link{border:1px solid rgba(255,255,255,.75);padding:14px 19px;border-radius:99px;font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;transition:.3s;white-space:nowrap}.poster-link:hover{background:#fff;color:#171019}
-    .poster-orbit{position:absolute;width:220px;height:220px;border:1px solid rgba(255,255,255,.55);border-radius:50%;right:12%;top:22%;box-shadow:0 0 0 24px rgba(255,255,255,.05),0 0 70px rgba(190,126,255,.3);animation:posterOrbit 18s linear infinite;pointer-events:none}
-    @keyframes posterDrift{to{transform:scale(1.12) translateX(-1.5%)}}@keyframes posterIn{from{opacity:0;transform:translateY(35px);filter:blur(12px)}to{opacity:1;transform:none;filter:blur(0)}}@keyframes posterOrbit{to{transform:rotate(360deg)}}
-    @media(max-width:700px){.home-poster-wrap{padding:35px 6vw 10px}.home-poster{min-height:520px;padding:24px}.poster-top{align-items:flex-start}.poster-name{font-size:30vw;margin:65px 0 25px}.poster-orbit{width:130px;height:130px;right:5%;top:30%}.poster-bottom{align-items:flex-start;flex-direction:column}.poster-link{margin-top:8px}}
-
-    .pavo{background:#090b17;color:#f8f3ef;overflow:hidden}
-    .pavo:before{content:"";position:absolute;width:65vw;height:65vw;right:-20vw;top:-18vw;border-radius:50%;background:radial-gradient(circle,rgba(126,92,255,.3),rgba(255,79,154,.12) 42%,transparent 70%);pointer-events:none}
-    .pavo-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:35px;position:relative}
-    .pavo-title{font-size:clamp(90px,19vw,230px);letter-spacing:-.12em;line-height:.72;margin:25px 0 22px;font-weight:700;background:linear-gradient(100deg,#fff 5%,#bba8ff 48%,#ff7bb2 90%);background-clip:text;-webkit-background-clip:text;color:transparent}
-    .pavo-sub{font:11px var(--mono);letter-spacing:2px;text-transform:uppercase;color:#c6b9ff}
-    .pavo-copy{max-width:410px;color:#c3bdcf;font-size:15px;line-height:1.6}
-    .pavo-gallery{display:grid;grid-template-columns:1.2fr .8fr 1fr;grid-template-rows:230px 230px;gap:12px;position:relative}
-    .pavo-photo{position:relative;overflow:hidden;border-radius:4px;background:#25213b}
-    .pavo-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.78);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
-    .pavo-photo:hover img{transform:scale(1.08);filter:saturate(1.15)}
-    .pavo-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,7,18,.5),transparent 60%);pointer-events:none}
-    .pavo-photo:first-child{grid-row:span 2}
-    .pavo-photo:nth-child(4){grid-column:2 / 4}
-    .pavo-stamp{position:absolute;z-index:2;right:7%;top:10%;width:105px;height:105px;border:1px solid rgba(255,255,255,.65);border-radius:50%;display:grid;place-items:center;text-align:center;font:10px var(--mono);letter-spacing:1px;animation:spin 22s linear infinite}
-    .pavo-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:35px;padding-top:25px;border-top:1px solid rgba(255,255,255,.2)}
-    .pavo-soon{font-size:clamp(28px,5vw,58px);letter-spacing:-.07em;font-weight:600}
-    .pavo-soon span{color:#bba8ff;display:inline-block;animation:pulse 2.4s ease-in-out infinite}
-    @keyframes pulse{50%{opacity:.35;transform:translateY(-5px)}}
-    @media(max-width:700px){.pavo-head{display:block}.pavo-title{font-size:29vw}.pavo-gallery{grid-template-columns:1fr 1fr;grid-template-rows:210px 150px 170px}.pavo-photo:first-child{grid-row:span 2}.pavo-photo:nth-child(4){grid-column:1 / 3}.pavo-bottom{align-items:flex-start;flex-direction:column}.pavo-stamp{width:78px;height:78px;font-size:8px}}
-
-
-    /* PROOF OF FUN — continuous video archive + cinematic viewer */
-    .proof-video-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;align-items:stretch}
-    .proof-video-card{position:relative;display:block;width:100%;aspect-ratio:9/16;min-height:0;padding:0;overflow:hidden;border:1px solid rgba(23,16,25,.12);border-radius:5px;background:#171019;color:#fff;text-align:left;cursor:pointer;isolation:isolate;box-shadow:0 16px 40px rgba(23,16,25,.13)}
-    .proof-video-card:first-child{grid-row:auto}
-    .proof-video-card video,.proof-video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.9) contrast(1.04);transform:scale(1.005);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .7s}
-    .proof-video-card:hover video,.proof-video-card:hover img{transform:scale(1.055);filter:saturate(1.08) contrast(1.05)}
-    .proof-video-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,5,13,.78),transparent 65%),linear-gradient(120deg,rgba(9,5,13,.18),transparent 55%);transition:opacity .5s}
-    .proof-video-card:hover .proof-video-shade{opacity:.78}
-    .proof-video-index{position:absolute;top:18px;left:18px;font:9px var(--mono);letter-spacing:1.4px}
-    .proof-video-play{position:absolute;right:17px;top:15px;width:40px;height:40px;border:1px solid rgba(255,255,255,.7);border-radius:50%;display:grid;place-items:center;font-size:18px;transition:transform .4s,background .4s,color .4s}
-    .proof-video-card:hover .proof-video-play{transform:rotate(45deg);background:#fff;color:#171019}
-    .proof-video-label{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid rgba(255,255,255,.7);border-radius:99px;background:rgba(10,6,12,.3);backdrop-filter:blur(9px);font:9px var(--mono);letter-spacing:1.5px;opacity:.96;transition:.4s}.proof-video-label:after{content:"↗";font-size:15px}.proof-video-card:hover .proof-video-label{background:rgba(255,255,255,.94);color:#171019;letter-spacing:2px}
-    .proof-video-card:hover .proof-video-label{letter-spacing:2.8px;opacity:1}
-    .proof-note{display:flex;justify-content:space-between;gap:20px;margin:20px 0 0;font:10px var(--mono);letter-spacing:1.5px;color:#554650}
-    .proof-note span{color:#9a8492}
-    [hidden]{display:none!important}
-    .film-modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:clamp(12px,3vw,42px);background:rgba(5,3,8,.94);backdrop-filter:blur(22px);opacity:0;visibility:hidden;transition:opacity .55s,visibility .55s}
-    .film-modal.open{opacity:1;visibility:visible}
-    .film-modal-inner{width:min(1200px,100%);position:relative;transform:scale(.94) translateY(18px);transition:transform .65s cubic-bezier(.2,.8,.2,1)}
-    .film-modal.open .film-modal-inner{transform:scale(1) translateY(0)}
-    .film-modal video,.film-modal img{display:block;width:auto;max-width:100%;height:auto;max-height:80vh;aspect-ratio:auto;object-fit:contain;background:#000;box-shadow:0 25px 100px rgba(0,0,0,.55);margin:0 auto}
-    .film-modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;color:#fff;font:10px var(--mono);letter-spacing:1.8px;text-transform:uppercase}
-    .film-modal-title{color:#ff8cba}
-    .film-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:transparent;color:#fff;font-size:24px;line-height:1;transition:background .3s,color .3s}
-    .film-close:hover{background:#fff;color:#171019}
-    .film-modal-foot{display:flex;justify-content:space-between;gap:15px;margin-top:13px;color:rgba(255,255,255,.55);font:9px var(--mono);letter-spacing:1.2px;text-transform:uppercase}
-    body.film-open{overflow:hidden}
-    @media(max-width:1050px){.proof-video-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.proof-video-card{max-height:560px}}\n    @media(max-width:700px){.proof-video-grid{display:flex;overflow-x:auto;gap:12px;padding:2px 2px 14px;scroll-snap-type:x mandatory;scrollbar-width:thin}.proof-video-card{flex:0 0 68vw;max-width:310px;aspect-ratio:9/16;scroll-snap-align:start}.proof-video-index{top:13px;left:13px;font-size:8px}.proof-video-play{width:34px;height:34px;right:10px;top:10px}.proof-video-label{left:10px;right:10px;bottom:10px;font-size:8px;padding:11px}.proof-note{font-size:8px;letter-spacing:.8px;flex-direction:column;gap:7px}.film-modal{padding:12px}.film-modal video,.film-modal img{max-height:72vh;max-width:100%}.film-modal-foot{font-size:8px}}
-    @media(prefers-reduced-motion:reduce){.proof-video-card video{transition:none}.film-modal,.film-modal-inner{transition:none}}
-
-    @media(max-width:700px){.nav{height:66px;padding:0 5vw}.nav-links{display:none}.brand{font-size:24px}.hero{min-height:760px;padding:100px 6vw 70px}.hero:before{width:110vw;height:110vw;right:-35vw;top:10%}.hero:after{width:75vw;height:75vw;right:-5vw;top:22%}.hero h1{font-size:clamp(100px,27vw,180px);margin:65px 0 45px}.hero-bottom{align-items:flex-start;flex-direction:column}.hero-copy{max-width:290px}.sticker{width:80px;height:80px;right:8%;bottom:12%;font-size:11px}.sticker small{font-size:7px}section{padding:85px 6vw}.section-head{display:block;margin-bottom:35px}.section-head p{margin-top:20px}.event-grid{grid-template-columns:1fr}.event-card{min-height:390px}.event-card:nth-child(2){min-height:350px}.moment-grid{grid-template-columns:1fr 1fr;gap:9px}.moment,.moment:nth-child(2),.moment:nth-child(4),.moment:nth-child(6){min-height:220px;margin-top:0}.moment:before{width:160px;height:160px}.asterisk{right:0;top:7%}.manifesto .side-note{margin-top:35px}.join h2{font-size:clamp(70px,19vw,120px)}footer{align-items:flex-start;flex-direction:column}.footer-brand{font-size:45px}.footer-bottom{display:flex;justify-content:space-between;width:100%;gap:10px;flex-wrap:wrap}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-
-    /* One-time-per-load cinematic brand reveal */
-    .cinematic-intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#050408;overflow:hidden;opacity:1;visibility:visible;transition:opacity .85s cubic-bezier(.7,0,.2,1),visibility .85s;pointer-events:all}
-    .cinematic-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
-    .intro-wordmark{position:relative;z-index:2;font-size:clamp(100px,22vw,290px);font-weight:700;letter-spacing:-.12em;line-height:.8;color:#f8f1f5;opacity:0;transform:scale(.88);filter:blur(18px);animation:introLogoReveal 1.45s cubic-bezier(.16,1,.3,1) .18s forwards;text-shadow:0 0 55px rgba(255,79,154,.25)}
-    .intro-wordmark span{color:var(--pink);display:inline-block;transform:rotate(8deg)}
-    .intro-caption{position:absolute;top:calc(50% + clamp(75px,11vw,145px));z-index:2;font:9px var(--mono);letter-spacing:4px;color:rgba(255,255,255,.65);opacity:0;animation:introCaption .7s ease 1s forwards}
-    .intro-light{position:absolute;z-index:1;left:50%;top:50%;width:12vw;height:12vw;min-width:100px;min-height:100px;border-radius:50%;background:#fff;transform:translate(-50%,-50%) scale(.02);opacity:0;filter:blur(5px);animation:introFlash 1.05s ease-in-out 1.08s both}
-    .hero-video-wrap{transition:opacity 1.5s ease .25s}
-    @keyframes introLogoReveal{0%{opacity:0;transform:scale(.88);filter:blur(18px);letter-spacing:-.16em}55%{opacity:1;filter:blur(0);transform:scale(1.035)}100%{opacity:1;transform:scale(1);filter:blur(0);letter-spacing:-.12em}}
-    @keyframes introCaption{to{opacity:1;transform:translateY(-3px)}}
-    @keyframes introFlash{0%{opacity:0;transform:translate(-50%,-50%) scale(.02)}28%{opacity:.95;transform:translate(-50%,-50%) scale(2.8)}65%{opacity:.18;transform:translate(-50%,-50%) scale(8)}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
-    @media(max-width:700px){.intro-wordmark{font-size:27vw}.intro-caption{top:calc(50% + 68px);letter-spacing:2.5px}}
-    @media(prefers-reduced-motion:reduce){.cinematic-intro{display:none}.hero-video-wrap{transition:none}}
-  
-    /* OOPS! / DIGITAL CULTURE SYSTEM — modern tech layer */
-    :root{--ink:#09090d;--paper:#f4f0ec;--pink:#ff4f9a;--orange:#ff783d;--purple:#9b70ff;--line:rgba(255,255,255,.12);--acid:#d5ff63;--glass:rgba(255,255,255,.055)}
-    body{background:radial-gradient(ellipse at 50% -20%,#292035 0%,#0b0a10 48%,#08080c 100%)}
-    .nav{background:rgba(9,9,13,.72);border-bottom-color:rgba(255,255,255,.09);box-shadow:0 10px 40px rgba(0,0,0,.14)}
-    .brand{font-size:29px;letter-spacing:-2.5px}
-    .nav-cta{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.045);backdrop-filter:blur(12px)}
-    .hero{min-height:calc(100svh - 78px);padding-top:11vh}
-    .hero:before{opacity:.72;filter:blur(28px)}
-    .hero h1{font-size:clamp(110px,24vw,340px);letter-spacing:-.12em}
-    .hero-kicker{display:inline-flex;align-items:center;gap:10px}
-    .hero-kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 14px var(--acid);animation:signalPulse 1.8s infinite}
-    .hero-copy{max-width:430px}
-    .button{box-shadow:0 8px 30px rgba(255,79,154,.16)}
-    .ticker{background:linear-gradient(90deg,#ff4f9a,#ff783d);box-shadow:0 12px 50px rgba(255,79,154,.12)}
-    section{scroll-margin-top:80px}
-    .events{background:#efebe8}
-    .event-card{border:1px solid rgba(255,255,255,.18);border-radius:14px;box-shadow:0 18px 55px rgba(20,10,30,.16)}
-    .event-card:after{background:linear-gradient(0deg,rgba(7,6,12,.76),transparent 70%),radial-gradient(circle at var(--pointer-x,70%) var(--pointer-y,40%),rgba(255,255,255,.2),transparent 38%)}
-    .manifesto{background:linear-gradient(135deg,#17121e,#0d0c12 70%)}
-    .moment{border-radius:12px}
-    .join{background:radial-gradient(circle at 50% 0%,#ff9bc8 0%,#a77aff 48%,#ff783d 100%)}
-    .home-poster{border-radius:16px;box-shadow:0 30px 100px rgba(0,0,0,.35)}
-    .poster-link{backdrop-filter:blur(12px);background:rgba(255,255,255,.06)}
-    .tech-console{position:relative;margin:0;padding:42px 7vw 48px;background:#0a0a10;color:#f4f0ec;overflow:hidden;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
-    .tech-console:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);pointer-events:none}
-    .tech-topline{display:flex;justify-content:space-between;gap:15px;align-items:center;position:relative;font:9px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:#aaa2b2}
-    .tech-live{display:inline-flex;align-items:center;gap:8px;color:var(--acid)}
-    .tech-live i{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid);display:inline-block;animation:signalPulse 1.4s infinite}
-    .tech-grid{position:relative;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:12px;margin-top:28px}
-    .tech-cell{min-height:116px;padding:18px 19px;border:1px solid rgba(255,255,255,.11);border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));backdrop-filter:blur(16px);display:flex;flex-direction:column;justify-content:space-between;transition:transform .35s,border-color .35s,background .35s}
-    .tech-cell:hover{transform:translateY(-5px);border-color:rgba(213,255,99,.4);background:rgba(255,255,255,.09)}
-    .tech-label{font:9px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:#a49bab}
-    .tech-value{font-size:clamp(20px,3vw,34px);font-weight:600;letter-spacing:-1.8px}
-    .tech-value small{font:10px var(--mono);letter-spacing:0;color:var(--acid)}
-    .tech-wave{height:25px;display:flex;align-items:center;gap:3px;margin-top:8px}
-    .tech-wave b{display:block;width:3px;border-radius:5px;background:linear-gradient(180deg,var(--pink),var(--purple));height:var(--h);animation:waveBars .9s ease-in-out infinite alternate;animation-delay:var(--d)}
-    .tech-bottomline{position:relative;display:flex;justify-content:space-between;gap:15px;margin-top:17px;font:9px var(--mono);letter-spacing:1px;color:#77717f;text-transform:uppercase}
-    .tech-bottomline span:last-child{color:var(--pink)}
-    .hero-hud{position:absolute;z-index:4;right:6vw;top:7%;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font:9px var(--mono);letter-spacing:1.3px;text-transform:uppercase;color:rgba(255,255,255,.7)}
-    .hero-hud span{padding:9px 12px;border:1px solid rgba(255,255,255,.17);border-radius:99px;background:rgba(12,10,18,.35);backdrop-filter:blur(12px)}
-    .hero-hud b{color:var(--acid);font-weight:400}
-    .film-modal{z-index:80}
-    .proof-video-card{border-radius:12px;overflow:hidden}
-    .proof-video-card:focus-visible,.button:focus-visible,.nav-cta:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
-    @keyframes signalPulse{50%{opacity:.35;transform:scale(.75)}}
-    @keyframes waveBars{to{transform:scaleY(.35);opacity:.55}}
-    @media(max-width:850px){.tech-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-hud{top:4%;right:6vw}}
-    @media(max-width:700px){.tech-console{padding:30px 6vw}.tech-grid{gap:8px}.tech-cell{min-height:100px;padding:14px}.tech-topline,.tech-bottomline{font-size:8px}.hero-hud{top:3%;font-size:8px}.hero-hud span{padding:7px 9px}.hero h1{font-size:clamp(100px,24vw,190px)}}
-    @media(prefers-reduced-motion:reduce){.hero-kicker:before,.tech-live i,.tech-wave b{animation:none}}
-
-  
-    /* OOPS! hero wordmark — clean, bold typography */
-    .boot-screen{position:fixed;inset:0;z-index:110;background:#08080c;color:#f4f0ec;display:grid;place-items:center;transition:opacity .65s ease,visibility .65s ease}
-    .boot-screen.done{opacity:0;visibility:hidden;pointer-events:none}
-    .boot-inner{width:min(390px,78vw);text-align:center}
-    .boot-mark{font-size:clamp(64px,15vw,110px);font-weight:700;letter-spacing:-.13em;line-height:1;background:linear-gradient(160deg,#fff,#8d8f9d 48%,#fff);color:transparent;background-clip:text;-webkit-background-clip:text;animation:bootPulse 1.1s ease-in-out infinite alternate}
-    .boot-caption{margin-top:22px;font:9px var(--mono);letter-spacing:3px;color:#aaa2b2}
-    .boot-track{height:2px;background:rgba(255,255,255,.12);margin:24px auto 0;overflow:hidden}
-    .boot-track span{display:block;height:100%;width:35%;background:linear-gradient(90deg,var(--pink),var(--orange),var(--acid));animation:bootLoad 1.35s cubic-bezier(.6,0,.4,1) forwards}
-    @keyframes bootPulse{to{filter:brightness(1.5);transform:scale(1.025)}}@keyframes bootLoad{to{width:100%}}
-    .control-room{padding:100px 7vw;background:#0a0a10;color:#f4f0ec;position:relative;overflow:hidden}
-    .control-room:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(155,112,255,.14),transparent 40%),radial-gradient(ellipse at 90% 80%,rgba(255,79,154,.12),transparent 38%);pointer-events:none}
-    .control-head{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px}
-    .control-head h2{font-size:clamp(45px,7vw,88px);letter-spacing:-.09em;line-height:.85;margin:12px 0 0}
-    .control-head p{max-width:270px;color:#aaa2b2;font-size:13px;line-height:1.55}
-    .control-layout{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
-    .control-panel{border:1px solid rgba(255,255,255,.12);border-radius:13px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018));backdrop-filter:blur(18px);padding:23px;min-width:0}
-    .panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font:9px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:#aaa2b2}
-    .panel-state{color:var(--acid)}
-    .countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:28px 0 20px}
-    .count-unit{padding:18px 8px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(0,0,0,.2);text-align:center}
-    .count-number{font-size:clamp(28px,5vw,55px);font-weight:600;letter-spacing:-.07em;line-height:1}
-    .count-label{font:8px var(--mono);letter-spacing:1.4px;color:#8e8797;margin-top:9px}
-    .count-status{font:10px var(--mono);letter-spacing:1px;color:var(--pink);text-transform:uppercase}
-    .pass-preview{min-height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
-    .pass-art{position:relative;overflow:hidden;border-radius:10px;padding:22px;min-height:205px;background:linear-gradient(125deg,#f5f0ed,#aeb1c0 42%,#fff 65%,#d2a4c1);color:#111018;isolation:isolate}
-    .pass-art:before{content:"";position:absolute;inset:-40%;z-index:-1;background:repeating-linear-gradient(115deg,transparent 0 18px,rgba(255,255,255,.32) 19px 20px);transform:rotate(12deg)}
-    .pass-brand{font-size:27px;font-weight:700;letter-spacing:-2px}
-    .pass-brand span{color:#ff4f9a}
-    .pass-number{font:9px var(--mono);letter-spacing:1.4px;margin-top:24px}
-    .pass-title{font-size:clamp(27px,4vw,40px);font-weight:700;letter-spacing:-2px;line-height:.9;margin-top:10px}
-    .pass-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:22px;font:8px var(--mono);letter-spacing:1px;text-transform:uppercase}
-    .pass-stamp{width:48px;height:48px;border:1px solid rgba(0,0,0,.6);border-radius:50%;display:grid;place-items:center;font-size:8px;text-align:center;transform:rotate(-12deg)}
-    .sound-panel{grid-column:1/-1}
-    .sound-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:15px}
-    .sound-copy{max-width:420px;color:#aaa2b2;font-size:12px;line-height:1.5}
-    .sound-actions{display:flex;gap:9px;flex-wrap:wrap}
-    .sound-canvas{width:100%;height:105px;display:block;margin-top:12px;border-radius:8px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.07)}
-    .control-btn{border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:11px 15px;background:rgba(255,255,255,.06);color:#f4f0ec;font:9px var(--mono);letter-spacing:1px;text-transform:uppercase}
-    .control-btn.primary{background:var(--acid);color:#111018;border-color:var(--acid)}
-    .control-btn:disabled{opacity:.4;cursor:not-allowed}
-    .ticket-modal{position:fixed;inset:0;z-index:95;display:none;place-items:center;padding:20px;background:rgba(4,4,8,.82);backdrop-filter:blur(16px)}
-    .ticket-modal.open{display:grid}
-    .ticket-dialog{width:min(460px,100%);padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:#111018;box-shadow:0 30px 100px rgba(0,0,0,.5)}
-    .ticket-dialog-head{display:flex;justify-content:space-between;align-items:center;color:#aaa2b2;font:9px var(--mono);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
-    .ticket-close{border:0;background:none;color:white;font-size:25px}
-    .ticket-disclaimer{font:9px var(--mono);line-height:1.5;color:#aaa2b2;margin:13px 3px 2px}
-    @media(max-width:800px){.control-layout{grid-template-columns:1fr}.sound-panel{grid-column:auto}.control-head{align-items:flex-start;flex-direction:column}}
-    @media(max-width:520px){.control-room{padding:75px 6vw}.countdown-grid{gap:5px}.count-unit{padding:14px 4px}.count-number{font-size:30px}.control-panel{padding:16px}.pass-art{min-height:190px}}
-    @media(prefers-reduced-motion:reduce){.boot-mark,.boot-track span{animation:none}}
-
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050608"><meta name="description" content="OOPS! — enter the unknown. Unexpected nights, unforgettable stories.">
+<title>OOPS! — THE UNKNOWN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#050608;--white:#e8edf2;--muted:#77818d;--blue:#8dbdff;--line:rgba(210,225,245,.17);--mono:"DM Mono",monospace;--sans:"Space Grotesk",sans-serif}
+*{box-sizing:border-box}html{background:var(--black);scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden}body.lock{overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+#world{position:fixed;inset:0;z-index:0;pointer-events:none}#world canvas{display:block;width:100%;height:100%}
+.noise{position:fixed;inset:0;z-index:8;pointer-events:none;opacity:.075;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;z-index:7;pointer-events:none;background:radial-gradient(ellipse at center,transparent 38%,rgba(0,0,0,.58) 100%)}
+#boot{position:fixed;inset:0;z-index:100;background:#030405;display:grid;place-items:center;transition:opacity 1s ease,visibility 1s}.boot-inner{width:min(260px,65vw);font:10px var(--mono);letter-spacing:2px;color:#9ba7b5}.boot-row{display:flex;justify-content:space-between;margin-bottom:13px}.boot-line{height:1px;background:#1c2733;overflow:hidden}.boot-line i{display:block;width:0;height:100%;background:#d8e8ff;animation:load 1.5s ease forwards}@keyframes load{to{width:100%}}#boot.out{opacity:0;visibility:hidden}
+.topline{position:fixed;z-index:20;top:0;left:0;width:100%;padding:24px 4vw;display:flex;justify-content:space-between;align-items:center;pointer-events:none;font:10px var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:#c1cad5}.topline>*{pointer-events:auto}.mark{font:700 24px var(--sans);letter-spacing:-2px}.mark span{color:var(--blue)}.top-right{display:flex;align-items:center;gap:22px}.sound{border:1px solid var(--line);background:rgba(5,7,10,.4);backdrop-filter:blur(12px);padding:10px 13px;border-radius:30px;font:9px var(--mono);letter-spacing:1px}
+#soundState{color:var(--blue)}.scroll-line{position:fixed;z-index:30;left:0;top:0;width:100%;height:1px;background:rgba(255,255,255,.1)}.scroll-line i{display:block;height:100%;width:0;background:#b7d7ff;box-shadow:0 0 12px #8dbdff}
+#cursor{position:fixed;z-index:60;left:0;top:0;width:12px;height:12px;border:1px solid rgba(220,235,255,.8);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s,background .25s;display:none}#cursor.active{width:48px;height:48px;background:rgba(160,200,255,.12)}@media(pointer:fine){#cursor{display:block}}
+main{position:relative;z-index:2}.scene{min-height:100svh;position:relative;display:flex;align-items:center;padding:13vh 9vw;isolation:isolate}.scene-copy{position:relative;z-index:3;max-width:750px}.micro{font:10px var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--blue)}.hero{min-height:120svh;align-items:flex-end;padding-bottom:17vh}.hero .scene-copy{max-width:900px}.hero h1{font-size:clamp(48px,9.3vw,142px);line-height:.88;letter-spacing:-.095em;font-weight:500;margin:30px 0 26px;text-transform:uppercase}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(226,238,255,.72)}.hero-note{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:700px;font:10px var(--mono);letter-spacing:1.5px;color:#aab5c2}.enter{display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(220,235,255,.4);padding:14px 18px;border-radius:40px;background:rgba(6,10,15,.28);font:10px var(--mono);letter-spacing:1.5px;transition:.3s}.enter:hover{background:#dceaff;color:#050608}.enter b{font-size:17px;font-weight:400}
+.side-index{position:absolute;right:4vw;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font:9px var(--mono);letter-spacing:2px;color:#65717f}
+.statement{min-height:105vh;align-items:center}.statement h2{font-size:clamp(44px,8vw,116px);line-height:.92;letter-spacing:-.085em;font-weight:500;margin:24px 0}.statement h2 span{color:transparent;-webkit-text-stroke:1px rgba(230,240,255,.65)}.statement p{max-width:370px;color:#9da8b5;font-size:14px;line-height:1.7;margin-left:34vw}
+.descent{min-height:135vh;align-items:flex-start;padding-top:22vh}.descent h2{font-size:clamp(55px,11vw,160px);line-height:.78;letter-spacing:-.1em;font-weight:500;margin:25px 0}.descent p{max-width:310px;color:#9ba6b3;line-height:1.7;font-size:14px}
+.discovery{min-height:120vh;align-items:flex-end;padding-bottom:18vh}.discovery h2{font-size:clamp(58px,10vw,140px);line-height:.8;letter-spacing:-.1em;margin:25px 0}.discovery .sub{font:10px var(--mono);letter-spacing:1.5px;color:#a9b7c8;max-width:400px;line-height:1.8}
+.objects{min-height:130vh;padding:15vh 8vw;display:flex;flex-direction:column;justify-content:center}.objects-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:9vh}.objects-head h2{font-size:clamp(48px,9vw,120px);letter-spacing:-.09em;line-height:.83;margin:20px 0 0;font-weight:500}.objects-head p{max-width:260px;color:#929eac;font-size:13px;line-height:1.65}
+.artifacts{display:grid;grid-template-columns:1fr 1fr;gap:0 8vw}.artifact{position:relative;min-height:270px;border-top:1px solid var(--line);padding:30px 0 38px;display:flex;flex-direction:column;justify-content:space-between;transition:padding .5s;cursor:pointer}.artifact:nth-child(2n){margin-top:75px}.artifact:hover{padding-left:18px}.artifact .num{font:10px var(--mono);color:#748293;letter-spacing:1px}.artifact h3{font-size:clamp(36px,5.8vw,78px);letter-spacing:-.08em;line-height:.88;font-weight:500;margin:35px 0 14px}.artifact p{max-width:300px;color:#8e9aa8;font-size:12px;line-height:1.6}.artifact .open{font:9px var(--mono);letter-spacing:1.5px;color:var(--blue);margin-top:22px}.artifact:after{content:"↗";position:absolute;right:8px;top:28px;font-size:22px;color:#71849b;transition:transform .3s}.artifact:hover:after{transform:translate(5px,-5px)}
+.pavo-world{min-height:115vh;display:flex;align-items:center;padding:14vh 8vw;position:relative}.pavo-world:before{content:"";position:absolute;inset:15% 8%;border:1px solid rgba(160,195,235,.14);transform:skewY(-8deg);pointer-events:none}.pavo-world h2{font-size:clamp(100px,23vw,300px);letter-spacing:-.13em;line-height:.7;font-weight:600;margin:35px 0}.pavo-world h2 span{color:transparent;-webkit-text-stroke:1px rgba(224,238,255,.7)}.pavo-desc{max-width:340px;color:#a3afbd;font-size:14px;line-height:1.7}.pavo-meta{display:flex;gap:30px;flex-wrap:wrap;margin-top:45px;font:9px var(--mono);letter-spacing:1.4px;color:#8b9aab}
+.archive{padding:16vh 8vw;min-height:120vh}.archive h2{font-size:clamp(60px,11vw,150px);letter-spacing:-.1em;line-height:.8;margin:20px 0 7vh;font-weight:500}.archive-list{border-top:1px solid var(--line)}.archive-item{display:grid;grid-template-columns:70px 1fr auto;gap:25px;align-items:center;border-bottom:1px solid var(--line);padding:24px 0;font:10px var(--mono);letter-spacing:1.2px;color:#aab5c3;transition:padding .3s,color .3s}.archive-item:hover{padding-left:12px;color:white}.archive-item strong{font:500 clamp(18px,3vw,34px) var(--sans);letter-spacing:-1.5px;color:#e6edf5}.archive-item em{font-style:normal;color:var(--blue)}
+.final{min-height:110vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:18vh 8vw}.final h2{font-size:clamp(48px,10vw,140px);letter-spacing:-.1em;line-height:.84;font-weight:500;margin:28px auto}.final h2 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(222,237,255,.65)}.final p{color:#8997a7;font:10px var(--mono);letter-spacing:2px;margin:30px auto 40px}.final-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+footer{position:relative;z-index:3;padding:28px 4vw 35px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);font:9px var(--mono);letter-spacing:1px;color:#778493;text-transform:uppercase}.footer-brand{font:700 22px var(--sans);letter-spacing:-2px;color:#dbe5f0}
+#detail{position:fixed;inset:0;z-index:80;background:rgba(2,4,7,.92);backdrop-filter:blur(22px);display:grid;place-items:center;padding:24px;opacity:0;visibility:hidden;transition:.35s}#detail.open{opacity:1;visibility:visible}.detail-box{width:min(620px,100%);border:1px solid var(--line);padding:clamp(25px,5vw,55px);background:rgba(10,15,22,.86);position:relative}.detail-box h3{font-size:clamp(45px,8vw,90px);letter-spacing:-.09em;line-height:.85;margin:35px 0 20px}.detail-box p{color:#a1adbb;line-height:1.7;font-size:14px}.detail-close{position:absolute;right:20px;top:18px;border:1px solid var(--line);background:none;border-radius:50%;width:36px;height:36px}
+#toast{position:fixed;z-index:90;bottom:25px;left:50%;transform:translate(-50%,20px);opacity:0;background:#dbe9fb;color:#07101b;padding:12px 18px;border-radius:30px;font:10px var(--mono);transition:.3s;pointer-events:none}#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.topline{padding:18px 5vw}.top-right{gap:10px}.top-right .coordinates{display:none}.scene{padding:13vh 7vw}.hero{min-height:110svh;padding-bottom:15vh}.hero h1{font-size:clamp(48px,13vw,86px)}.hero-note{align-items:flex-start;flex-direction:column}.statement p{margin:45px 0 0 15vw}.descent{min-height:110vh}.discovery{min-height:105vh}.objects{padding:13vh 7vw}.objects-head{display:block}.objects-head p{margin-top:28px}.artifacts{grid-template-columns:1fr;gap:0}.artifact{min-height:220px}.artifact:nth-child(2n){margin-top:0}.pavo-world{min-height:95vh;padding:12vh 7vw}.archive{padding:13vh 7vw}.archive-item{grid-template-columns:35px 1fr auto;gap:12px;padding:20px 0}.archive-item strong{font-size:19px}footer{padding:25px 6vw;flex-direction:column}.side-index{right:3vw;font-size:8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}#cursor{display:none!important}}
+.webgl-fallback{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 52% 43%,#15202d 0%,#080b10 35%,#030405 75%)}
+</style>
 </head>
-<body>
-  <div class="boot-screen" id="bootScreen" aria-label="Loading OOPS">
-    <div class="boot-inner"><div class="boot-mark">OOPS!</div><div class="boot-caption">INITIALISING THE UNEXPECTED</div><div class="boot-track"><span></span></div></div>
-  </div>
-  <div class="cinematic-intro" id="cinematicIntro" aria-hidden="true">
-    <div class="intro-light"></div>
-    <div class="intro-wordmark">OOPS<span>!</span></div>
-    <div class="intro-caption">EXPECT THE UNEXPECTED</div>
-  </div>
-  <div class="grain"></div><div class="cursor-glow" id="glow"></div>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <nav class="nav">
-    <a class="brand" href="#top" aria-label="OOPS home">OOPS<span>!</span></a>
-    <div class="nav-links"><a href="#events">The plans</a><a href="#control-room">Control room</a><a href="#pavo">PAVO afterparty</a><a href="#about">The energy</a><a href="#moments">The memories</a></div>
-    <button class="nav-cta" data-open>Get on the list ↗</button>
-  </nav>
-
-  <main id="top">
-    <header class="hero">
-      <div class="hero-hud" aria-label="OOPS system status"><span>OOPS! / <b>ONLINE</b></span><span>INDEPENDENT CULTURE · 2026</span></div>
-      <div class="hero-video-wrap" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80"><source src="https://videos.pexels.com/video-files/31540265/13442343_1920_1080_30fps.mp4" type="video/mp4"></video></div>
-      <div class="hero-kicker">Independent nights · Unexpected stories · Est. 2026</div>
-      <h1>OOPS<span class="bang">!</span></h1>
-      <div class="hero-bottom">
-        <p class="hero-copy">Well, that escalated.<br><em>Good nights. Great stories.</em><br>Absolutely no ordinary plans.</p>
-        <div class="hero-actions"><a class="button" href="#events">Find your next night ↗</a><a class="button secondary" href="#about">What's OOPS?</a></div>
-      </div>
-      <div class="sticker">MAKE<br>IT A<br>STORY<small>✳ OOPS! CLUB</small></div>
-    </header>
-
-    <div class="ticker"><div class="ticker-track"><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b><span>GOOD TIMES</span><b>✳</b><span>UNEXPECTED PLANS</span><b>✳</b><span>MAIN CHARACTER ENERGY</span><b>✳</b></div></div>
-
-    <section class="tech-console" aria-label="OOPS digital signal">
-      <div class="tech-topline"><span>OOPS! / DIGITAL CULTURE NETWORK</span><span class="tech-live"><i></i> SIGNAL ACTIVE</span></div>
-      <div class="tech-grid">
-        <div class="tech-cell"><span class="tech-label">Local system time</span><div class="tech-value" id="oopsClock">--:--:--</div><span class="tech-label">YOUR TIMEZONE · LIVE</span></div>
-        <div class="tech-cell"><span class="tech-label">Next transmission</span><div class="tech-value">SOON <small>↗</small></div><span class="tech-label">EVENT DETAILS / LOADING</span></div>
-        <div class="tech-cell"><span class="tech-label">Current frequency</span><div class="tech-value">001. <small>OOPS!</small></div><span class="tech-label">UNEXPECTED EXPERIENCES</span></div>
-        <div class="tech-cell"><span class="tech-label">Signal waveform</span><div class="tech-wave" aria-hidden="true"><b style="--h:8px;--d:0s"></b><b style="--h:25px;--d:-0.11s"></b><b style="--h:23px;--d:-0.22s"></b><b style="--h:21px;--d:-0.33s"></b><b style="--h:19px;--d:-0.44s"></b><b style="--h:17px;--d:-0.55s"></b><b style="--h:15px;--d:-0.66s"></b><b style="--h:13px;--d:-0.77s"></b><b style="--h:11px;--d:0s"></b><b style="--h:9px;--d:-0.11s"></b><b style="--h:26px;--d:-0.22s"></b><b style="--h:24px;--d:-0.33s"></b><b style="--h:22px;--d:-0.44s"></b><b style="--h:20px;--d:-0.55s"></b><b style="--h:18px;--d:-0.66s"></b><b style="--h:16px;--d:-0.77s"></b><b style="--h:14px;--d:0s"></b><b style="--h:12px;--d:-0.11s"></b><b style="--h:10px;--d:-0.22s"></b><b style="--h:8px;--d:-0.33s"></b><b style="--h:25px;--d:-0.44s"></b><b style="--h:23px;--d:-0.55s"></b><b style="--h:21px;--d:-0.66s"></b><b style="--h:19px;--d:-0.77s"></b></div><span class="tech-label">ENERGY DETECTED</span></div>
-      </div>
-      <div class="tech-bottomline"><span>EST. 2026 / NO ORDINARY PLANS</span><span>STAY TUNED — SOMETHING IS COMING</span></div>
-    </section>
-
-
-    <section class="control-room" id="control-room">
-      <div class="control-head reveal"><div><div class="eyebrow">OOPS! / Mission interface</div><h2>THE CONTROL<br>ROOM.</h2></div><p>Your dashboard for what is next. Event information will appear here as soon as dates and details are confirmed.</p></div>
-      <div class="control-layout">
-        <div class="control-panel reveal">
-          <div class="panel-top"><span>001 / Next event countdown</span><span class="panel-state" id="eventState">DATE PENDING</span></div>
-          <div class="countdown-grid" id="eventCountdown">
-            <div class="count-unit"><div class="count-number">--</div><div class="count-label">DAYS</div></div>
-            <div class="count-unit"><div class="count-number">--</div><div class="count-label">HOURS</div></div>
-            <div class="count-unit"><div class="count-number">--</div><div class="count-label">MINS</div></div>
-            <div class="count-unit"><div class="count-number">--</div><div class="count-label">SECS</div></div>
-          </div>
-          <div class="count-status" id="countStatus">THE DATE IS STILL CLASSIFIED. CHECK BACK SOON.</div>
-        </div>
-        <div class="control-panel reveal">
-          <div class="panel-top"><span>002 / Digital access</span><span class="panel-state">PREVIEW MODE</span></div>
-          <div class="pass-preview">
-            <div class="pass-art">
-              <div class="pass-brand">OOPS<span>!</span></div><div class="pass-number">ACCESS PASS / SAMPLE 001</div><div class="pass-title">THE<br>UNPLANNED.</div>
-              <div class="pass-footer"><span>DATE / TBA<br>VENUE / TBA</span><span class="pass-stamp">NOT<br>VALID</span></div>
-            </div>
-            <button class="control-btn primary" id="previewTicket" type="button">Preview digital pass ↗</button>
-          </div>
-        </div>
-        <div class="control-panel sound-panel reveal">
-          <div class="panel-top"><span>003 / Sound-reactive interface</span><span class="panel-state" id="soundState">STANDBY</span></div>
-          <div class="sound-row"><p class="sound-copy">Activate your microphone to let the visualizer respond to the sound around you. Audio is analysed locally in your browser and is never recorded or uploaded.</p><div class="sound-actions"><button class="control-btn primary" id="startSound" type="button">Activate visualizer</button><button class="control-btn" id="stopSound" type="button" disabled>Stop</button></div></div>
-          <canvas class="sound-canvas" id="soundCanvas" aria-label="Sound-reactive waveform visualization"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-poster-wrap" aria-label="PAVO afterparty poster">
-      <a class="home-poster" href="#pavo">
-        <div class="poster-top"><span class="poster-kicker">OOPS! presents / Afterparty</span><span class="poster-edition">A new chapter · 001</span></div>
-        <div class="poster-orbit"></div>
-        <div><div class="poster-line">THE NIGHT DOESN'T <span>END HERE.</span></div><div class="poster-name">PAVO</div></div>
-        <div class="poster-bottom"><div class="poster-soon">ALL DETAILS SOON<small>DATE · VENUE · LINE-UP — TO BE REVEALED</small></div><span class="poster-link">Discover PAVO ↗</span></div>
-      </a>
-    </section>
-
-    <section class="events" id="events">
-      <div class="section-head reveal"><div><div class="eyebrow">01 / Mark your calendar</div><h2>THE<br>PLANS.</h2></div><p>The OOPS! night, the PAVO afterparty, and more unexpected plans on the way. Details drop soon.</p></div>
-      <div class="event-grid">
-        <article class="event-card reveal">
-          <div class="event-top"><span>OOPS! PRESENTS</span><span>001 / TBA</span></div><div class="event-art"><strong>OOPS!</strong></div>
-          <div class="event-bottom"><div><div class="event-meta">The first one · Details coming soon</div><h3>THE<br>UNPLANNED.</h3><div class="event-meta">Location & date to be announced</div></div><button class="event-arrow" aria-label="Get event updates" data-open>↗</button></div>
-        </article>
-        <article class="event-card pavo-plan reveal">
-          <div class="event-top"><span>OOPS! PRESENTS</span><span>AFTERPARTY / 002</span></div><div class="event-art"><strong>PAVO</strong></div>
-          <div class="event-bottom"><div><div class="event-meta">The night doesn't end here</div><h3>PAVO<br>AFTERPARTY.</h3><div class="event-meta">Date · Venue · Line-up — coming soon</div></div><a class="event-arrow" href="#pavo" aria-label="Discover PAVO afterparty">↗</a></div>
-        </article>
-        <article class="event-card soon-plan reveal">
-          <div class="event-top"><span>OOPS! / NEXT UP</span><span>003 / SOON</span></div><div class="event-art"><strong>?!</strong></div>
-          <div class="event-bottom"><div><div class="event-meta">More experiences in the works</div><h3>MORE<br>COMING SOON.</h3><div class="event-meta">Stay close. Details dropping soon.</div></div><button class="event-arrow" aria-label="Get event updates" data-open>↗</button></div>
-        </article>
-      </div>
-    </section>
-
-
-    <section class="pavo" id="pavo">
-      <div class="pavo-head reveal">
-        <div><div class="eyebrow">OOPS! afterparty / A new chapter</div><div class="pavo-title">PAVO</div><div class="pavo-sub">One night. Another universe.</div></div>
-        <p class="pavo-copy">When the night deserves an afterparty. Meet PAVO — a late-night world of sound, lights and unexpected moments. The next chapter starts here.</p>
-      </div>
-      <div class="pavo-gallery reveal">
-        <div class="pavo-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1100&q=85" alt="Concert crowd under dramatic stage lights"></div>
-        <div class="pavo-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85" alt="Live music crowd with raised hands"></div>
-        <div class="pavo-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85" alt="People enjoying a live event"></div>
-        <div class="pavo-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85" alt="Nightlife event with colorful lights"></div>
-        <div class="pavo-stamp">PAVO ✳<br>AFTERPARTY<br>OOPS! PRESENTS</div>
-      </div>
-      <div class="pavo-bottom reveal">
-        <div><div class="pavo-sub">The date · The place · The line-up</div><div class="pavo-soon">ALL DETAILS <span>SOON ↗</span></div></div>
-        <a class="button secondary" href="#join">Stay in the loop ↗</a>
-      </div>
-    </section>
-
-    <section class="manifesto" id="about">
-      <div class="asterisk">✳</div><div class="eyebrow reveal">02 / The OOPS! state of mind</div>
-      <p class="big-line reveal">WE MAKE PLANS.</p><p class="big-line outline reveal">THEN MAKE</p><p class="big-line reveal">MEMORIES.</p>
-      <p class="side-note reveal">A little unexpected. A lot unforgettable. OOPS! brings people together for thoughtfully produced parties, pop-ups and social experiences. Come as you are. Leave with a story.</p>
-    </section>
-
-    <section class="moments" id="moments">
-      <div class="section-head reveal"><div><div class="eyebrow">03 / The camera roll</div><h2>PROOF<br>OF FUN.</h2></div><p>Good people, good energy, moments worth keeping. The gallery gets better after every event.</p></div>
-      <div class="proof-video-grid">
-        <button class="proof-video-card proof-video-feature reveal" type="button" data-film-title="THE ENERGY" data-film-src="o3.gif" data-film-type="gif">
-          <img loading="lazy" src="o3.gif" alt="THE ENERGY — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">01 / THE ENERGY</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
-        </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="THE PEOPLE" data-film-src="o3%20(1).gif" data-film-type="gif">
-          <img loading="lazy" src="o3%20(1).gif" alt="THE PEOPLE — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">02 / THE PEOPLE</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
-        </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="THE CHAOS" data-film-src="o3%20(2).gif" data-film-type="gif">
-          <img loading="lazy" src="o3%20(2).gif" alt="THE CHAOS — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">03 / THE CHAOS</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
-        </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="BEHIND THE DECKS" data-film-src="q2.gif" data-film-type="gif">
-          <img loading="lazy" src="q2.gif" alt="BEHIND THE DECKS — OOPS! event archive">
-          <span class="proof-video-shade"></span><span class="proof-video-index">04 / BEHIND THE DECKS</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN GIF</span>
-        </button>
-        <button class="proof-video-card reveal" type="button" data-film-title="THE AFTERMATH" data-film-src="o3.mp4" data-film-type="mp4">
-          <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=85"><source src="o3.mp4" type="video/mp4"></video>
-          <span class="proof-video-shade"></span><span class="proof-video-index">05 / THE AFTERMATH</span><span class="proof-video-play">↗</span><span class="proof-video-label">OPEN VIDEO</span>
-        </button>
-      </div>
-      <p class="proof-note">THE OOPS! NIGHT ARCHIVE <span>— MORE STORIES LOADING</span></p>
-    </section>
-
-    <section class="join" id="join">
-      <div class="eyebrow" style="color:#291525">04 / Don't hear about it later</div>
-      <h2>GET IN<br>ON IT.</h2>
-      <p>Be first to hear about upcoming OOPS! experiences, early announcements and the occasional unexpected surprise.</p>
-      <button class="button" data-open>Get on the list ↗</button>
-    </section>
-  </main>
-
-  <footer>
-    <div><div class="footer-brand">OOPS<span>!</span></div><p>Unexpected nights. Unforgettable stories.</p></div>
-    <div class="footer-bottom"><div class="socials"><a href="#" data-social="Instagram">Instagram ↗</a><a href="#" data-social="WhatsApp">WhatsApp ↗</a></div><p>© <span id="year"></span> OOPS! · Made for the unexpected</p></div>
-  </footer>
-
-  <div class="modal" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-box">
-      <button class="close" id="closeModal" aria-label="Close">×</button>
-      <div class="eyebrow">OOPS! / The guest list</div><h3 id="modalTitle">You're on the radar.</h3><p>Leave your details and we'll keep you posted when the next experience drops.</p>
-      <form id="signupForm">
-        <div class="field"><label for="name">Your name</label><input id="name" name="name" required maxlength="60" placeholder="What do we call you?"></div>
-        <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
-        <div class="field"><label for="city">Your city (optional)</label><input id="city" name="city" maxlength="60" placeholder="Where are you based?"></div>
-        <button class="button" type="submit">Count me in ↗</button>
-        <div class="form-note">Demo form: connect a form service or backend before publishing to collect submissions.</div>
-      </form>
-    </div>
-  </div>
-
-  <div class="film-modal" id="filmModal" aria-hidden="true">
-    <div class="film-modal-inner" role="dialog" aria-modal="true" aria-label="OOPS! film player">
-      <div class="film-modal-top"><span class="film-modal-title" id="filmTitle">OOPS! / THE ARCHIVE</span><button class="film-close" id="filmClose" type="button" aria-label="Close video">×</button></div>
-      <video id="filmPlayer" controls playsinline preload="none" hidden></video>
-      <img id="filmGif" alt="OOPS! archive GIF" hidden>
-      <div class="film-modal-foot"><span>OOPS! — THE NIGHT ARCHIVE</span><span>PRESS ESC TO CLOSE</span></div>
-    </div>
-  </div>
-
-  <div class="ticket-modal" id="ticketModal" role="dialog" aria-modal="true" aria-labelledby="ticketModalTitle">
-    <div class="ticket-dialog"><div class="ticket-dialog-head"><span id="ticketModalTitle">OOPS! / Digital pass preview</span><button class="ticket-close" id="ticketClose" aria-label="Close pass preview">×</button></div>
-      <div class="pass-art"><div class="pass-brand">OOPS<span>!</span></div><div class="pass-number">ACCESS PASS / DEMO-001</div><div class="pass-title">THE<br>UNPLANNED.</div><div class="pass-footer"><span>DATE / TO BE ANNOUNCED<br>VENUE / TO BE ANNOUNCED</span><span class="pass-stamp">SAMPLE<br>ONLY</span></div></div>
-      <p class="ticket-disclaimer">SAMPLE DESIGN ONLY — THIS IS NOT AN EVENT TICKET OR ENTRY CONFIRMATION. Real tickets require a live booking and payment system.</p>
-    </div>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
-
-
-    // Short branded boot sequence; existing cinematic intro follows it.
-    const bootScreen = document.getElementById('bootScreen');
-    window.setTimeout(() => bootScreen?.classList.add('done'), 1450);
-    window.setTimeout(() => bootScreen?.remove(), 2200);
-
-    // Set a confirmed event date here in local browser time: '2026-12-31T19:00:00'.
-    // Keep null until the date is officially announced; the interface will show TBA.
-    const OOPS_EVENT_DATE = null;
-    const eventState = document.getElementById('eventState');
-    const countStatus = document.getElementById('countStatus');
-    const countNumbers = [...document.querySelectorAll('#eventCountdown .count-number')];
-    const updateCountdown = () => {
-      if (!OOPS_EVENT_DATE) { if(eventState) eventState.textContent='DATE PENDING'; if(countStatus) countStatus.textContent='THE DATE IS STILL CLASSIFIED. CHECK BACK SOON.'; return; }
-      const target = new Date(OOPS_EVENT_DATE).getTime(), diff = target - Date.now();
-      if (!Number.isFinite(target)) return;
-      if (diff <= 0) { if(eventState)eventState.textContent='LIVE NOW'; if(countStatus)countStatus.textContent='THE DAY HAS ARRIVED.'; countNumbers.forEach((el,i)=>el.textContent=['00','00','00','00'][i]); return; }
-      const values=[Math.floor(diff/86400000),Math.floor(diff/3600000)%24,Math.floor(diff/60000)%60,Math.floor(diff/1000)%60];
-      countNumbers.forEach((el,i)=>el.textContent=String(values[i]).padStart(2,'0'));
-      if(eventState)eventState.textContent='COUNTING DOWN'; if(countStatus)countStatus.textContent='TIME UNTIL THE NEXT OOPS! EXPERIENCE.';
-    };
-    updateCountdown(); window.setInterval(updateCountdown,1000);
-
-    // Sample ticket viewer — clearly labelled as a preview, not valid entry.
-    const ticketModal=document.getElementById('ticketModal');
-    document.getElementById('previewTicket')?.addEventListener('click',()=>ticketModal?.classList.add('open'));
-    document.getElementById('ticketClose')?.addEventListener('click',()=>ticketModal?.classList.remove('open'));
-    ticketModal?.addEventListener('click',e=>{if(e.target===ticketModal)ticketModal.classList.remove('open')});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')ticketModal?.classList.remove('open')});
-
-    // Microphone-powered visualizer. Audio stays in the browser; no recording or upload.
-    const soundCanvas=document.getElementById('soundCanvas'), soundCtx=soundCanvas?.getContext('2d');
-    const soundState=document.getElementById('soundState'), startSound=document.getElementById('startSound'), stopSound=document.getElementById('stopSound');
-    let audioContext=null, analyser=null, micStream=null, visualFrame=0;
-    const drawSound=()=>{
-      if(!soundCanvas||!soundCtx||!analyser)return;
-      const dpr=Math.min(window.devicePixelRatio||1,2),w=soundCanvas.clientWidth,h=soundCanvas.clientHeight;
-      if(soundCanvas.width!==Math.floor(w*dpr)||soundCanvas.height!==Math.floor(h*dpr)){soundCanvas.width=Math.floor(w*dpr);soundCanvas.height=Math.floor(h*dpr)}
-      soundCtx.setTransform(dpr,0,0,dpr,0,0);soundCtx.clearRect(0,0,w,h);
-      const data=new Uint8Array(analyser.frequencyBinCount);analyser.getByteFrequencyData(data);
-      const bars=64,step=Math.max(1,Math.floor(data.length/bars)),gap=3,bw=(w-gap*(bars-1))/bars;
-      for(let i=0;i<bars;i++){const amp=data[i*step]/255,barH=Math.max(2,amp*(h*.82));const x=i*(bw+gap),y=(h-barH)/2;const grad=soundCtx.createLinearGradient(0,y,0,y+barH);grad.addColorStop(0,'#d5ff63');grad.addColorStop(.55,'#ff4f9a');grad.addColorStop(1,'#9b70ff');soundCtx.fillStyle=grad;soundCtx.fillRect(x,y,bw,barH)}
-      visualFrame=requestAnimationFrame(drawSound);
-    };
-    const stopVisualizer=()=>{
-      if(visualFrame)cancelAnimationFrame(visualFrame);visualFrame=0;
-      micStream?.getTracks().forEach(track=>track.stop());micStream=null;
-      if(audioContext){audioContext.close().catch(()=>{});audioContext=null}
-      analyser=null;if(soundState)soundState.textContent='STANDBY';
-      if(startSound)startSound.disabled=false;if(stopSound)stopSound.disabled=true;
-      if(soundCtx&&soundCanvas)soundCtx.clearRect(0,0,soundCanvas.width,soundCanvas.height);
-    };
-    startSound?.addEventListener('click',async()=>{
-      try{
-        if(!navigator.mediaDevices?.getUserMedia)throw new Error('Microphone access is not supported in this browser.');
-        micStream=await navigator.mediaDevices.getUserMedia({audio:true});
-        audioContext=new (window.AudioContext||window.webkitAudioContext)();
-        const source=audioContext.createMediaStreamSource(micStream);analyser=audioContext.createAnalyser();analyser.fftSize=256;source.connect(analyser);
-        if(soundState)soundState.textContent='LISTENING LOCALLY';startSound.disabled=true;stopSound.disabled=false;drawSound();
-      }catch(error){stopVisualizer();if(soundState)soundState.textContent='MIC ACCESS UNAVAILABLE';showToast('Allow microphone access to activate the sound visualizer.');}
-    });
-    stopSound?.addEventListener('click',stopVisualizer);
-    window.addEventListener('pagehide',stopVisualizer);
-
-    // Live local clock for the OOPS! signal console.
-    const oopsClock = document.getElementById('oopsClock');
-    const updateOopsClock = () => { if (oopsClock) oopsClock.textContent = new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date()); };
-    updateOopsClock(); window.setInterval(updateOopsClock,1000);
-
-    const intro = document.getElementById('cinematicIntro');
-    if (intro && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.setTimeout(() => intro.classList.add('is-leaving'), 1750);
-      window.setTimeout(() => intro.remove(), 2700);
-    }
-    const $ = (s, root=document) => root.querySelector(s);
-    const modal = $('#signupModal'), toast = $('#toast');
-    const showToast = msg => { toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),2800); };
-    document.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',()=>{modal.classList.add('open');setTimeout(()=>$('#name').focus(),80)}));
-    const closeModal=()=>modal.classList.remove('open');
-    $('#closeModal').addEventListener('click',closeModal);
-    modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-    $('#signupForm').addEventListener('submit',e=>{
-      e.preventDefault();
-      const data=Object.fromEntries(new FormData(e.currentTarget).entries());
-      if(!data.name.trim()||!data.email.trim())return;
-      // Front-end demo only. Connect Formspree, Netlify Forms, or your own API to receive entries.
-      e.currentTarget.reset();closeModal();showToast("You're on the radar. Connect a form backend to save sign-ups.");
-    });
-    document.querySelectorAll('[data-social]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showToast('Add your official '+a.dataset.social+' link in index.html.')}));
-    $('#year').textContent=new Date().getFullYear();
-    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-    const progress=$('#scrollProgress');
-    let ticking=false;
-    const updateScrollEffects=()=>{
-      const max=document.documentElement.scrollHeight-window.innerHeight;
-      progress.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';
-      ticking=false;
-    };
-    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateScrollEffects);ticking=true}},{passive:true});
-    updateScrollEffects();
-    if(matchMedia('(pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
-      document.querySelectorAll('.event-card,.pavo-photo,.moment').forEach(card=>{
-        card.addEventListener('pointermove',e=>{
-          const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-          card.style.setProperty('--pointer-x',(x*100)+'%');card.style.setProperty('--pointer-y',(y*100)+'%');
-        });
-        card.addEventListener('pointerleave',()=>{card.style.removeProperty('--pointer-x');card.style.removeProperty('--pointer-y')});
-      });
-    }
-
-    // PROOF OF FUN: GIFs animate in the wall; clicking opens a cinematic viewer.
-    const filmModal = $('#filmModal'), filmPlayer = $('#filmPlayer'), filmGif = $('#filmGif'), filmTitle = $('#filmTitle');
-    const proofCards = [...document.querySelectorAll('.proof-video-card')];
-    const closeFilm = () => {
-      filmModal.classList.remove('open');
-      filmModal.setAttribute('aria-hidden','true');
-      document.body.classList.remove('film-open');
-      filmPlayer.pause(); filmPlayer.removeAttribute('src'); filmPlayer.load(); filmPlayer.hidden=true;
-      filmGif.removeAttribute('src'); filmGif.hidden=true;
-      proofCards.forEach(card => { const v=$('video',card); if(v && !document.hidden) v.play().catch(()=>{}); });
-    };
-    proofCards.forEach(card => card.addEventListener('click', async () => {
-      proofCards.forEach(item => $('video',item)?.pause());
-      filmTitle.textContent = 'OOPS! / ' + card.dataset.filmTitle;
-      if(card.dataset.filmType === 'gif') {
-        filmPlayer.pause(); filmPlayer.removeAttribute('src'); filmPlayer.load(); filmPlayer.hidden=true;
-        filmGif.src = card.dataset.filmSrc; filmGif.hidden=false;
-      } else {
-        filmGif.removeAttribute('src'); filmGif.hidden=true;
-        filmPlayer.hidden=false; filmPlayer.src=card.dataset.filmSrc;
-        try { await filmPlayer.play(); } catch(err) { /* User can press play if autoplay is blocked. */ }
-      }
-      filmModal.classList.add('open');
-      filmModal.setAttribute('aria-hidden','false');
-      document.body.classList.add('film-open');
-      $('#filmClose').focus();
-    }));
-    $('#filmClose').addEventListener('click',closeFilm);
-    filmModal.addEventListener('click',e=>{if(e.target===filmModal)closeFilm()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape' && filmModal.classList.contains('open'))closeFilm()});
-    const proofSection = $('#moments');
-    if ('IntersectionObserver' in window && proofSection) {
-      const proofObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-        proofCards.forEach(card => { const v=$('video',card); if(!v)return; if(entry.isIntersecting && !filmModal.classList.contains('open')) v.play().catch(()=>{}); else v.pause(); });
-      }),{threshold:.04});
-      proofObserver.observe(proofSection);
-    }
-    document.addEventListener('visibilitychange',()=>proofCards.forEach(card=>{const v=$('video',card);if(!v)return;if(document.hidden)v.pause();else if(proofSection.getBoundingClientRect().bottom>0 && proofSection.getBoundingClientRect().top<innerHeight && !filmModal.classList.contains('open'))v.play().catch(()=>{});}));
-
-    const glow=$('#glow');
-    if(matchMedia('(pointer:fine)').matches){document.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}else{glow.style.display='none'}
-  </script>
-</body>
-</html>
+<body class="lock">
+<div id="world" aria-hidden="true"></div><div class="noise"></div><div class="vignette"></div>
+<div id="boot"><div class="boot-inner"><div class="boot-row"><span>OOPS! / SYSTEM INIT</span><span id="loadPct">00%</span></div><div class="boot-line"><i></i></div></div></div>
+<div class="scroll-line"><i id="progress"></i></div><div id="cursor"></div>
+<header class="topline"><a class="mark" href="#start" aria-label="OOPS home">OOPS<span>!</span></a><div class="top-right"><span class="coordinates">UNKNOWN SPACE / 00° 00′ 00″</span><button class="sound" id="soundToggle" type="button">SOUND <span id="soundState">OFF</span></button></div></header>
+<main>
+<section class="scene hero" id="start" data-scene="01">
+<div class="scene-copy"><div class="micro">AN EXPERIMENT IN THE UNEXPECTED / 001</div><h1>SOMETHING EXISTS <span>BEYOND THE SCREEN.</span></h1><div class="hero-note"><span>YOU ARE NOT HERE TO BROWSE.</span><a class="enter magnetic" href="#discovery">ENTER THE UNKNOWN <b>↘</b></a></div></div><div class="side-index">SCROLL TO DESCEND — 01 / 05</div>
+</section>
+<section class="scene statement" id="discovery" data-scene="02"><div class="scene-copy"><div class="micro">02 / DISCOVERY</div><h2>IT KNOWS<br>WHEN YOU<br><span>LOOK CLOSER.</span></h2><p>Move through the void. Follow the light. The world responds to your presence — not with answers, but with new questions.</p></div><div class="side-index">A LIVING OBJECT / 02</div></section>
+<section class="scene descent" data-scene="03"><div class="scene-copy"><div class="micro">03 / DESCENT</div><h2>LET GO<br>OF THE<br>ORDINARY.</h2><p>Space folds. Distances dissolve. What looked like an object becomes a passage into somewhere else.</p></div><div class="side-index">DEPTH IS AN ILLUSION / 03</div></section>
+<section class="scene discovery" data-scene="04"><div class="scene-copy"><div class="micro">04 / EXPLORATION</div><h2>FIND WHAT<br>WAS NEVER<br><span>HIDDEN.</span></h2><p class="sub">THE WORLD IS BUILT FROM MOMENTS, PEOPLE, MUSIC AND THE UNEXPECTED. CHOOSE A SIGNAL TO REVEAL WHAT'S INSIDE.</p></div><div class="side-index">SIGNALS DETECTED / 04</div></section>
+<section class="objects" id="signals" data-scene="04b"><div class="objects-head"><div><div class="micro">OBJECTS / SIGNALS</div><h2>FRAGMENTS<br>OF OUR WORLD.</h2></div><p>These are not pages. They are points of entry. Select a signal and let it unfold.</p></div>
+<div class="artifacts">
+<button class="artifact" data-detail="events"><span class="num">SIGNAL 001 / LIVE EXPERIENCES</span><div><h3>THE<br>GATHERING.</h3><p>Unexpected nights. Carefully made memories. The next OOPS! experience is taking shape.</p><span class="open">INTERROGATE SIGNAL ↗</span></div></button>
+<button class="artifact" data-detail="pavo"><span class="num">SIGNAL 002 / AFTERPARTY</span><div><h3>PAVO<br>AFTERPARTY.</h3><p>One night. Another universe. A new chapter from OOPS!</p><span class="open">ENTER THE ORBIT ↗</span></div></button>
+<button class="artifact" data-detail="archive"><span class="num">SIGNAL 003 / NIGHT ARCHIVE</span><div><h3>PROOF<br>OF LIFE.</h3><p>A collection of sounds, scenes and moments from the OOPS! universe.</p><span class="open">OPEN THE ARCHIVE ↗</span></div></button>
+<button class="artifact" data-detail="join"><span class="num">SIGNAL 004 / ACCESS</span><div><h3>GET ON<br>THE RADAR.</h3><p>Be first to hear when the next signal arrives.</p><span class="open">REQUEST ACCESS ↗</span></div></button>
+</div></section>
+<section class="pavo-world" id="pavo" data-scene="05"><div class="scene-copy"><div class="micro">A SIDE TRANSMISSION / OOPS! PRESENTS</div><h2>PAVO<span>.</span></h2><p class="pavo-desc">One night. Another universe. A late-night world of sound, lights and unexpected moments. The date, the place, the line-up — all details soon.</p><div class="pavo-meta"><span>AFTERPARTY / 001</span><span>STATUS / CLASSIFIED</span><span>TRANSMISSION / INCOMING</span></div></div></section>
+<section class="archive" id="archive" data-scene="06"><div class="micro">06 / THE NIGHT ARCHIVE</div><h2>MEMORY<br>FRAGMENTS.</h2><div class="archive-list">
+<a class="archive-item" href="o3.gif" target="_blank" rel="noopener"><span>01</span><strong>THE ENERGY</strong><em>OPEN ↗</em></a>
+<a class="archive-item" href="o3%20(1).gif" target="_blank" rel="noopener"><span>02</span><strong>THE PEOPLE</strong><em>OPEN ↗</em></a>
+<a class="archive-item" href="o3%20(2).gif" target="_blank" rel="noopener"><span>03</span><strong>THE CHAOS</strong><em>OPEN ↗</em></a>
+<a class="archive-item" href="q2.gif" target="_blank" rel="noopener"><span>04</span><strong>BEHIND THE DECKS</strong><em>OPEN ↗</em></a>
+<a class="archive-item" href="o3.mp4" target="_blank" rel="noopener"><span>05</span><strong>THE AFTERMATH</strong><em>OPEN ↗</em></a>
+</div></section>
+<section class="final" id="final" data-scene="07"><div><div class="micro">END OF TRANSMISSION / BEGIN AGAIN</div><h2>YOU HAVE<br><span>SEEN NOTHING.</span></h2><p>YOU ARE NOT HERE TO BROWSE. YOU ARE HERE TO EXPERIENCE THE UNKNOWN.</p><div class="final-actions"><a class="enter magnetic" href="#start">RESTART EXPERIENCE ↗</a><a class="enter magnetic" href="mailto:hello@oops.events">CONTACT THE SIGNAL ↗</a></div></div></section>
+</main>
+<footer><div class="footer-brand">OOPS<span style="color:var(--blue)">!</span></div><div>UNEXPECTED NIGHTS / UNFORGETTABLE STORIES</div><div>© <span id="year"></span> OOPS! — END TRANSMISSION</div></footer>
+<div id="detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-box"><button class="detail-close" id="detailClose" aria-label="Close">×</button><div class="micro" id="detailKicker">SIGNAL / DECODED</div><h3 id="detailTitle">THE GATHERING.</h3><p id="detailText"></p><a class="enter" id="detailAction" href="#start">CONTINUE ↗</a></div></div><div id="toast" role="status"></div>
+<script>
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const boot=$('#boot'),pct=$('#loadPct');let n=0;const loadTimer=setInterval(()=>{n=Math.min(100,n+Math.ceil(Math.random()*13));pct.textContent=String(n).padStart(2,'0')+'%';if(n>=100){clearInterval(loadTimer);setTimeout(()=>{boot.classList.add('out');document.body.classList.remove('lock')},350)}},90);
+$('#year').textContent=new Date().getFullYear();
+const detailData={
+events:['SIGNAL 001 / LIVE EXPERIENCES','THE GATHERING.','OOPS! brings people together for thoughtfully produced parties, pop-ups and social experiences. The next event is being prepared. Details will appear here when confirmed.','GET ON THE RADAR','#join'],
+pavo:['SIGNAL 002 / AFTERPARTY','PAVO AFTERPARTY.','One night. Another universe. PAVO is the afterparty chapter of OOPS! — a late-night world of sound, lights and unexpected moments. Date, venue and line-up are still to be announced.','FOLLOW THE SIGNAL','#pavo'],
+archive:['SIGNAL 003 / NIGHT ARCHIVE','MEMORY FRAGMENTS.','Five fragments from the OOPS! night archive: The Energy, The People, The Chaos, Behind the Decks and The Aftermath. Open any archive item to view the original media.','OPEN ARCHIVE','#archive'],
+join:['SIGNAL 004 / ACCESS','GET ON THE RADAR.','The next experience is not announced yet. Follow OOPS! for future announcements and updates.','BACK TO THE VOID','#start']
+};
+$$('[data-detail]').forEach(btn=>btn.addEventListener('click',()=>{const d=detailData[btn.dataset.detail];$('#detailKicker').textContent=d[0];$('#detailTitle').textContent=d[1];$('#detailText').textContent=d[2];$('#detailAction').textContent=d[3]+' ↗';$('#detailAction').href=d[4];$('#detail').classList.add('open')}));
+const closeDetail=()=>$('#detail').classList.remove('open');$('#detailClose').addEventListener('click',closeDetail);$('#detail').addEventListener('click',e=>{if(e.target.id==='detail')closeDetail()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});
+const progress=$('#progress');let scrollTick=false;function onScroll(){if(scrollTick)return;scrollTick=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';scrollTick=false})}addEventListener('scroll',onScroll,{passive:true});onScroll();
+const cursor=$('#cursor');if(matchMedia('(pointer:fine)').matches){let cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY});function moveCursor(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cursor.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(moveCursor)}moveCursor();$$('a,button,.artifact').forEach(el=>{el.addEventListener('pointerenter',()=>cursor.classList.add('active'));el.addEventListener('pointerleave',()=>cursor.classList.remove('active'))})}
+let audio=null,oscillators=[],audioOn=false;const soundBtn=$('#soundToggle'),soundState=$('#soundState');
+function stopSound(){if(audio){audio.close().catch(()=>{});audio=null}audioOn=false;soundState.textContent='OFF';soundBtn.setAttribute('aria-pressed','false')}
+async function toggleSound(){if(audioOn){stopSound();sessionStorage.setItem('oops-sound','off');return}try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('Audio unavailable');audio=new AC();const master=audio.createGain();master.gain.value=.055;master.connect(audio.destination);[55,82.4,110].forEach((f,i)=>{const o=audio.createOscillator(),g=audio.createGain(),filter=audio.createBiquadFilter();o.type=i===1?'triangle':'sine';o.frequency.value=f;filter.type='lowpass';filter.frequency.value=220+i*80;g.gain.value=i===0?.48:.16;o.connect(filter);filter.connect(g);g.connect(master);o.start();oscillators.push(o)});audioOn=true;soundState.textContent='ON';soundBtn.setAttribute('aria-pressed','true');sessionStorage.setItem('oops-sound','on')}catch(e){$('#toast').textContent='SOUND IS NOT AVAILABLE IN THIS BROWSER';$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),2200)}}
+soundBtn.addEventListener('click',toggleSound);addEventListener('pagehide',stopSound);
+let sceneObserver;if('IntersectionObserver'in window){sceneObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){const id=entry.target.dataset.scene;document.body.dataset.scene=id||'';if(window.__unknownScene)window.__unknownScene(Number(String(id).split('')[0])||1)}}),{threshold:.35});$$('[data-scene]').forEach(s=>sceneObserver.observe(s))}
+</script>
+<script type="module">
+const root=document.querySelector('#world');
+try{
+ const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+ const mobile=matchMedia('(max-width:700px)').matches,low=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const renderer=new THREE.WebGLRenderer({antialias:!mobile,alpha:true,powerPreference:'high-performance'});
+ renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.35:1.8));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;root.appendChild(renderer.domElement);
+ const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x05080d,.025);
+ const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,180);camera.position.set(0,0,12);
+ const ambient=new THREE.HemisphereLight(0x9bbde8,0x080b10,.65);scene.add(ambient);
+ const key=new THREE.DirectionalLight(0xdceaff,3.4);key.position.set(4,5,7);scene.add(key);
+ const blue=new THREE.PointLight(0x397bd6,26,22);blue.position.set(-5,1,2);scene.add(blue);
+ const rim=new THREE.PointLight(0xb8d5ff,32,20);rim.position.set(3,-3,-2);scene.add(rim);
+ const envCanvas=document.createElement('canvas');envCanvas.width=1024;envCanvas.height=512;const ec=envCanvas.getContext('2d');
+ const grad=ec.createLinearGradient(0,0,0,512);grad.addColorStop(0,'#a7b7c9');grad.addColorStop(.18,'#151d29');grad.addColorStop(.48,'#030507');grad.addColorStop(.7,'#52657a');grad.addColorStop(1,'#080b10');ec.fillStyle=grad;ec.fillRect(0,0,1024,512);
+ for(let i=0;i<13;i++){const x=i*88+20;ec.fillStyle=i%3===0?'rgba(230,242,255,.9)':'rgba(110,145,185,.45)';ec.fillRect(x,0,12,512)}
+ const env=new THREE.CanvasTexture(envCanvas);env.mapping=THREE.EquirectangularReflectionMapping;scene.environment=env;
+ const group=new THREE.Group();scene.add(group);
+ const geo=new THREE.IcosahedronGeometry(2.05,6);
+ const mat=new THREE.MeshPhysicalMaterial({color:0xc7d3df,metalness:1,roughness:.13,clearcoat:1,clearcoatRoughness:.08,envMapIntensity:1.7});
+ const sculpture=new THREE.Mesh(geo,mat);group.add(sculpture);
+ const pos=geo.attributes.position;const base=pos.array.slice();
+ sculpture.material.onBeforeCompile=shader=>{shader.uniforms.uTime={value:0};shader.uniforms.uMouse={value:new THREE.Vector2()};shader.vertexShader='uniform float uTime; uniform vec2 uMouse;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
+ float wave=sin(position.y*2.7+uTime*.55)*.055+cos(position.x*3.1-uTime*.38)*.04;
+ float pull=dot(normalize(position),vec3(uMouse,0.0))*.12;
+ transformed += normal*(wave+pull);
+`);sculpture.userData.shader=shader};
+ const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.11,2),new THREE.MeshBasicMaterial({color:0x86bfff,wireframe:true,transparent:true,opacity:.09}));group.add(wire);
+ const rings=new THREE.Group();scene.add(rings);for(let i=0;i<5;i++){const r=new THREE.Mesh(new THREE.TorusGeometry(3.1+i*.42,.006,6,220),new THREE.MeshBasicMaterial({color:0x83b9f5,transparent:true,opacity:.24-i*.03}));r.rotation.set(.5+i*.23,.2+i*.18,.3);rings.add(r)}
+ const arch=new THREE.Group();scene.add(arch);for(let i=0;i<18;i++){const a=i/18*Math.PI*2;const pillar=new THREE.Mesh(new THREE.BoxGeometry(.035,4.5,.035),new THREE.MeshStandardMaterial({color:0x7893b3,metalness:.8,roughness:.3,transparent:true,opacity:.38}));pillar.position.set(Math.cos(a)*7,Math.sin(a)*7,-7);pillar.rotation.z=a;arch.add(pillar)}
+ const count=mobile?480:1150,points=new Float32Array(count*3);for(let i=0;i<count;i++){const radius=5+Math.random()*35,a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1);points[i*3]=radius*Math.sin(b)*Math.cos(a);points[i*3+1]=radius*Math.sin(b)*Math.sin(a);points[i*3+2]=(Math.random()-.5)*45-5}
+ const pgeo=new THREE.BufferGeometry();pgeo.setAttribute('position',new THREE.BufferAttribute(points,3));const particles=new THREE.Points(pgeo,new THREE.PointsMaterial({color:0x9fc8f7,size:mobile?.022:.03,transparent:true,opacity:.56,sizeAttenuation:true}));scene.add(particles);
+ const floor=new THREE.GridHelper(90,55,0x1a2b40,0x0c1725);floor.position.y=-5;floor.material.transparent=true;floor.material.opacity=.19;scene.add(floor);
+ let mx=0,my=0,scroll=0,targetScroll=0;addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2},{passive:true});addEventListener('scroll',()=>{targetScroll=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)},{passive:true});
+ const clock=new THREE.Clock();let raf=0;
+ function render(){raf=requestAnimationFrame(render);const t=clock.getElapsedTime();scroll+=(targetScroll-scroll)*.035;group.rotation.y+=(mx*.22+scroll*2.1-group.rotation.y)*.025;group.rotation.x+=(-my*.16+Math.sin(t*.18)*.08-group.rotation.x)*.025;group.position.y=Math.sin(t*.42)*.14-scroll*1.3;group.position.z=-Math.min(scroll,1)*2.5;sculpture.scale.setScalar(1+Math.sin(t*.7)*.018);wire.rotation.copy(group.rotation);wire.rotation.y+=t*.025;rings.rotation.y=t*.045;rings.rotation.x=Math.sin(t*.15)*.16;arch.rotation.z=t*.018;particles.rotation.y=t*.006;blue.position.x=-5+mx*2;blue.position.y=1-my*2;camera.position.x+=(mx*.55-camera.position.x)*.018;camera.position.y+=(-my*.35+scroll*1.1-camera.position.y)*.018;camera.position.z+=(12-scroll*2.1-camera.position.z)*.018;camera.lookAt(0,-scroll*.5,0);if(sculpture.userData.shader){sculpture.userData.shader.uniforms.uTime.value=t;sculpture.userData.shader.uniforms.uMouse.value.set(mx,my)}renderer.render(scene,camera)}
+ if(!low)render();else renderer.render(scene,camera);
+ window.__unknownScene=()=>{};
+ addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.2:1.6));renderer.setSize(innerWidth,innerHeight)});
+}catch(err){root.classList.add('webgl-fallback');console.warn('WebGL fallback active',err)}
+</script>
+</body></html>
