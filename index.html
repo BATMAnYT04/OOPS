@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050608"><meta name="description" content="OOPS! — enter the unknown. Unexpected nights, unforgettable stories.">
+<meta name="theme-color" content="#100b16"><meta name="description" content="OOPS! — enter the unknown. Unexpected nights, unforgettable stories.">
 <title>OOPS! — THE UNKNOWN</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -211,6 +211,65 @@ footer{border-color:rgba(255,94,188,.25);color:#a99bbd}.footer-brand{color:var(-
 }
 @media(prefers-reduced-motion:reduce){.starter-orbit,.starter-orbit i,.event-ticker div{animation:none!important}.event-image img,.pavo-poster,.pavo-poster-bg{transition:none!important}}
 
+
+/* MIDNIGHT LUXE × ELECTRIC POP colour system */
+:root{
+ --black:#100b16;
+ --white:#f3eadc;
+ --muted:#a89aaa;
+ --blue:#b49aff;
+ --line:rgba(243,234,220,.19);
+ --pink:#ff5b78;
+ --orange:#ff9d62;
+ --lime:#d7ff54;
+ --cyan:#a98bff;
+}
+html,body{background:var(--black);color:var(--white)}
+#boot{background:#100b16}
+.boot-inner{color:#c6b8c8}
+.boot-line{background:rgba(243,234,220,.17)}
+.boot-line i{background:linear-gradient(90deg,var(--pink),var(--lime))}
+.topline{color:#e9deed}
+.mark span,.footer-brand span{color:var(--pink)!important}
+.sound{border-color:rgba(243,234,220,.25);background:rgba(16,11,22,.58)}
+#soundState,.micro,.artifact .open,.archive-item em{color:var(--cyan)}
+.scroll-line{background:rgba(243,234,220,.14)}
+.scroll-line i{background:linear-gradient(90deg,var(--pink),var(--orange),var(--lime));box-shadow:0 0 14px rgba(255,91,120,.55)}
+#cursor{border-color:var(--lime)}
+#cursor.active{background:rgba(215,255,84,.15)}
+.enter{border-color:rgba(243,234,220,.48);background:rgba(16,11,22,.48)}
+.enter:hover{background:var(--lime);border-color:var(--lime);color:#17101b}
+.starter:before{background:radial-gradient(ellipse at 73% 46%,rgba(255,91,120,.22),transparent 29%),radial-gradient(ellipse at 86% 65%,rgba(169,139,255,.2),transparent 26%),radial-gradient(ellipse at 25% 80%,rgba(215,255,84,.08),transparent 25%)}
+.starter h1 em{ -webkit-text-stroke-color:var(--pink)}
+.starter h1 b{background-image:linear-gradient(100deg,var(--pink),var(--orange),var(--lime));background-clip:text;-webkit-background-clip:text}
+.starter-orbit{border-color:rgba(243,234,220,.2)}
+.starter-orbit:before{border-color:rgba(169,139,255,.4)}
+.starter-orbit:after{border-color:rgba(255,91,120,.45)}
+.starter-orbit span:nth-child(1){background:var(--lime);box-shadow:0 0 25px var(--lime)}
+.starter-orbit span:nth-child(2){background:var(--pink);box-shadow:0 0 25px var(--pink)}
+.starter-orbit span:nth-child(3){background:var(--cyan);box-shadow:0 0 25px var(--cyan)}
+.starter-orbit i{ text-shadow:0 0 65px rgba(255,91,120,.28)}
+.starter-sticker{background:var(--lime);color:#17101b;box-shadow:0 10px 40px rgba(215,255,84,.18)}
+.upcoming-head h2 span{ -webkit-text-stroke-color:var(--pink)}
+.event-status{color:var(--lime)}
+.event-ticker{background:var(--pink);color:#1a101b}
+.event-ticker i{color:var(--lime)}
+.pavo-feature{background:radial-gradient(ellipse at 50% 48%,rgba(169,139,255,.17),transparent 48%)}
+.pavo-poster{background:#201629;box-shadow:0 35px 100px rgba(0,0,0,.45),0 0 0 1px rgba(243,234,220,.1)}
+.pavo-poster-bg{background:linear-gradient(135deg,rgba(20,11,25,.42),rgba(20,8,24,.83)),url('o3.gif') center/cover}
+.pavo-rule{background:linear-gradient(90deg,var(--pink),var(--orange),var(--lime));box-shadow:0 0 20px rgba(255,91,120,.5)}
+.pavo-stamp{border-color:var(--lime);color:var(--lime);box-shadow:0 0 30px rgba(215,255,84,.2)}
+.pavo-caption b{color:var(--pink)}
+.good-head h2 span{ -webkit-text-stroke-color:var(--cyan)}
+.good-note{border-color:rgba(243,234,220,.22);background:linear-gradient(145deg,rgba(255,91,120,.13),rgba(169,139,255,.09))}
+.good-note-mark{color:var(--lime)}
+.faq-item summary span{color:var(--pink)}
+.faq-item summary i{color:var(--lime)}
+.archive-item:hover{color:var(--lime)}
+footer{border-color:rgba(243,234,220,.2);color:#a89aaa}
+.footer-brand{color:var(--white)}
+.vignette{background:radial-gradient(ellipse at center,transparent 38%,rgba(10,5,14,.65) 100%)}
+
 </style>
 </head>
 <body class="lock">
@@ -314,8 +373,8 @@ try{
  const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,180);camera.position.set(0,0,12);
  const ambient=new THREE.HemisphereLight(0x9bbde8,0x080b10,.65);scene.add(ambient);
  const key=new THREE.DirectionalLight(0xdceaff,3.4);key.position.set(4,5,7);scene.add(key);
- const blue=new THREE.PointLight(0xff4fb8,34,24);blue.position.set(-5,1,2);scene.add(blue);const cyanLight=new THREE.PointLight(0x45eaff,30,23);cyanLight.position.set(5,2,-5);scene.add(cyanLight);const warmLight=new THREE.PointLight(0xffa04d,24,20);warmLight.position.set(0,-4,3);scene.add(warmLight);
- const rim=new THREE.PointLight(0xc6a0ff,34,20);rim.position.set(3,-3,-2);scene.add(rim);
+ const blue=new THREE.PointLight(0xff4fb8,34,24);blue.position.set(-5,1,2);scene.add(blue);const cyanLight=new THREE.PointLight(0xd7ff54,30,23);cyanLight.position.set(5,2,-5);scene.add(cyanLight);const warmLight=new THREE.PointLight(0xff9d62,24,20);warmLight.position.set(0,-4,3);scene.add(warmLight);
+ const rim=new THREE.PointLight(0xa98bff,34,20);rim.position.set(3,-3,-2);scene.add(rim);
  const envCanvas=document.createElement('canvas');envCanvas.width=1024;envCanvas.height=512;const ec=envCanvas.getContext('2d');
  const grad=ec.createLinearGradient(0,0,0,512);grad.addColorStop(0,'#a7b7c9');grad.addColorStop(.18,'#151d29');grad.addColorStop(.48,'#030507');grad.addColorStop(.7,'#52657a');grad.addColorStop(1,'#080b10');ec.fillStyle=grad;ec.fillRect(0,0,1024,512);
  for(let i=0;i<13;i++){const x=i*88+20;ec.fillStyle=i%3===0?'rgba(230,242,255,.9)':'rgba(110,145,185,.45)';ec.fillRect(x,0,12,512)}
@@ -333,7 +392,7 @@ try{
  const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.11,2),new THREE.MeshBasicMaterial({color:0xff80ce,wireframe:true,transparent:true,opacity:.09}));group.add(wire);
  const rings=new THREE.Group();scene.add(rings);for(let i=0;i<5;i++){const r=new THREE.Mesh(new THREE.TorusGeometry(3.1+i*.42,.006,6,220),new THREE.MeshBasicMaterial({color:0x83b9f5,transparent:true,opacity:.24-i*.03}));r.rotation.set(.5+i*.23,.2+i*.18,.3);rings.add(r)}
  const portals=new THREE.Group();scene.add(portals);const portalColors=[0xff5ebc,0x65eaff,0xd8ff70];const portalMat=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xffffff,emissiveIntensity:2.6,metalness:.65,roughness:.2});for(let i=0;i<3;i++){const gateMat=portalMat.clone();gateMat.color.setHex(portalColors[i]);gateMat.emissive.setHex(portalColors[i]);const gate=new THREE.Mesh(new THREE.TorusGeometry(2.35-i*.18,.045+i*.012,12,128),gateMat);gate.position.set((i-1)*4.7,Math.sin(i*2)*.65,-10-i*8);gate.rotation.y=(i-1)*.24;portals.add(gate);const inner=new THREE.Mesh(new THREE.TorusGeometry(2.12-i*.18,.009,6,128),new THREE.MeshBasicMaterial({color:0xb8d9ff,transparent:true,opacity:.65}));inner.position.copy(gate.position);inner.rotation.copy(gate.rotation);portals.add(inner)}\n const arch=new THREE.Group();scene.add(arch);for(let i=0;i<18;i++){const a=i/18*Math.PI*2;const pillar=new THREE.Mesh(new THREE.BoxGeometry(.035,4.5,.035),new THREE.MeshStandardMaterial({color:0x7893b3,metalness:.8,roughness:.3,transparent:true,opacity:.38}));pillar.position.set(Math.cos(a)*7,Math.sin(a)*7,-7);pillar.rotation.z=a;arch.add(pillar)}
- const count=mobile?480:1150,points=new Float32Array(count*3),particleColors=new Float32Array(count*3),palette=[new THREE.Color(0xff69b9),new THREE.Color(0x65eaff),new THREE.Color(0xd8ff70),new THREE.Color(0xb99aff),new THREE.Color(0xffa45e)];for(let i=0;i<count;i++){const radius=5+Math.random()*35,a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1);points[i*3]=radius*Math.sin(b)*Math.cos(a);points[i*3+1]=radius*Math.sin(b)*Math.sin(a);points[i*3+2]=(Math.random()-.5)*45-5;const pc=palette[i%palette.length];particleColors[i*3]=pc.r;particleColors[i*3+1]=pc.g;particleColors[i*3+2]=pc.b}
+ const count=mobile?480:1150,points=new Float32Array(count*3),particleColors=new Float32Array(count*3),palette=[new THREE.Color(0xff69b9),new THREE.Color(0xd7ff54),new THREE.Color(0xd8ff70),new THREE.Color(0xb99aff),new THREE.Color(0xff9d62)];for(let i=0;i<count;i++){const radius=5+Math.random()*35,a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1);points[i*3]=radius*Math.sin(b)*Math.cos(a);points[i*3+1]=radius*Math.sin(b)*Math.sin(a);points[i*3+2]=(Math.random()-.5)*45-5;const pc=palette[i%palette.length];particleColors[i*3]=pc.r;particleColors[i*3+1]=pc.g;particleColors[i*3+2]=pc.b}
  const pgeo=new THREE.BufferGeometry();pgeo.setAttribute('position',new THREE.BufferAttribute(points,3));pgeo.setAttribute('color',new THREE.BufferAttribute(particleColors,3));const particles=new THREE.Points(pgeo,new THREE.PointsMaterial({vertexColors:true,size:mobile?.03:.04,transparent:true,opacity:.82,sizeAttenuation:true}));scene.add(particles);
  const floor=new THREE.GridHelper(90,55,0x1a2b40,0x0c1725);floor.position.y=-5;floor.material.transparent=true;floor.material.opacity=.19;scene.add(floor);
  let mx=0,my=0,scroll=0,targetScroll=0;addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2},{passive:true});addEventListener('scroll',()=>{targetScroll=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)},{passive:true});
