@@ -84,7 +84,7 @@ let audio=null,oscillators=[],audioOn=false;const soundPreference=sessionStorage
 function stopSound(){if(audio){audio.close().catch(()=>{});audio=null}audioOn=false;soundState.textContent='OFF';soundBtn.setAttribute('aria-pressed','false')}
 async function toggleSound(){if(audioOn){stopSound();sessionStorage.setItem('oops-sound','off');return}try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('Audio unavailable');audio=new AC();const master=audio.createGain();master.gain.value=.055;master.connect(audio.destination);[55,82.4,110].forEach((f,i)=>{const o=audio.createOscillator(),g=audio.createGain(),filter=audio.createBiquadFilter();o.type=i===1?'triangle':'sine';o.frequency.value=f;filter.type='lowpass';filter.frequency.value=220+i*80;g.gain.value=i===0?.48:.16;o.connect(filter);filter.connect(g);g.connect(master);o.start();oscillators.push(o)});audioOn=true;soundState.textContent='ON';soundBtn.setAttribute('aria-pressed','true');sessionStorage.setItem('oops-sound','on')}catch(e){$('#toast').textContent='SOUND IS NOT AVAILABLE IN THIS BROWSER';$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),2200)}}
 soundBtn.addEventListener('click',toggleSound);addEventListener('pagehide',stopSound);
-let sceneObserver;if('IntersectionObserver'in window){sceneObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){const id=entry.target.dataset.scene;document.body.dataset.scene=id||'';if(window.__unknownScene)window.__unknownScene(Number(String(id).split('')[0])||1)}}),{threshold:.35});$$('[data-scene]').forEach(s=>sceneObserver.observe(s))}
+let sceneObserver;if('IntersectionObserver'in window){sceneObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){const id=entry.target.dataset.scene;document.body.dataset.scene=id||'';if(window.__unknownScene)window.__unknownScene((parseInt(id,10)||1))}}),{threshold:.35});$$('[data-scene]').forEach(s=>sceneObserver.observe(s))}
 </script>
 <script type="module">
 const root=document.querySelector('#world');
@@ -115,16 +115,38 @@ try{
 `);sculpture.userData.shader=shader};
  const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.11,2),new THREE.MeshBasicMaterial({color:0x86bfff,wireframe:true,transparent:true,opacity:.09}));group.add(wire);
  const rings=new THREE.Group();scene.add(rings);for(let i=0;i<5;i++){const r=new THREE.Mesh(new THREE.TorusGeometry(3.1+i*.42,.006,6,220),new THREE.MeshBasicMaterial({color:0x83b9f5,transparent:true,opacity:.24-i*.03}));r.rotation.set(.5+i*.23,.2+i*.18,.3);rings.add(r)}
- const arch=new THREE.Group();scene.add(arch);for(let i=0;i<18;i++){const a=i/18*Math.PI*2;const pillar=new THREE.Mesh(new THREE.BoxGeometry(.035,4.5,.035),new THREE.MeshStandardMaterial({color:0x7893b3,metalness:.8,roughness:.3,transparent:true,opacity:.38}));pillar.position.set(Math.cos(a)*7,Math.sin(a)*7,-7);pillar.rotation.z=a;arch.add(pillar)}
+ const portals=new THREE.Group();scene.add(portals);const portalMat=new THREE.MeshStandardMaterial({color:0x9bcaff,emissive:0x245a9d,emissiveIntensity:2.1,metalness:.85,roughness:.18});for(let i=0;i<3;i++){const gate=new THREE.Mesh(new THREE.TorusGeometry(2.35-i*.18,.045+i*.012,12,128),portalMat.clone());gate.position.set((i-1)*4.7,Math.sin(i*2)*.65,-10-i*8);gate.rotation.y=(i-1)*.24;portals.add(gate);const inner=new THREE.Mesh(new THREE.TorusGeometry(2.12-i*.18,.009,6,128),new THREE.MeshBasicMaterial({color:0xb8d9ff,transparent:true,opacity:.65}));inner.position.copy(gate.position);inner.rotation.copy(gate.rotation);portals.add(inner)}\n const arch=new THREE.Group();scene.add(arch);for(let i=0;i<18;i++){const a=i/18*Math.PI*2;const pillar=new THREE.Mesh(new THREE.BoxGeometry(.035,4.5,.035),new THREE.MeshStandardMaterial({color:0x7893b3,metalness:.8,roughness:.3,transparent:true,opacity:.38}));pillar.position.set(Math.cos(a)*7,Math.sin(a)*7,-7);pillar.rotation.z=a;arch.add(pillar)}
  const count=mobile?480:1150,points=new Float32Array(count*3);for(let i=0;i<count;i++){const radius=5+Math.random()*35,a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1);points[i*3]=radius*Math.sin(b)*Math.cos(a);points[i*3+1]=radius*Math.sin(b)*Math.sin(a);points[i*3+2]=(Math.random()-.5)*45-5}
  const pgeo=new THREE.BufferGeometry();pgeo.setAttribute('position',new THREE.BufferAttribute(points,3));const particles=new THREE.Points(pgeo,new THREE.PointsMaterial({color:0x9fc8f7,size:mobile?.022:.03,transparent:true,opacity:.56,sizeAttenuation:true}));scene.add(particles);
  const floor=new THREE.GridHelper(90,55,0x1a2b40,0x0c1725);floor.position.y=-5;floor.material.transparent=true;floor.material.opacity=.19;scene.add(floor);
  let mx=0,my=0,scroll=0,targetScroll=0;addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2},{passive:true});addEventListener('scroll',()=>{targetScroll=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)},{passive:true});
  const clock=new THREE.Clock();let raf=0;
- function render(){raf=requestAnimationFrame(render);const t=clock.getElapsedTime();scroll+=(targetScroll-scroll)*.035;group.rotation.y+=(mx*.22+scroll*2.1-group.rotation.y)*.025;group.rotation.x+=(-my*.16+Math.sin(t*.18)*.08-group.rotation.x)*.025;group.position.y=Math.sin(t*.42)*.14-scroll*1.3;group.position.z=-Math.min(scroll,1)*2.5;sculpture.scale.setScalar(1+Math.sin(t*.7)*.018);wire.rotation.copy(group.rotation);wire.rotation.y+=t*.025;rings.rotation.y=t*.045;rings.rotation.x=Math.sin(t*.15)*.16;arch.rotation.z=t*.018;particles.rotation.y=t*.006;blue.position.x=-5+mx*2;blue.position.y=1-my*2;camera.position.x+=(mx*.55-camera.position.x)*.018;camera.position.y+=(-my*.35+scroll*1.1-camera.position.y)*.018;camera.position.z+=(12-scroll*2.1-camera.position.z)*.018;camera.lookAt(0,-scroll*.5,0);if(sculpture.userData.shader){sculpture.userData.shader.uniforms.uTime.value=t;sculpture.userData.shader.uniforms.uMouse.value.set(mx,my)}renderer.render(scene,camera)}
+ function render(){raf=requestAnimationFrame(render);const t=clock.getElapsedTime();scroll+=(targetScroll-scroll)*.035;group.rotation.y+=(mx*.22+scroll*2.1+(group.userData.sceneTarget||0)-group.rotation.y)*.025;group.rotation.x+=(-my*.16+Math.sin(t*.18)*.08-group.rotation.x)*.025;group.position.y=Math.sin(t*.42)*.14-scroll*1.3;group.position.z=-Math.min(scroll,1)*2.5;sculpture.scale.setScalar(1+Math.sin(t*.7)*.018);wire.rotation.copy(group.rotation);wire.rotation.y+=t*.025;rings.rotation.y=t*.045;rings.rotation.x=Math.sin(t*.15)*.16;arch.rotation.z=t*.018;portals.rotation.y=Math.sin(t*.12)*.08;portals.children.forEach((p,i)=>{p.rotation.z+=.0007*(i%2?1:-1)});particles.rotation.y=t*.006;blue.position.x=-5+mx*2;blue.position.y=1-my*2;camera.position.x+=(mx*.55-camera.position.x)*.018;camera.position.y+=(-my*.35+scroll*1.1-camera.position.y)*.018;camera.position.z+=(12-scroll*2.1-camera.position.z)*.018;camera.lookAt(0,-scroll*.5,0);if(sculpture.userData.shader){sculpture.userData.shader.uniforms.uTime.value=t;sculpture.userData.shader.uniforms.uMouse.value.set(mx,my)}renderer.render(scene,camera)}
  if(!low)render();else renderer.render(scene,camera);
- window.__unknownScene=()=>{};
+ window.__unknownScene=(index)=>{const target=(index-1)*.42;group.userData.sceneTarget=target;};
  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.2:1.6));renderer.setSize(innerWidth,innerHeight)});
 }catch(err){root.classList.add('webgl-fallback');console.warn('WebGL fallback active',err)}
+</script>
+
+<script type="module">
+try{
+ const [{gsap},{ScrollTrigger}]=await Promise.all([
+  import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js'),
+  import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js')
+ ]);
+ gsap.registerPlugin(ScrollTrigger);
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!reduce){
+  gsap.utils.toArray('.scene-copy,.objects-head,.artifact,.pavo-world .scene-copy,.archive-list,.final>div').forEach((el,i)=>{
+   gsap.fromTo(el,{y:55,opacity:0},{y:0,opacity:1,duration:1.15,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 82%',once:true}});
+  });
+  gsap.utils.toArray('[data-scene]').forEach((el,i)=>{
+   ScrollTrigger.create({trigger:el,start:'top 65%',end:'bottom 35%',onEnter:()=>window.__unknownScene?.(i+1),onEnterBack:()=>window.__unknownScene?.(i+1)});
+  });
+  gsap.to('.vignette',{opacity:1.25,scrollTrigger:{trigger:'.descent',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.pavo-world:before',{rotation:4,scale:1.08,scrollTrigger:{trigger:'.pavo-world',start:'top bottom',end:'bottom top',scrub:true}});
+ }
+ ScrollTrigger.refresh();
+}catch(e){console.warn('Cinematic choreography fallback',e)}
 </script>
 </body></html>
