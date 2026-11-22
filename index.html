@@ -111,7 +111,7 @@ try{
  sculpture.material.onBeforeCompile=shader=>{shader.uniforms.uTime={value:0};shader.uniforms.uMouse={value:new THREE.Vector2()};shader.vertexShader='uniform float uTime; uniform vec2 uMouse;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
  float wave=sin(position.y*2.7+uTime*.55)*.055+cos(position.x*3.1-uTime*.38)*.04;
  float pull=dot(normalize(position),vec3(uMouse,0.0))*.12;
- transformed += normal*(wave+pull);
+ transformed += objectNormal*(wave+pull);
 `);sculpture.userData.shader=shader};
  const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.11,2),new THREE.MeshBasicMaterial({color:0x86bfff,wireframe:true,transparent:true,opacity:.09}));group.add(wire);
  const rings=new THREE.Group();scene.add(rings);for(let i=0;i<5;i++){const r=new THREE.Mesh(new THREE.TorusGeometry(3.1+i*.42,.006,6,220),new THREE.MeshBasicMaterial({color:0x83b9f5,transparent:true,opacity:.24-i*.03}));r.rotation.set(.5+i*.23,.2+i*.18,.3);rings.add(r)}
