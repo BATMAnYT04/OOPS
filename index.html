@@ -105,6 +105,23 @@ footer{border-color:rgba(255,94,188,.25);color:#a99bbd}.footer-brand{color:var(-
 @media(max-width:700px){.hero-disco{width:clamp(112px,34vw,170px);right:7vw;top:12vh;opacity:.9}.disco-ball:before{background:repeating-linear-gradient(0deg,transparent 0 7px,rgba(24,27,48,.72) 7px 9px,rgba(255,255,255,.7) 9px 10px),repeating-linear-gradient(90deg,transparent 0 7px,rgba(28,30,52,.75) 7px 9px,rgba(255,255,255,.65) 9px 10px)}}
 @media(prefers-reduced-motion:reduce){.disco-ball,.disco-spark,.beam-b{animation:none}}
 
+
+/* Suspended club-style disco ball with a ceiling drop and moving light wash */
+.hero-disco{top:0;right:8vw;overflow:visible;filter:drop-shadow(0 18px 45px rgba(255,94,188,.28))}
+.disco-cable{position:absolute;z-index:4;left:50%;top:0;height:calc(13vh + 49px);width:2px;transform:translateX(-50%);background:linear-gradient(90deg,rgba(255,255,255,.12),rgba(255,255,255,.9),rgba(255,255,255,.18));box-shadow:0 0 8px rgba(255,255,255,.6)}
+.disco-mount{position:absolute;z-index:5;left:50%;top:calc(13vh + 43px);width:13px;height:7px;transform:translateX(-50%);border-radius:3px 3px 1px 1px;background:linear-gradient(90deg,#687087,#fff,#737b98);box-shadow:0 0 12px rgba(255,255,255,.8)}
+.disco-ball{inset:auto;left:16%;top:calc(13vh + 49px);width:68%;height:68%;}
+.disco-rays{position:absolute;z-index:0;left:-55%;top:calc(13vh + 115px);width:210%;height:170%;transform-origin:50% 0;background:conic-gradient(from 246deg at 50% 0%,transparent 0deg,rgba(255,94,188,.18) 12deg,transparent 23deg,rgba(101,234,255,.2) 35deg,transparent 47deg,rgba(216,255,112,.16) 59deg,transparent 72deg,rgba(167,139,255,.2) 86deg,transparent 100deg);filter:blur(13px);mix-blend-mode:screen;animation:raySweep 9s ease-in-out infinite alternate}
+.disco-beam{z-index:1;top:calc(13vh + 150px);left:50%;width:190%;height:3px;filter:blur(9px);opacity:.9}
+.beam-a{transform:rotate(24deg);background:linear-gradient(90deg,rgba(255,94,188,.95),transparent)}
+.beam-b{transform:rotate(150deg);background:linear-gradient(90deg,rgba(101,234,255,.95),transparent);animation:beamPulse 3s ease-in-out infinite alternate}
+.beam-c{transform:rotate(68deg);background:linear-gradient(90deg,rgba(216,255,112,.85),transparent);animation:beamPulse 2.4s ease-in-out infinite alternate-reverse}
+.beam-d{transform:rotate(205deg);background:linear-gradient(90deg,rgba(167,139,255,.9),transparent);animation:beamPulse 3.8s ease-in-out infinite alternate}
+.spark-d{left:17%;top:32%;font-size:20px;color:var(--orange);animation-delay:1.6s}
+@keyframes raySweep{0%{transform:rotate(-13deg) scaleX(.85);opacity:.45}100%{transform:rotate(15deg) scaleX(1.12);opacity:.95}}
+@media(max-width:700px){.hero-disco{right:7vw;top:0}.disco-cable{height:calc(12vh + 35px)}.disco-mount{top:calc(12vh + 29px)}.disco-ball{top:calc(12vh + 35px)}.disco-rays{top:calc(12vh + 85px);height:135%}.disco-beam{top:calc(12vh + 108px)}}
+@media(prefers-reduced-motion:reduce){.disco-rays{animation:none}}
+
 </style>
 </head>
 <body class="lock">
@@ -114,7 +131,7 @@ footer{border-color:rgba(255,94,188,.25);color:#a99bbd}.footer-brand{color:var(-
 <header class="topline"><a class="mark" href="#start" aria-label="OOPS home">OOPS<span>!</span></a><div class="top-right"><span class="coordinates">UNKNOWN SPACE / 00° 00′ 00″</span><button class="sound" id="soundToggle" type="button">SOUND <span id="soundState">OFF</span></button></div></header>
 <main>
 <section class="scene hero" id="start" data-scene="01">
-<div class="scene-copy"><div class="micro">AN EXPERIMENT IN THE UNEXPECTED / 001</div><h1>SOMETHING EXISTS <span>BEYOND THE SCREEN.</span></h1><div class="hero-note"><span>YOU ARE NOT HERE TO BROWSE.</span><a class="enter magnetic" href="#discovery">ENTER THE UNKNOWN <b>↘</b></a></div></div><div class="hero-disco" aria-hidden="true"><div class="disco-beam beam-a"></div><div class="disco-beam beam-b"></div><div class="disco-ball"><i></i></div><span class="disco-spark spark-a">✦</span><span class="disco-spark spark-b">✧</span><span class="disco-spark spark-c">✦</span></div><div class="side-index">SCROLL TO DESCEND — 01 / 05</div>
+<div class="scene-copy"><div class="micro">AN EXPERIMENT IN THE UNEXPECTED / 001</div><h1>SOMETHING EXISTS <span>BEYOND THE SCREEN.</span></h1><div class="hero-note"><span>YOU ARE NOT HERE TO BROWSE.</span><a class="enter magnetic" href="#discovery">ENTER THE UNKNOWN <b>↘</b></a></div></div><div class="hero-disco" aria-hidden="true"><div class="disco-cable"></div><div class="disco-mount"></div><div class="disco-rays"></div><div class="disco-beam beam-a"></div><div class="disco-beam beam-b"></div><div class="disco-beam beam-c"></div><div class="disco-beam beam-d"></div><div class="disco-ball"><i></i></div><span class="disco-spark spark-a">✦</span><span class="disco-spark spark-b">✧</span><span class="disco-spark spark-c">✦</span><span class="disco-spark spark-d">✧</span></div><div class="side-index">SCROLL TO DESCEND — 01 / 05</div>
 </section>
 <section class="scene statement" id="discovery" data-scene="02"><div class="scene-copy"><div class="micro">02 / DISCOVERY</div><h2>IT KNOWS<br>WHEN YOU<br><span>LOOK CLOSER.</span></h2><p>Move through the void. Follow the light. The world responds to your presence — not with answers, but with new questions.</p></div><div class="side-index">A LIVING OBJECT / 02</div></section>
 <section class="scene descent" data-scene="03"><div class="scene-copy"><div class="micro">03 / DESCENT</div><h2>LET GO<br>OF THE<br>ORDINARY.</h2><p>Space folds. Distances dissolve. What looked like an object becomes a passage into somewhere else.</p></div><div class="side-index">DEPTH IS AN ILLUSION / 03</div></section>
